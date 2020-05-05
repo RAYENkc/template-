@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-asidenavbar',
@@ -7,9 +8,37 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AsidenavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
   }
 
+  home(){
+    this.router.navigate(['Dashboard']);
+  }
+
+  calender(){
+    this.router.navigate(['Pages']);
+  }
+
+
+  Prospect(){
+    this.router.navigate(['Pages/prospect']);
+  }
+
+  Client(){
+    this.router.navigate(['Pages/client']);
+  }
+
+  Chat(){
+    this.router.navigate(['Pages/chat']);
+  }
+  Note(){
+    this.router.navigate(['Pages/note']);
+  }
+  Mailbox(){
+    this.router.navigate(['Pages/mail']);
+  }
 }

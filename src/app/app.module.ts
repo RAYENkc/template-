@@ -5,18 +5,46 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginModule } from './login/login.module';
 import { DashbordModule } from './dashbord/dashbord.module';
+import { DashModule } from './dash/dash.module';
+import { PagesModule } from './pages/pages.module';
+import { SharedService } from './dash/shared.service';
+import { MatConfirmDialogComponent } from './mat-confirm-dialog/mat-confirm-dialog.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialogModule } from '@angular/material/dialog';
+import { NoteComponent } from './dash/prospect/note/note.component';
+import { ProspectsComponent } from './dash/prospect/prospects/prospects.component';
+import { ProspectService } from './dash/shared/prospect.service';
+import { ProspectMangerComponent } from './dash/prospect/prospect-manger/prospect-manger.component';
+import { ProspectMangerService } from './dash/shared/prospect-manger.service';
+
+
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MatConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     LoginModule,
-    DashbordModule
+    DashbordModule,
+    PagesModule,
+    MatIconModule,
+    MatSnackBarModule,
+    MatDialogModule,
+ 
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  exports: [
+    MatDialogModule,
+    MatIconModule,
+    MatSnackBarModule,
+  ],
+  providers: [SharedService , ProspectService, ProspectMangerService],
+  bootstrap: [AppComponent],
+  entryComponents: [NoteComponent, MatConfirmDialogComponent , ProspectsComponent, ProspectMangerComponent]
+  
 })
 export class AppModule { }

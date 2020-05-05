@@ -1,0 +1,148 @@
+<div class="wrapper">
+    <app-topnavbar></app-topnavbar>
+    <app-asidenavbar></app-asidenavbar>
+    <div class="content-wrapper" style="min-height: 926px;">
+      <section class="content-header">
+        <h1> Prospect </h1>
+        <ol class="breadcrumb">
+          <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+          <li class="active">  Prospect </li>
+        </ol>
+        <section class="content">
+         <!--   maps -->
+         <div>
+            <agm-map [latitude] ="lat" [longitude]=" lng" (mapClick)="onChoseLocation($event)" >
+              <agm-marker [latitude] ="lat" [longitude]=" lng" *ngIf="locationChosen ">
+
+              </agm-marker>
+              
+              
+                <div *ngFor="let geo of exa" > 
+                  <agm-marker [latitude] ="geo.geo._latitude" [longitude]=" geo.geo._longitude"  >
+                    <agm-info-window >  
+                      <div  *ngFor="let in of infos">
+                        <div *ngIf="in.id == geo.prospectId">
+                              <h3><strong>{{in.data.Social_Reason}}</strong></h3>
+                              <p> <strong> Address </strong> : {{in.data.Address}} </p>
+                              <p> <strong> Phone </strong> : {{in.data.Phone}} </p>
+                              <p>  <strong> DateCreated</strong> : {{in.data.DateCreated}} </p>
+                              <p> <strong> Mail </strong>: {{in.data.Mail}} </p>
+                             
+                         </div>
+                      </div> 
+                     <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons"  (click)="deleteGeo(geo.prospectId, geo.idGeo)" > &#xE5C9;</i></a> 
+                      <a href="#"  class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons"  (click)="updateGeo(geo.prospectId, geo.idGeo)" >&#xE8B8;</i></a>
+                    </agm-info-window>
+              
+                   </agm-marker>  
+                </div>
+              
+                <div *ngFor="let geo of exampl">
+                  <agm-marker [latitude] ="geo.geo._latitude" [longitude]=" geo.geo._longitude" [iconUrl]="'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'" >
+                     <agm-info-window>
+                       <!-- fama error lina-->
+                   <!--
+                      <div  *ngFor="let info of exampleProspect">
+                        <div *ngIf="info.id == geo.prospectId">
+                       <h3><strong>hey !!</strong></h3>
+                       <p>you are {{info.data.Social_Reason}} !!</p>
+                       </div>
+                      </div>
+                        <i class="material-icons"   > &#xe003;</i>
+              
+                   --> 
+                   <a href="#"  data-toggle="tooltip"><i class="material-icons"  (click)="deleteGeo(geo.prospectId, geo.idGeo)" > &#xe003;</i></a>
+                   </agm-info-window>
+                   </agm-marker> 
+                 </div>
+                </agm-map>
+             
+
+              <div class="container">
+               <!-- <div class="row frontend-row">--> 
+                  <div>
+                  <div class="col">
+                    <form>
+                      <div class="form-group example-list">
+                      <!--  <div class="select-all">
+                         <button class="btn btn-btn btn-primary" (click)="selectAll()">select all</button> 
+                           <button class="btn btn-btn btn-primary" (click)="select()" >affich</button> 
+                        
+                         
+                          <button class="btn btn-btn btn-success" (click)="createProspect()">create Prospect</button>
+                         
+                        </div> -->
+
+                        <div class="search-div">
+                          <button mat-raised-button  class="btn btn-btn btn-primary" (click)=onAddProspect()>
+                            <mat-icon>add</mat-icon> Create </button>
+                            <mat-form-field class="search-form-field" floatLabel="never">
+                              <input matInput [(ngModel)]="searchKey" placeholder="Search" autocomplete="off" (keyup)="applyFilter()">
+                              <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchKey"  (click)="onSearchClear()" >
+                                <mat-icon>close</mat-icon>
+                              </button>
+                            </mat-form-field>
+                        </div>
+                       
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th scope="col">id</th>
+                              <th scope="col">Social_Reason</th>
+                              <th scope="col">Phone</th>
+                              <th scope="col">Address</th>
+                              <th scope="col">Mail</th>
+                              <th scope="col">Role</th>
+                              <th scope="col"> DateCreated</th>
+                              <th scope="col">Settings</th>
+                             <!-- <th scope="col">update</th>
+                              <th scope="col">delete</th>-->
+                            
+                            </tr>
+                          </thead>
+                          <tbody *ngFor="let item of exampleItems">
+                          <mat-spinner [ngClass]="{'hide': item!=null}">loading ..</mat-spinner> 
+                            <tr>
+                              <td >{{item.id}}</td>
+                              <td>{{item.Social_Reason}}</td>
+                              <td>{{item.Phone}}</td>
+                              <td>{{item.Mail}}</td>
+                              <td>{{item.Address}}</td>
+                              <td>{{item.Role}}</td>
+                              <td>{{item.DateCreated}}</td>
+                             
+                              <td>
+                                <button  mat-icon-button   (click)="  onEditProspect(item)" ><mat-icon>launch</mat-icon></button>
+                                <button  mat-icon-button color="warn" (click)="onDeleteProspect(item)" ><mat-icon>delete_outline</mat-icon></button>
+                            
+                                <button  mat-icon-button  (click)="createGeo(item)" ><mat-icon>add_location</mat-icon></button>
+                                <button mat-icon-button  (click)=" selectGeo(item)"><mat-icon>where_to_vote</mat-icon></button>
+                                <button mat-icon-button (click)=" onEditNote(item)"><mat-icon>note_add</mat-icon></button>
+                                <button mat-icon-button (click)=" onEditManger(item)"><mat-icon>supervisor_account</mat-icon></button>
+                              </td>
+                               
+                          
+                            </tr>
+                           
+                          </tbody>
+                         
+                        </table>
+                        <mat-paginator  [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="5" ></mat-paginator>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+           </div>
+        </section>
+      </section>
+    
+      
+    </div>
+
+
+ 
+    <app-footernavbar></app-footernavbar>
+    <app-settingsnavbar></app-settingsnavbar>
+   
+  </div>

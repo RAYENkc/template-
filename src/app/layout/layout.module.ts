@@ -4,6 +4,7 @@ import { TopnavbarComponent } from './topnavbar/topnavbar.component';
 import { AsidenavbarComponent } from './asidenavbar/asidenavbar.component';
 import { FooternavbarComponent } from './footernavbar/footernavbar.component';
 import { SettingsnavbarComponent } from './settingsnavbar/settingsnavbar.component';
+import { DashbodyComponent } from './dashbody/dashbody.component';
 
 
 
@@ -12,13 +13,15 @@ import { SettingsnavbarComponent } from './settingsnavbar/settingsnavbar.compone
     TopnavbarComponent,
     AsidenavbarComponent, 
     FooternavbarComponent, 
-    SettingsnavbarComponent
+    SettingsnavbarComponent, 
+    DashbodyComponent
   ],
   exports: [
     TopnavbarComponent,
     AsidenavbarComponent, 
     FooternavbarComponent, 
-    SettingsnavbarComponent
+    SettingsnavbarComponent,
+    DashbodyComponent
   ],
   imports: [
     CommonModule

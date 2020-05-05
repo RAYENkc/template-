@@ -1,0 +1,62 @@
+
+<div class="container">
+    <mat-toolbar >
+    <span class="fill-remaining-space"></span> 
+      <span>Prospect </span>
+    <span class="fill-remaining-space"></span>
+
+    <button mat-stroked-button color="warn" (click)="onClose()" tabIndex="-1"><mat-icon>close</mat-icon></button>
+  
+    </mat-toolbar>
+   
+  
+  
+    <form [formGroup]="service.form" class="normal-form" >
+      <mat-grid-list cols="2" rowHeight="300px">
+        <mat-grid-tile>
+          <div class="controles-container-prospect"  *ngFor="let item of exampleItems">
+            <input type="hidden" formControlName="$key" >
+            <mat-form-field>
+              <input formControlName="id" matInput placeholder="id*" [value]="item.id" (input)="item.id=$event.target.value" >
+              <mat-error>this Field is mandatory</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <input formControlName="Social_Reason" matInput placeholder="Social Reason*" [value]="item.Social_Reason" (input)="item.Social_Reason=$event.target.value">
+              <mat-error>this Field is mandatory</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input formControlName="Phone" matInput placeholder="Phone*" [value]="item.Phone" (input)="item.Phone=$event.target.value">
+                <mat-error *ngIf="service.form.controls['Phone'].errors?.required">this Field is mandatory</mat-error>
+                <mat-error *ngIf="service.form.controls['Phone'].errors?.minLength">Minimum 8 charactors neeeds</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input formControlName="Mail" matInput placeholder="Mail*" [value]="item.Mail" (input)="item.Mail=$event.target.value" >
+                <mat-error>this Field is mandatory</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input formControlName="Address" matInput placeholder=" Address*" [value]="item.Address" (input)="item.Address=$event.target.value">
+                <mat-error>this Field is mandatory</mat-error>
+              </mat-form-field>
+              <mat-form-field>
+                <input formControlName="Role" matInput placeholder="Role*" [value]="item.Role" (input)="item.Role=$event.target.value">
+                <mat-error>this Field is mandatory</mat-error>
+              </mat-form-field>
+              <mat-form-field>
+                <input formControlName="DateCreated" matInput placeholder=" DateCreated*" [value]="item.DateCreated" (input)="item.DateCreated=$event.target.value" >
+                <mat-error>this Field is mandatory</mat-error>
+              </mat-form-field>
+            <div class="bottom-row">
+                <button mat-raised-button color="primary" type="submit" [disabled]="service.form.invalid" (click)="updateProspect(item)" >Add</button>
+              <button mat-raised-button color="warn" (click)="onClear()" >Clear</button>
+            </div>
+          </div>
+          
+        </mat-grid-tile>
+      <mat-grid-tile>
+      </mat-grid-tile>
+      </mat-grid-list>
+  
+    </form>
+
+    
+    </div>
