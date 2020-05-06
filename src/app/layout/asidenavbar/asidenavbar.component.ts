@@ -41,4 +41,7 @@ export class AsidenavbarComponent implements OnInit {
   Mailbox(){
     this.router.navigate(['Pages/mail']);
   }
+  Commerical(){
+    this.router.navigate(['Pages/commercial']);
+  }
 }

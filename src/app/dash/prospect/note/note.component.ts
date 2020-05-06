@@ -1,10 +1,11 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig} from '@angular/material/dialog';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { SharedService } from '../../shared.service';
 import { environment } from 'src/environments/environment';
 import { NotificationService } from '../../shared/notification.service';
 import { DialogService } from '../../shared/dialog.service';
+import { NoteEditComponent } from './note-edit/note-edit.component';
 
 
 @Component({
@@ -18,23 +19,31 @@ export class NoteComponent implements OnInit {
   exampleItems = [];
   exampl = [];
   exampleNote = [];
+  disbadd = false;
+  disbmodif = false;
+  title = "";
+
+
   
   constructor(
     public service : SharedService,
     private dialogRef: MatDialogRef<NoteComponent>,
     public notificationService : NotificationService,
     private dialogService: DialogService,
+    private dialog:MatDialog,
     @Inject(MAT_DIALOG_DATA) data
   ) {
     this.description = data.id;
    }
-
+ 
   ngOnInit(): void {
+    this.selectNotes();
+  
   }
 
   onClear(){
-    this.service.form.reset();
-   this.service.initializeFormGroupe();
+  this.service.form.reset();
+  this.service.initializeFormGroupe();
   }
 
   onSubmit(){
@@ -48,68 +57,8 @@ export class NoteComponent implements OnInit {
   }
   
  
-//create new note
-async saveNote(item: any) {
-  try{
-    console.log(environment.createNote);
-    console.log('calling create item endpoint with: ' + item.idNote);
-    console.log('calling create item endpoint with: ' + item.textNote);
-    console.log('calling create item endpoint with: ' + item.dateNote);
-    const requestBody = {
-      idNote: item.idNote,
-      textNote: item.textNote,
-      dateNote: item.dateNote
-    };
 
-    const createResponse =
-    await fetch(environment.createNote + this.description ,  {
-      method: 'POST',
-      body: JSON.stringify(requestBody),
-      headers:{
-        'Content-Type': 'application/json'
-      }
-    });
-  this.notificationService.success(':: Submitted successfully');
-   this.selectNotes(); 
-    console.log('Success');
-    console.log(createResponse.status);
-   
 
-  }catch(error){
-    console.log(error);
-  }
-}
-
-async updateNote(item: any) {
-   try{
-    console.log(environment.updateNote);
-   
-
-    const requestBody = {
-      idNote: item.idNote,
-      textNote: item.textNote,
-      dateNote: item.dateNote
-    };
-    
-    const updateResponse =
-    await fetch(environment.updateNote + this.description + '/'+ item.idNote, {
-      method: 'PUT',
-      body: JSON.stringify(requestBody),
-      headers:{
-        'Content-Type': 'application/json'
-      }
-    });
-
-    console.log('Success');
-    console.log(updateResponse.status);
-
-    
-  
-   }catch(error){
-    console.log(error);
-   }
-
-}
 
 async deleteNote(id: any) {
   try{
@@ -147,27 +96,7 @@ onDeleteNote(id: any){
   });
 }
 
-createNote() {
-  this.exampleItems.push({
-   
-    idNote: '',
-    textNote: '',
-    dateNote: '',
 
-    save: true
-  });
-}
-onUpdateNote(id) {
- //this.selectNote(id);
- this.exampleItems.push({
-   
-  idNote:  '',
-  textNote: '',
-  dateNote: '',
-
- update: true
-});
-}
 async selectNotes() {
   try {
     console.log(environment.readAllNote);
@@ -211,5 +140,34 @@ async selectNote(id: any) {
   }
 }
 
+onEditNote(item){
+  const dialogConfig = new MatDialogConfig();
+  dialogConfig.disableClose = true ;
+  dialogConfig.autoFocus = true;
+
+  dialogConfig.data= {
+    item: item,
+    idProspect : item.prospectId
+   
+  };
+  
+
+  dialogConfig.width = "60%";
+  dialogConfig.height ="80%";
+  this.dialog.open(NoteEditComponent, dialogConfig);
+}
+onAddNote(){
+  const dialogConfig = new MatDialogConfig();
+  dialogConfig.disableClose = true ;
+  dialogConfig.autoFocus = true;
+  dialogConfig.data= {
+    item: null,
+   
+  };
+
+  dialogConfig.width = "60%";
+  dialogConfig.height ="80%";
+  this.dialog.open(NoteEditComponent, dialogConfig);
+}
 
 }

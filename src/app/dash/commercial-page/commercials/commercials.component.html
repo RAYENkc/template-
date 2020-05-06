@@ -1,4 +1,3 @@
-
 <div class="container">
     <mat-toolbar >
     <span class="fill-remaining-space"></span> 
@@ -14,16 +13,20 @@
     <form [formGroup]="service.form" class="normal-form" *ngIf="disbadd && !disbmodif" >
       <mat-grid-list cols="2" rowHeight="300px">
         <mat-grid-tile>
-          <div class="controles-container-prospect"  *ngFor="let item of exampleItems">
+          <div class="controles-container-prospect"  *ngFor="let item of exampleCommercials ">
             <input type="hidden" formControlName="$key" >
             <mat-form-field>
               <input formControlName="id" matInput placeholder="id*" [value]="item.id" (input)="item.id=$event.target.value" >
               <mat-error>this Field is mandatory</mat-error>
             </mat-form-field>
             <mat-form-field>
-              <input formControlName="Social_Reason" matInput placeholder="Social Reason*" [value]="item.Social_Reason" (input)="item.Social_Reason=$event.target.value">
+              <input formControlName="LastName" matInput placeholder="Last Name*" [value]="item.LastName" (input)="item.LastName=$event.target.value">
               <mat-error>this Field is mandatory</mat-error>
             </mat-form-field>
+            <mat-form-field>
+                <input formControlName="FirstName" matInput placeholder="First Name*" [value]="item.FirstName" (input)="item.FirstName=$event.target.value">
+                <mat-error>this Field is mandatory</mat-error>
+              </mat-form-field>
             <mat-form-field>
                 <input formControlName="Phone" matInput placeholder="Phone*" [value]="item.Phone" (input)="item.Phone=$event.target.value">
                 <mat-error *ngIf="service.form.controls['Phone'].errors?.required">this Field is mandatory</mat-error>
@@ -34,19 +37,12 @@
                 <mat-error>this Field is mandatory</mat-error>
             </mat-form-field>
             <mat-form-field>
-                <input formControlName="Address" matInput placeholder=" Address*" [value]="item.Address" (input)="item.Address=$event.target.value">
+                <input formControlName="Adress" matInput placeholder=" Address*" [value]="item.Adress" (input)="item.Adress=$event.target.value">
                 <mat-error>this Field is mandatory</mat-error>
               </mat-form-field>
-              <mat-form-field>
-                <input formControlName="Role" matInput placeholder="Role*" [value]="item.Role" (input)="item.Role=$event.target.value">
-                <mat-error>this Field is mandatory</mat-error>
-              </mat-form-field>
-              <mat-form-field>
-                <input formControlName="DateCreated" matInput placeholder=" DateCreated*" [value]="item.DateCreated" (input)="item.DateCreated=$event.target.value" >
-                <mat-error>this Field is mandatory</mat-error>
-              </mat-form-field>
+         
             <div class="bottom-row">
-                <button mat-raised-button color="primary" type="submit" [disabled]="service.form.invalid" (click)="updateProspect(item)" >Add</button>
+                <button mat-raised-button color="primary" type="submit" [disabled]="service.form.invalid" (click)="saveProspect(item)" >Add</button>
               <button mat-raised-button color="warn" (click)="onClear()" >Clear</button>
             </div>
           </div>
@@ -61,14 +57,14 @@
     <form  class="normal-form" *ngIf="!disbadd && disbmodif" >
       <mat-grid-list cols="2" rowHeight="300px">
         <mat-grid-tile>
-          <div class="controles-container-prospect"  *ngFor="let item of exampleItem">
+          <div class="controles-container-prospect"  *ngFor="let item of exampleCommercial">
             <input type="hidden" formControlName="$key" >
             <mat-form-field>
               <input  matInput placeholder="id*" [value]="item.id" (input)="item.id=$event.target.value" >
               <mat-error>this Field is mandatory</mat-error>
             </mat-form-field>
             <mat-form-field>
-              <input  matInput placeholder="Social Reason*" [value]="item.Social_Reason" (input)="item.Social_Reason=$event.target.value">
+              <input  matInput placeholder="Last Name*" [value]="item.LastName" (input)="item.LastName=$event.target.value">
               <mat-error>this Field is mandatory</mat-error>
             </mat-form-field>
             <mat-form-field>
@@ -81,15 +77,11 @@
                 <mat-error>this Field is mandatory</mat-error>
             </mat-form-field>
             <mat-form-field>
-                <input  matInput placeholder=" Address*" [value]="item.Address" (input)="item.Address=$event.target.value">
+                <input  matInput placeholder=" Address*" [value]="item.Adress" (input)="item.Address=$event.target.value">
                 <mat-error>this Field is mandatory</mat-error>
               </mat-form-field>
               <mat-form-field>
-                <input  matInput placeholder="Role*" [value]="item.Role" (input)="item.Role=$event.target.value">
-                <mat-error>this Field is mandatory</mat-error>
-              </mat-form-field>
-              <mat-form-field>
-                <input  matInput placeholder=" DateCreated*" [value]="item.DateCreated" (input)="item.DateCreated=$event.target.value" >
+                <input  matInput placeholder="First Name*" [value]="item.FirstName" (input)="item.FirstName=$event.target.value">
                 <mat-error>this Field is mandatory</mat-error>
               </mat-form-field>
             <div class="bottom-row">

@@ -11,6 +11,7 @@ import { DialogService } from '../shared/dialog.service';
 import { NotificationService } from '../shared/notification.service';
 import { ProspectsComponent } from '../prospect/prospects/prospects.component';
 import { ProspectMangerComponent } from '../prospect/prospect-manger/prospect-manger.component';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-prospect-page',
   templateUrl: './prospect-page.component.html',
@@ -34,7 +35,9 @@ searchKey: string;
   constructor(public service : SharedService,
     private dialogService: DialogService,
     public notificationService : NotificationService,
-    private dialog:MatDialog) { }
+    private dialog:MatDialog,
+    private router: Router
+    ) { }
   listData: MatTableDataSource<any>;
 
   ngOnInit(): void {
@@ -216,6 +219,7 @@ searchKey: string;
      }
 
   }
+  
   onDeleteProspect(item: any){
     this.dialogService.openConfirmDialog('Are you sure to delete ?')
     .afterClosed().subscribe(res =>{
@@ -417,7 +421,7 @@ async updateGeo(id : any, idGeo: any) {
     dialogConfig.disableClose = true ;
     dialogConfig.autoFocus = true;
     dialogConfig.data= {
-      id: ""
+      item: null
     };
 
     dialogConfig.width = "60%";
@@ -431,7 +435,7 @@ async updateGeo(id : any, idGeo: any) {
     dialogConfig.autoFocus = true;
 
     dialogConfig.data= {
-      id: item.id
+      item: item
     };
     
  
@@ -453,5 +457,9 @@ async updateGeo(id : any, idGeo: any) {
     dialogConfig.width = "60%";
     dialogConfig.height ="80%";
     this.dialog.open(ProspectMangerComponent, dialogConfig);
+  }
+
+  assignment(){
+    this.router.navigate(['Pages/prospect/assignments']);
   }
 }

@@ -16,14 +16,19 @@ import { ProspectService } from '../../shared/prospect.service';
 })
 export class ProspectsComponent implements OnInit {
   form: FormGroup;
-  description:string;
+  description = [];
   exampleItems = [];
+  exampleItem = [ ];
   exampl = [];
   exampleNote = [];
   examplt =[];
   info = [];
   infos = [];
   exa = [];
+
+  disbadd = false;
+  disbmodif = false;
+  title = "";
   constructor(
     public service : ProspectService,
     private dialogRef: MatDialogRef<ProspectsComponent>,
@@ -31,13 +36,24 @@ export class ProspectsComponent implements OnInit {
     private dialogService: DialogService,
     @Inject(MAT_DIALOG_DATA) data
   ) { 
-    this.description = data.id;
+    this.description = data.item;
   }
-
+  
   ngOnInit(): void {
-   this.createProspect();
-   this.selectProspect();
-   this.service.initializeProspectGroupe();
+
+    if(this.description == null ){
+
+      this.createProspect();
+     this.disbadd = true;
+     this.disbmodif = false;
+     this.title =" Add New Prospects"
+    } else {
+      this.onUpdateProspect(this.description);
+      this.disbadd = false;
+      this.disbmodif = true;
+      this.title = "Update Prospects"
+    }
+  
 
   }
   async selectProspect() {
@@ -189,6 +205,20 @@ export class ProspectsComponent implements OnInit {
     });
   }
 
+  onUpdateProspect(item : any) {
+    this.exampleItem.push({
+      id: item.id || '',
+      Social_Reason: item.Social_Reason || '',
+      Phone: item.Phone || '',
+      Mail: item.Mail || '',
+      Address: item.Address || '',
+      Role: item.Role || '',
+      DateCreated: item.DateCreated || '',
+
+      save: true
+    });
+    console.log(this.exampleItem);
+  }
   async updateProspect(item: any) {
     try{
      console.log(environment.update);

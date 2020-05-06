@@ -31,6 +31,27 @@ export const environment = {
    readAllProMang: 'https://us-central1-departement-commercial.cloudfunctions.net/prospectApi/api/prospectMangers/read/',
    updateProMang: 'https://us-central1-departement-commercial.cloudfunctions.net/prospectApi/prospectMangers/update/',
    deleteProMang: 'https://us-central1-departement-commercial.cloudfunctions.net/prospectApi/prospectMangers/delete/',
+  
+   /**** Client *****/
+   createClient: 'https://us-central1-departement-commercial.cloudfunctions.net/clientApi/api/create',
+   readIdClient: 'https://us-central1-departement-commercial.cloudfunctions.net/clientApi/api/read/',
+   readAllClient: 'https://us-central1-departement-commercial.cloudfunctions.net/clientApi/api/read',
+   updateClient: 'https://us-central1-departement-commercial.cloudfunctions.net/clientApi/api/update/',
+   deleteClient: 'https://us-central1-departement-commercial.cloudfunctions.net/clientApi/api/delete/',
+
+   /**** Commercial    *****/
+   createCommercial: 'https://us-central1-departement-commercial.cloudfunctions.net/commercialApi/api/create',
+   readIdCommercial: 'https://us-central1-departement-commercial.cloudfunctions.net/commercialApi/api/read/',
+   readAllCommercial: 'https://us-central1-departement-commercial.cloudfunctions.net/commercialApi/api/read',
+   updateCommercial: 'https://us-central1-departement-commercial.cloudfunctions.net/commercialApi/api/update/',
+   deleteCommercial: 'https://us-central1-departement-commercial.cloudfunctions.net/commercialApi/api/delete/',
+
+  /**** Assignment    *****/
+      createAssignment: 'https://us-central1-departement-commercial.cloudfunctions.net/assignmentApi/api/create',
+      readIdAssignment: 'https://us-central1-departement-commercial.cloudfunctions.net/assignmentApi/api/read/',
+      readAllAssignment: 'https://us-central1-departement-commercial.cloudfunctions.net/assignmentApi/api/read',
+      updateAssignment: 'https://us-central1-departement-commercial.cloudfunctions.net/assignmentApi/api/update/',
+      deleteAssignment: 'https://us-central1-departement-commercial.cloudfunctions.net/assignmentApi/api/delete/',
  
   googleMapsKey: 'AIzaSyCGNvX90B7hAAdT1B3M2mxTMPvcdoqAnEg',
 };

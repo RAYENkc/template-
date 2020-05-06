@@ -9,7 +9,7 @@ export class ProspectService {
   //Prospect Form
   form: FormGroup = new FormGroup({
     $key: new FormControl(null),
-    id: new FormControl('', Validators.required),
+    id: new FormControl('' , Validators.required),
     Social_Reason: new FormControl('',Validators.required),
     Phone: new FormControl('',[Validators.required, Validators.minLength(8)]),
     Mail: new FormControl('',Validators.email),
@@ -31,5 +31,19 @@ export class ProspectService {
       
     });
   }
+  
+  initializeFormGroupe(exampleItem : any){
+    this.form.setValue({
+      $key: null ,
+      Social_Reason: exampleItem.Social_Reason,
+      Phone: exampleItem.Phone,
+      Mail: exampleItem.Mail,
+      Address: exampleItem.Address,
+      Role: exampleItem.Role,
+      DateCreated: exampleItem.DateCreated,
+      
+    });
+  }
+
 
 }

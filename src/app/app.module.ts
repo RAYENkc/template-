@@ -17,6 +17,10 @@ import { ProspectsComponent } from './dash/prospect/prospects/prospects.componen
 import { ProspectService } from './dash/shared/prospect.service';
 import { ProspectMangerComponent } from './dash/prospect/prospect-manger/prospect-manger.component';
 import { ProspectMangerService } from './dash/shared/prospect-manger.service';
+import { CommercialService } from './dash/shared/commercial.service';
+import { CommercialsComponent } from './dash/commercial-page/commercials/commercials.component';
+import { NoteEditComponent } from './dash/prospect/note/note-edit/note-edit.component';
+import { ProspectMangerEditComponent } from './dash/prospect/prospect-manger/prospect-manger-edit/prospect-manger-edit.component';
 
 
 
@@ -42,9 +46,9 @@ import { ProspectMangerService } from './dash/shared/prospect-manger.service';
     MatIconModule,
     MatSnackBarModule,
   ],
-  providers: [SharedService , ProspectService, ProspectMangerService],
+  providers: [SharedService , ProspectService, ProspectMangerService, CommercialService],
   bootstrap: [AppComponent],
-  entryComponents: [NoteComponent, MatConfirmDialogComponent , ProspectsComponent, ProspectMangerComponent]
+  entryComponents: [NoteComponent, MatConfirmDialogComponent , ProspectsComponent, ProspectMangerComponent, CommercialsComponent,NoteEditComponent , ProspectMangerEditComponent]
   
 })
 export class AppModule { }

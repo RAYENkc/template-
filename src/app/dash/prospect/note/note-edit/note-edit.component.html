@@ -1,0 +1,75 @@
+<div class="container">
+  <mat-toolbar >
+    <span class="fill-remaining-space"></span> 
+      <span>{{title}} </span>
+    <span class="fill-remaining-space"></span>
+    <button mat-stroked-button color="warn" (click)="onClose()" tabIndex="-1"><mat-icon>close</mat-icon></button>
+  </mat-toolbar>
+    <form [formGroup]="service.form" class="normal-form" *ngIf="disbadd && !disbmodif" >
+        <mat-grid-list cols="2" rowHeight="300px">
+          <mat-grid-tile>
+            <div class="controles-container"  *ngFor="let item of exampleItems">
+              <input type="hidden" formControlName="$key" >
+              <mat-form-field>
+                <input formControlName="idNote" matInput placeholder="Note id*"  [value]="item.idNote" (input)="item.idNote=$event.target.value">
+                <mat-error>this Field is mandatory</mat-error>
+              </mat-form-field>
+              <mat-form-field>
+                <input formControlName="textNote" matInput placeholder="Note text*" [value]="item.textNote" (input)="item.textNote=$event.target.value">
+                <mat-error>this Field is mandatory</mat-error>
+              </mat-form-field>
+              <!--   <mat-form-field>
+                <input formControlName="dateNote" matInput placeholder="Note date" >
+              </mat-form-field>  -->  
+              <mat-form-field>
+                <input formControlName="dateNote" matInput [matDatepicker]="picker" placeholder=" Date" [value]="item.dateNote" (input)="item.dateNote=$event.target.value">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+              <div class="bottom-row">
+                <button mat-raised-button color="primary" type="submit" [disabled]="service.form.invalid" (click)="saveNote(item)" *ngIf="item.save !== undefined">Add</button>
+                <button mat-raised-button color="warn" (click)="onClear()" >Clear</button>
+              </div>
+            </div>
+            
+          </mat-grid-tile>
+        <mat-grid-tile>
+        </mat-grid-tile>
+        </mat-grid-list>
+    
+      </form>
+
+      <form class="normal-form" *ngIf="!disbadd && disbmodif" >
+        <mat-grid-list cols="2" rowHeight="300px">
+          <mat-grid-tile>
+            <div class="controles-container"  *ngFor="let item of  exampleItem">
+              <input type="hidden" formControlName="$key" >
+              <mat-form-field>
+                <input  matInput placeholder="Note id*"  [value]="item.idNote" (input)="item.idNote=$event.target.value">
+                <mat-error>this Field is mandatory</mat-error>
+              </mat-form-field>
+              <mat-form-field>
+                <input  matInput placeholder="Note text*" [value]="item.textNote" (input)="item.textNote=$event.target.value">
+                <mat-error>this Field is mandatory</mat-error>
+              </mat-form-field>
+              <!--   <mat-form-field>
+                <input formControlName="dateNote" matInput placeholder="Note date" >
+              </mat-form-field>  -->  
+              <mat-form-field>
+                <input  matInput [matDatepicker]="picker" placeholder=" Date" [value]="item.dateNote" (input)="item.dateNote=$event.target.value">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+              <div class="bottom-row">
+                <button mat-raised-button color="primary" type="submit"  (click)="updateNote(item)" *ngIf="item.update !== undefined">update</button>
+                <button mat-raised-button color="warn" (click)="onClear()" >Clear</button>
+              </div>
+            </div>
+            
+          </mat-grid-tile>
+        <mat-grid-tile>
+        </mat-grid-tile>
+        </mat-grid-list>
+    
+      </form>
+</div>

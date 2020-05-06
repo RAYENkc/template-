@@ -18,6 +18,8 @@ export class ProspectMangerComponent implements OnInit {
   exampl = [];
   exampleNote = [];
   exampleItem = [];
+  disabledItems = false;
+  disable = false;
   constructor(
     public service : ProspectMangerService,
     private dialogRef: MatDialogRef<ProspectMangerComponent>,
@@ -158,6 +160,7 @@ createProMang() {
     Phone: '',
     Adress: '',
     Funct : '',
+    disabledItems : true,
     save: true
   });
 }
@@ -171,7 +174,7 @@ onUpdateNote(item : any) {
   Phone: item.data.Phone,
   Adress: item.data.Adress,
   Funct : item.data.Funct,
-
+  disable: true,
  update: true
 });
 console.log(this.exampleItem);

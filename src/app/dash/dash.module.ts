@@ -35,6 +35,11 @@ import { SharedService } from '../dash/shared.service';
 import { ProspectsComponent } from './prospect/prospects/prospects.component';
 import { ProspectService } from './shared/prospect.service';
 import { ProspectMangerComponent } from './prospect/prospect-manger/prospect-manger.component';
+import { CommercialPageComponent } from './commercial-page/commercial-page.component';
+import { CommercialsComponent } from './commercial-page/commercials/commercials.component';
+import { ProspectMangerEditComponent } from './prospect/prospect-manger/prospect-manger-edit/prospect-manger-edit.component';
+import { NoteEditComponent } from './prospect/note/note-edit/note-edit.component';
+import { AssignmentsPageComponent } from './assignments-page/assignments-page.component';
 
 
 @NgModule({
@@ -47,7 +52,12 @@ import { ProspectMangerComponent } from './prospect/prospect-manger/prospect-man
     MailPageComponent,
     NoteComponent,
     ProspectsComponent,
-    ProspectMangerComponent
+    ProspectMangerComponent,
+    CommercialPageComponent,
+    CommercialsComponent,
+    ProspectMangerEditComponent,
+    NoteEditComponent,
+    AssignmentsPageComponent
   ],
   exports: [
     DashPageComponent,

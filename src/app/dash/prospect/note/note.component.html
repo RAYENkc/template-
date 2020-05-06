@@ -5,8 +5,7 @@
       <span>Notes </span>
     <span class="fill-remaining-space"></span>
     
-    <button class="btn btn-btn btn-success" color="warn" (click)="createNote()" tabIndex="-1">create</button>
-    <button class="btn btn-btn btn-success" (click)="selectNotes()"> select </button>
+    <button class="btn btn-btn btn-success" color="warn" (click)="onAddNote()" tabIndex="-1">create</button>
     <button mat-stroked-button color="warn" (click)="onClose()" tabIndex="-1"><mat-icon>close</mat-icon></button>
   
     </mat-toolbar>
@@ -17,44 +16,10 @@
           <mat-card-title> <strong> Note :</strong> {{items.idNote}}</mat-card-title>
       </mat-card-header>
       <mat-card-content>{{items.textNote}}
-        <button mat-stroked-button color="warn" (click)="onUpdateNote(items.idNote)" tabIndex="-1"><mat-icon>refresh</mat-icon></button>
+        <button mat-stroked-button color="warn" (click)="onEditNote(items)" tabIndex="-1"><mat-icon>refresh</mat-icon></button>
         <button mat-stroked-button color="warn" (click)="onDeleteNote(items.idNote)" tabIndex="-1"><mat-icon>delete_outline</mat-icon></button>
       </mat-card-content>
     </mat-card>
   
-    <form [formGroup]="service.form" class="normal-form" >
-      <mat-grid-list cols="2" rowHeight="300px">
-        <mat-grid-tile>
-          <div class="controles-container"  *ngFor="let item of exampleItems">
-            <input type="hidden" formControlName="$key" >
-            <mat-form-field>
-              <input formControlName="idNote" matInput placeholder="Note id*"  [value]="item.idNote" (input)="item.idNote=$event.target.value">
-              <mat-error>this Field is mandatory</mat-error>
-            </mat-form-field>
-            <mat-form-field>
-              <input formControlName="textNote" matInput placeholder="Note text*" [value]="item.textNote" (input)="item.textNote=$event.target.value">
-              <mat-error>this Field is mandatory</mat-error>
-            </mat-form-field>
-            <!--   <mat-form-field>
-              <input formControlName="dateNote" matInput placeholder="Note date" >
-            </mat-form-field>  -->  
-            <mat-form-field>
-              <input formControlName="dateNote" matInput [matDatepicker]="picker" placeholder=" Date" [value]="item.dateNote" (input)="item.dateNote=$event.target.value">
-              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>
-            <div class="bottom-row">
-              <button mat-raised-button color="primary" type="submit" [disabled]="service.form.invalid" (click)="saveNote(item)" *ngIf="item.save !== undefined">Add</button>
-              <button mat-raised-button color="primary" type="submit" [disabled]="service.form.invalid" (click)="updateNote(item)" *ngIf="item.update !== undefined">update</button>
-              <button mat-raised-button color="warn" (click)="onClear()" >Clear</button>
-              <button mat-raised-button color="warn" (click)="onClose()" >Close</button>
-            </div>
-          </div>
-          
-        </mat-grid-tile>
-      <mat-grid-tile>
-      </mat-grid-tile>
-      </mat-grid-list>
-  
-    </form>
+   
     </div>

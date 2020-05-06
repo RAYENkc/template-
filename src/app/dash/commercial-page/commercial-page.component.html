@@ -1,0 +1,79 @@
+<div class="wrapper">
+    <app-topnavbar></app-topnavbar>
+    <app-asidenavbar></app-asidenavbar>
+    <div class="content-wrapper" style="min-height: 926px;">
+     
+        <h1> Commercial </h1>
+        <ol class="breadcrumb">
+          <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+          <li class="active">  Commercial </li>
+        </ol>
+      
+       
+            <div class="container">
+                   <div>
+                   <div class="col">
+                     <form>
+                       <div class="form-group example-list">
+                
+                         <div class="search-div">
+                          <button mat-raised-button  class="btn btn-btn btn-primary" (click)=onAddCommercial()>
+                            <mat-icon>add</mat-icon> Create </button>
+
+                        <mat-form-field class="search-form-field" floatLabel="never">
+                               <input matInput [(ngModel)]="searchKey" placeholder="Search" autocomplete="off" (keyup)="applyFilter()">
+                               <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchKey"  (click)="onSearchClear()" >
+                                 <mat-icon>close</mat-icon>
+                               </button>
+                             </mat-form-field>   
+                             
+                         </div>
+                        
+                         <table class="table">
+                           <thead>
+                             <tr>
+                               <th scope="col">id</th>
+                               <th scope="col">Last Name</th>
+                               <th scope="col">First Name</th>
+                               <th scope="col">Phone</th>
+                               <th scope="col">Adress</th>
+                               <th scope="col">Mail</th>
+                               <th scope="col">Settings</th>
+                             
+                             
+                             </tr>
+                           </thead>
+                           <tbody *ngFor="let item of exampleCommercials">
+                           <mat-spinner [ngClass]="{'hide': item!=null}">loading ..</mat-spinner> 
+                             <tr>
+                               <td >{{item.id}}</td>
+                               <td>{{item.data.LastName}}</td>
+                               <td>{{item.data.FirstName}}</td>
+                               <td>{{item.data.Phone}}</td>
+                               <td>{{item.data.Adress }}</td>
+                               <td>{{item.data.Mail}}</td>
+                              
+                               <td>
+                                 <button  mat-icon-button   (click)="  onEditCommercial(item)" ><mat-icon>launch</mat-icon></button>
+                                 <button  mat-icon-button color="warn" (click)="onDeleteCommercial(item)" ><mat-icon>delete_outline</mat-icon></button>
+                               </td>
+                
+                             </tr>
+                            
+                           </tbody>
+                          
+                         </table>
+                         <mat-paginator  [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="5" ></mat-paginator>
+                       </div>
+                     </form>
+                   </div>
+                 </div>
+               </div>
+            
+        
+     
+      
+    </div>
+    <app-footernavbar></app-footernavbar>
+    <app-settingsnavbar></app-settingsnavbar>
+</div>
