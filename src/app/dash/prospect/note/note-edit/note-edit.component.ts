@@ -76,7 +76,7 @@ async saveNote(item: any) {
     };
 
     const createResponse =
-    await fetch(environment.createNote + '1' ,  {
+    await fetch(environment.createNote +  this.isPro  ,  {
       method: 'POST',
       body: JSON.stringify(requestBody),
       headers:{
@@ -112,8 +112,7 @@ onUpdateNote(item) {
    idNote:  item.idNote,
    textNote: item.textNote,
    dateNote: item.dataNote,
-   id: item.prospectId,
- 
+
   update: true
  });
  }
@@ -122,16 +121,18 @@ onUpdateNote(item) {
   try{
    console.log(environment.updateNote);
   
-
+   console.log(item.textNote); 
+   console.log(item.dateNote); 
+   console.log( this.isPro);
    const requestBody = {
-     idNote: item.idNote,
+     
      textNote: item.textNote,
-     dateNote: item.dateNote,
+     dateNote: '',
      
    };
    
    const updateResponse =
-   await fetch(environment.updateNote +  '1' + '/'+ item.idNote, {
+   await fetch(environment.updateNote +   this.isPro  + '/'+ item.idNote, {
      method: 'PUT',
      body: JSON.stringify(requestBody),
      headers:{

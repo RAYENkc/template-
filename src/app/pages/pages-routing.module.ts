@@ -9,6 +9,7 @@ import { MailPageComponent } from '../dash/mail-page/mail-page.component';
 import { NotePageComponent } from '../dash/note-page/note-page.component';
 import { CommercialPageComponent } from '../dash/commercial-page/commercial-page.component';
 import { AssignmentsPageComponent } from '../dash/assignments-page/assignments-page.component';
+import { ArchivageComponent } from '../dash/archivage/archivage.component';
 
 
 const routes: Routes = [
@@ -20,7 +21,7 @@ const routes: Routes = [
   {path: 'Pages/note', component: NotePageComponent },
   {path: 'Pages/commercial', component: CommercialPageComponent },
   {path: 'Pages/prospect/assignments', component: AssignmentsPageComponent },
-
+  {path: 'Pages/prospect/archivage', component: ArchivageComponent },
   
 ];
 

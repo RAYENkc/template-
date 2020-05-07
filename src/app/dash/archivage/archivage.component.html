@@ -1,0 +1,66 @@
+<div class="wrapper">
+    <app-topnavbar></app-topnavbar>
+    <app-asidenavbar></app-asidenavbar>
+    <div class="content-wrapper" style="min-height: 926px;">
+      <section class="content-header">
+        <h1>Archivage </h1>
+        <ol class="breadcrumb">
+          <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+          <li class="active" (click)="Prospect()">  Prospect </li>
+          <li class="active">
+            Archivage
+          </li>
+        </ol>
+        <section class="content">
+          <div class="container">
+            <!-- <div class="row frontend-row">--> 
+               <div>
+               <div class="col">
+                 <form>
+                   <div class="form-group example-list">
+               
+
+                    
+                     <table class="table">
+                       <thead>
+                         <tr>
+                           <th scope="col">id</th>
+                           <th scope="col">Social_Reason</th>
+                           <th scope="col">Phone</th>
+                           <th scope="col">Address</th>
+                           <th scope="col">Mail</th>
+                           <th scope="col">Role</th>
+                           <th scope="col"> DateCreated </th>
+                           <th scope="col">Setting</th>
+                         </tr>
+                       </thead>
+                       <tbody *ngFor="let item of exampleItems">
+                         
+                         <tr >
+                           <td >{{item.id}}</td>
+                           <td>{{item.Social_Reason}}</td>
+                           <td>{{item.Phone}}</td>
+                           <td>{{item.Mail}}</td>
+                           <td>{{item.Address}}</td>
+                           <td>{{item.Role}}</td>
+                           <td>{{item.DateCreated}}</td>
+                
+                           <button  mat-icon-button color="primary" (click)="onUpdate(item)" > <mat-icon>check</mat-icon> </button>
+                           <button  mat-icon-button color="warn"  > <mat-icon>close</mat-icon> </button>
+                         </tr>
+                       
+                       </tbody>
+                      
+                     </table>
+                     <mat-paginator  [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="5" ></mat-paginator>
+                   </div>
+                 </form>
+               </div>
+             </div>
+           </div>
+        </section>
+      </section>
+    
+      
+    </div>
+  </div>

@@ -131,9 +131,7 @@ async selectNote(id: any) {
     console.log('calling read all endpoint with '+ id);
     const outputJSON = await output.json();
     this.exampleNote  = outputJSON;
-    console.log('*************************');
     console.log( this.exampleNote);
-    console.log("*********************");
    
   } catch (error) {
     console.log(error);
@@ -162,6 +160,7 @@ onAddNote(){
   dialogConfig.autoFocus = true;
   dialogConfig.data= {
     item: null,
+    idProspect : this.description
    
   };
 

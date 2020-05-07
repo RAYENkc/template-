@@ -13,7 +13,7 @@ import { CommercialsComponent } from './commercials/commercials.component';
   styleUrls: ['./commercial-page.component.css']
 })
 export class CommercialPageComponent implements OnInit {
-
+ 
   /**  Variables **/
 exampleCommercials = [];
 exampl = [];

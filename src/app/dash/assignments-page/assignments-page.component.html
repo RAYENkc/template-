@@ -3,15 +3,93 @@
     <app-asidenavbar></app-asidenavbar>
     <div class="content-wrapper" style="min-height: 926px;">
       <section class="content-header">
-        <h1> Mail </h1>
+        <h1>Assignment </h1>
         <ol class="breadcrumb">
           <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-          <li class="active">  Mail </li>
+          <li class="active" (click)="Prospect()">  Prospect </li>
+          <li class="active">
+            Assignment 
+          </li>
         </ol>
         <section class="content">
-      
+          <div class="container">
+            
+           
+            <div class="col">
+              <form>
+                <div class="form-group example-list">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">ID Commercial</th>
+                        <th scope="col">ID prospect</th>
+                        <th scope="col">Date Of Assignment</th>
+                        <th scope="col">Id Commercial Affect</th>
+                        <th scope="col">description</th>
+                        <th scope="col">valid</th>
+                      
+                      
+                      </tr>
+                    </thead>
+                    <tbody *ngFor="let item of exampleCommercials ">
+                    <mat-spinner [ngClass]="{'hide': item!=null}">loading ..</mat-spinner> 
+                      <tr>
+                        <td >{{item.id}}</td>
+                        <td>{{item.data.IdCommercial}}</td>
+                        <td>{{item.data.IdProspect}}</td>
+                        <td>{{item.data.DateOfAssignment}}</td>
+                        <td>{{item.data.IdCommercialAffect }}</td>
+                        <td>{{item.data.description}}</td>
+                        <td>{{item.data.valid}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <mat-paginator  [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="5" ></mat-paginator>
+                </div>
+              </form>
+            </div>
+          
+        </div>
+       <!--  <form>
+          <div class="form-group example-list">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">id</th>
+                  <th scope="col">Last Name</th>
+                  <th scope="col">First Name</th>
+                  <th scope="col">Phone</th>
+                  <th scope="col">Adress</th>
+                  <th scope="col">Mail</th>
+                  <th scope="col">Settings</th>
+                
+                
+                </tr>
+              </thead>
+              <tbody *ngFor="let item of pros">
+              <mat-spinner [ngClass]="{'hide': item!=null}">loading ..</mat-spinner> 
+                <tr>
+                  <td >{{item.id}}</td>
+                  <td>{{item.data.Social_Reason}}</td>
+                  <td>{{item.data.Phone}}</td>
+                  <td>{{item.data.Mail}}</td>
+                  <td>{{item.data.Address }}</td>
+                  <td>{{item.data.Role}}</td>
+                  <td>{{item.DateCreated}}</td>
+                </tr>
+              </tbody>
+            </table>
+            <mat-paginator  [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="5" ></mat-paginator>
+          </div>
+        </form>
+     <div>-->
+
+
+
+
         </section>
       </section>
     
-      
     </div>
+</div>

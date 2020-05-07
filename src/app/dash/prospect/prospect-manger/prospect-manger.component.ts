@@ -1,10 +1,11 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ProspectMangerService } from '../../shared/prospect-manger.service';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig, MatDialog } from '@angular/material/dialog';
 import { NotificationService } from '../../shared/notification.service';
 import { DialogService } from '../../shared/dialog.service';
 import { environment } from 'src/environments/environment';
+import { ProspectMangerEditComponent } from './prospect-manger-edit/prospect-manger-edit.component';
 
 @Component({
   selector: 'app-prospect-manger',
@@ -25,17 +26,19 @@ export class ProspectMangerComponent implements OnInit {
     private dialogRef: MatDialogRef<ProspectMangerComponent>,
     public notificationService : NotificationService,
     private dialogService: DialogService,
+    private dialog:MatDialog,
     @Inject(MAT_DIALOG_DATA) data
   ) {
     this.description = data.id;
    }
 
   ngOnInit(): void {
+    this.selectProMangs();
   }
 
   onClear(){
     this.service.form.reset();
-   this.service.initializeFormGroupe();
+    this.service.initializeFormGroupe();
   }
 
   onSubmit(){
@@ -47,73 +50,7 @@ export class ProspectMangerComponent implements OnInit {
     this.service.initializeFormGroupe();
     this.dialogRef.close();
   }
-   
-//create new note
-async saveNote(item: any) {
-  try{
-    console.log(environment.createProMang);
-    const requestBody = {
-      IdProMang: item.IdProMang,
-      LastName: item.LastName,
-      FiretName: item.FiretName,
-      Phone: item.Phone,
-      Adress: item.Adress,
-      Funct : item.Funct ,
-    };
 
-    const createResponse =
-    await fetch(environment.createProMang + this.description ,  {
-      method: 'POST',
-      body: JSON.stringify(requestBody),
-      headers:{
-        'Content-Type': 'application/json'
-      }
-    });
-  this.notificationService.success(':: Submitted Prospect Manger successfully');
-   this.selectProMangs(); 
-    console.log('Success');
-    console.log(createResponse.status);
-   
-
-  }catch(error){
-    console.log(error);
-  }
-}
-
-async updateProMang(item: any) {
-   try{
-    console.log(environment.updateProMang);
-   
-
-    const requestBody = {
-      IdProMang: item.IdProMang,
-      LastName: item.LastName,
-      FiretName: item.FiretName,
-      Phone: item.Phone,
-      Adress: item.Adress,
-      Funct : item.Funct ,
-    };
-   
-    const updateResponse =
-    await fetch(environment.updateProMang + this.description + '/'+  item.IdProMang, {
-      method: 'PUT',
-      body: JSON.stringify(requestBody),
-      headers:{
-        'Content-Type': 'application/json'
-      }
-    });
-    this.notificationService.success(':: Submitted Prospect Manger successfully');
-    this.selectProMangs(); 
-    console.log('Success');
-    console.log(updateResponse.status);
-
-    
-  
-   }catch(error){
-    console.log(error);
-   }
-
-}
 
 async deleteProMang(id: any) {
   try{
@@ -151,34 +88,8 @@ onDeleteNote(id: any){
   });
 }
 
-createProMang() {
-  this.exampleItems.push({
-   
-    IdProMang: '',
-    LastName: '',
-    FiretName: '',
-    Phone: '',
-    Adress: '',
-    Funct : '',
-    disabledItems : true,
-    save: true
-  });
-}
-onUpdateNote(item : any) {
- //this.selectNote(id);
- this.exampleItem.push({
-   
-  IdProMang: item.idProspectManger,
-  LastName: item.data.LastName,
-  FiretName: item.data.FiretName,
-  Phone: item.data.Phone,
-  Adress: item.data.Adress,
-  Funct : item.data.Funct,
-  disable: true,
- update: true
-});
-console.log(this.exampleItem);
-}
+
+
 async selectProMangs() {
   try {
     console.log(environment.readAllProMang);
@@ -221,4 +132,39 @@ async selectProMang(id: any) {
     console.log(error);
   }
 }
+
+onEditProMang(item){
+  const dialogConfig = new MatDialogConfig();
+  dialogConfig.disableClose = true ;
+  dialogConfig.autoFocus = true;
+
+  dialogConfig.data= {
+    item: item,
+    idProspect :  this.description
+   
+  };
+  
+
+  dialogConfig.width = "60%";
+  dialogConfig.height ="80%";
+  this.dialog.open(ProspectMangerEditComponent, dialogConfig);
+}
+
+
+onAddProMang(){
+  const dialogConfig = new MatDialogConfig();
+  dialogConfig.disableClose = true ;
+  dialogConfig.autoFocus = true;
+  dialogConfig.data= {
+    item: null,
+    idProspect : this.description
+   
+  };
+
+  dialogConfig.width = "60%";
+  dialogConfig.height ="80%";
+  this.dialog.open(ProspectMangerEditComponent, dialogConfig);
+}
+
+
 }

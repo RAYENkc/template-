@@ -39,12 +39,16 @@
      
     
       <li class="">
-        <a (click)="Prospect()">
+        <a (click)="Prospect()"  >
           <i class="fa fa-files-o"></i> <span>Prospect</span>
           <span class="pull-right-container">
             <i class="fa fa-angle-left pull-right"></i>
           </span>
         </a>
+        <ul class="treeview-menu" >
+          <li><a (click)=assignment()  ><i class="fa fa-circle-o"></i>assignment</a></li>
+          <li class="active"><a (click)="Prospect()"><i class="fa fa-circle-o"></i> archivage</a></li>
+        </ul>
       </li>
 
       <li class="">
@@ -55,7 +59,8 @@
           </span>
         </a>
       </li>
-      
+
+
       <li class="">
         <a (click)="Commerical()">
           <i class="fa fa-users"></i> <span>commercial</span>

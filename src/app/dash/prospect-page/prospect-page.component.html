@@ -70,7 +70,7 @@
                         
                          
                           <button class="btn btn-btn btn-success" (click)="createProspect()">create Prospect</button>
-                         
+                         mat-raised-button  class="btn btn-btn btn-primary"
                         </div> -->
 
                         <div class="search-div">
@@ -82,9 +82,12 @@
                                 <mat-icon>close</mat-icon>
                               </button>
                             </mat-form-field>
-
-                            <button mat-raised-button  class="btn btn-btn btn-primary" (click)=assignment()>
-                              <mat-icon>add</mat-icon> Assignment Table </button>
+                            <button mat-raised-button color="accent" [matMenuTriggerFor]="menu">Settings</button>
+                            <mat-menu #menu="matMenu">
+                              <button mat-menu-item (click)=assignment()> Assignment</button>
+                              <button mat-menu-item (click)=archivage()> Archivage </button>
+                            </mat-menu>
+                            
                         </div>
                        
                         <table class="table">
@@ -105,7 +108,7 @@
                           </thead>
                           <tbody *ngFor="let item of exampleItems">
                           <mat-spinner [ngClass]="{'hide': item!=null}">loading ..</mat-spinner> 
-                            <tr>
+                            <tr  >
                               <td >{{item.id}}</td>
                               <td>{{item.Social_Reason}}</td>
                               <td>{{item.Phone}}</td>
@@ -117,7 +120,7 @@
                               <td>
                                 <button  mat-icon-button   (click)="  onEditProspect(item)" ><mat-icon>launch</mat-icon></button>
                                 <button  mat-icon-button color="warn" (click)="onDeleteProspect(item)" ><mat-icon>delete_outline</mat-icon></button>
-                            
+                                <button  mat-icon-button color="warn" (click)="onArchive(item)" ><mat-icon>archive</mat-icon></button> 
                                 <button  mat-icon-button  (click)="createGeo(item)" ><mat-icon>add_location</mat-icon></button>
                                 <button mat-icon-button  (click)=" selectGeo(item)"><mat-icon>where_to_vote</mat-icon></button>
                                 <button mat-icon-button (click)=" onEditNote(item)"><mat-icon>note_add</mat-icon></button>

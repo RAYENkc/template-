@@ -10,6 +10,11 @@ export const environment = {
   readAll: 'https://us-central1-departement-commercial.cloudfunctions.net/prospectApi/api/read',
   update: 'https://us-central1-departement-commercial.cloudfunctions.net/prospectApi/api/update/',
   delete: 'https://us-central1-departement-commercial.cloudfunctions.net/prospectApi/api/delete/',
+
+  // filtrage
+  getArchiPro : 'https://us-central1-departement-commercial.cloudfunctions.net/prospectApi/archi/read',
+  getActivePro : 'https://us-central1-departement-commercial.cloudfunctions.net/prospectApi/active/read',
+  getProTunis : 'https://us-central1-departement-commercial.cloudfunctions.net/prospectApi/test/read',
   
   /**  GeoLocation **/
   createGeo: 'https://us-central1-departement-commercial.cloudfunctions.net/prospectApi/api/geolocations/create/',

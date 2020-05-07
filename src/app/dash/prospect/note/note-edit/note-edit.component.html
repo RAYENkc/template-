@@ -11,18 +11,18 @@
             <div class="controles-container"  *ngFor="let item of exampleItems">
               <input type="hidden" formControlName="$key" >
               <mat-form-field>
-                <input formControlName="idNote" matInput placeholder="Note id*"  [value]="item.idNote" (input)="item.idNote=$event.target.value">
+                <input  matInput placeholder="Note id*"  [value]="item.idNote" (input)="item.idNote=$event.target.value">
                 <mat-error>this Field is mandatory</mat-error>
               </mat-form-field>
               <mat-form-field>
-                <input formControlName="textNote" matInput placeholder="Note text*" [value]="item.textNote" (input)="item.textNote=$event.target.value">
+                <input  matInput placeholder="Note text*" [value]="item.textNote" (input)="item.textNote=$event.target.value">
                 <mat-error>this Field is mandatory</mat-error>
               </mat-form-field>
               <!--   <mat-form-field>
                 <input formControlName="dateNote" matInput placeholder="Note date" >
               </mat-form-field>  -->  
               <mat-form-field>
-                <input formControlName="dateNote" matInput [matDatepicker]="picker" placeholder=" Date" [value]="item.dateNote" (input)="item.dateNote=$event.target.value">
+                <input  matInput [matDatepicker]="picker" placeholder=" Date" [value]="item.dateNote" (input)="item.dateNote=$event.target.value">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
               </mat-form-field>

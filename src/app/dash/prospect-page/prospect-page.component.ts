@@ -27,6 +27,8 @@ exa = [];
 info = [];
 infos = [];
 exampleProspect = [];
+pro = [];
+pros = [];
 
 displayedColumns: string[] =['id', 'Social_Reason' , 'Phone' , 'Address', 'Mail' , 'Role' , 'DateCreated', 'Settings'];
 
@@ -110,12 +112,12 @@ searchKey: string;
       this.exa = [];
       this.info = [];
       this.infos = [];
-      const output = await fetch(environment.readAll);
+      const output = await fetch(environment.getActivePro);
      
       const outputJSON = await output.json();
       this.exampleItems = outputJSON;
-    
-
+      
+   
       for (var val of this.exampleItems) {
         
         
@@ -139,7 +141,7 @@ searchKey: string;
         
 
       }
-     
+    
     } catch (error) {
       console.log(error);
     }
@@ -398,6 +400,57 @@ async updateGeo(id : any, idGeo: any) {
     this.listData.filter = this.searchKey.trim().toLowerCase();
   }
 
+onArchive(item : any){
+  this.dialogService.openConfirmDialog('Are you sure to Archived ?')
+  .afterClosed().subscribe(res =>{
+    if(res){
+      this.onArchiveProspect(item);
+      this.notificationService.warn('! archivied successfully');
+      
+    }
+  });
+}
+
+
+
+ async onArchiveProspect(item){
+    try{
+      console.log(environment.update);
+      console.log('calling update endpoint with id ' + item.id + ' and value "' + item.Social_Reason);
+ 
+      const requestBody = {
+        Social_Reason: item.Social_Reason,
+        Phone: item.Phone,
+        Mail: item.Mail,
+        Address: item. Address,
+        Role: item.Role,
+        DateCreated: item. DateCreated,
+        archive: 'true'
+        
+      };
+      
+      const updateResponse =
+      await fetch(environment.update + item.id, {
+        method: 'PUT',
+        body: JSON.stringify(requestBody),
+        headers:{
+          'Content-Type': 'application/json'
+        }
+      });
+      this.selectAll();
+      console.log('Success');
+      console.log(updateResponse.status);
+ 
+    //  this.notificationService.success(':: Submitted Prospect successfully');
+     
+   //  this.dialogRef.close();
+    
+    
+     }catch(error){
+      console.log(error);
+     }
+  }
+
   /**********    Dialogs     ********/
   onEditNote(item : any) {
 
@@ -461,5 +514,8 @@ async updateGeo(id : any, idGeo: any) {
 
   assignment(){
     this.router.navigate(['Pages/prospect/assignments']);
+  }
+  archivage() {
+    this.router.navigate(['Pages/prospect/archivage']);
   }
 }

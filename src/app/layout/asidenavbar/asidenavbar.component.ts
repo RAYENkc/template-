@@ -44,4 +44,7 @@ export class AsidenavbarComponent implements OnInit {
   Commerical(){
     this.router.navigate(['Pages/commercial']);
   }
+  assignment(){
+    this.router.navigate(['Pages/prospect/assignments']);
+  }
 }

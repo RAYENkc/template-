@@ -40,6 +40,8 @@ import { CommercialsComponent } from './commercial-page/commercials/commercials.
 import { ProspectMangerEditComponent } from './prospect/prospect-manger/prospect-manger-edit/prospect-manger-edit.component';
 import { NoteEditComponent } from './prospect/note/note-edit/note-edit.component';
 import { AssignmentsPageComponent } from './assignments-page/assignments-page.component';
+import {MatMenuModule} from '@angular/material/menu';
+import { ArchivageComponent } from './archivage/archivage.component';
 
 
 @NgModule({
@@ -57,7 +59,8 @@ import { AssignmentsPageComponent } from './assignments-page/assignments-page.co
     CommercialsComponent,
     ProspectMangerEditComponent,
     NoteEditComponent,
-    AssignmentsPageComponent
+    AssignmentsPageComponent,
+    ArchivageComponent
   ],
   exports: [
     DashPageComponent,
@@ -96,7 +99,8 @@ import { AssignmentsPageComponent } from './assignments-page/assignments-page.co
      MatSnackBarModule,
      MatTableModule,
      MatProgressSpinnerModule,
-     MatPaginatorModule
+     MatPaginatorModule,
+     MatMenuModule
   ],
   providers: [SharedService , ProspectService],
   entryComponents: [NoteComponent, MatConfirmDialogComponent, ProspectsComponent]

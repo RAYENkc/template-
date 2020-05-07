@@ -5,8 +5,8 @@
       <span>Prospect Manger </span>
     <span class="fill-remaining-space"></span>
     
-    <button class="btn btn-btn btn-success" color="warn" (click)="createProMang()" tabIndex="-1">create</button>
-    <button class="btn btn-btn btn-success" (click)="selectProMangs()"> select </button>
+    <button class="btn btn-btn btn-success" color="warn" (click)="onAddProMang()" tabIndex="-1">create</button>
+  
     <button mat-stroked-button color="warn" (click)="onClose()" tabIndex="-1"><mat-icon>close</mat-icon></button>
   
     </mat-toolbar>
@@ -22,115 +22,10 @@
        <p>  <strong> Phone : </strong> {{items.data.Phone}} </p>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-stroked-button color="warn" (click)="onUpdateNote(items)" tabIndex="-1"><mat-icon>refresh</mat-icon></button>
+        <button mat-stroked-button color="warn" (click)="onEditProMang(items)" tabIndex="-1"><mat-icon>refresh</mat-icon></button>
         <button mat-stroked-button color="warn" (click)="onDeleteNote(items.idProspectManger)" tabIndex="-1"><mat-icon>delete_outline</mat-icon></button>
       </mat-card-actions>
     </mat-card>
-  <!-- <div *ngFor="let item of exampleItems">
-        <input formControlName="IdProMang" matInput placeholder="Prospect Manger id*"  [value]="item.IdProMang" (input)="item.IdProMang=$event.target.value">
-        <input  matInput placeholder="Last Name*" [value]="item.LastName" (input)="item.LastName=$event.target.value">
-        <input  matInput placeholder="First Name*" [value]="item.FiretName" (input)="item.FiretName=$event.target.value">
-    </div> -->  
-  
-  <!---->   <form [formGroup]="service.form" class="normal-form" >
-      <mat-grid-list cols="2" rowHeight="300px">
-        <mat-grid-tile>
-          <div class="controles-container-prospect "  *ngFor="let item of exampleItems">
-            <input type="hidden" formControlName="$key" >
 
-            <mat-form-field>
-              <input formControlName="IdProMang" matInput placeholder="Prospect Manger id*"  [value]="item.IdProMang" (input)="item.IdProMang=$event.target.value">
-              <mat-error>this Field is mandatory</mat-error>
-            </mat-form-field>
-
-            <mat-form-field>
-              <input formControlName="LastName" matInput placeholder=" Last Name*" [value]="item.LastName" (input)="item.LastName=$event.target.value">
-              <mat-error>this Field is mandatory</mat-error>
-            </mat-form-field>
-
-            <mat-form-field>
-                <input formControlName="FiretName" matInput placeholder="First Name*" [value]="item.FiretName" (input)="item.FiretName=$event.target.value">
-                <mat-error>this Field is mandatory</mat-error>
-            </mat-form-field>
-
-            <mat-form-field>
-                <input formControlName="Phone" matInput placeholder=" Phone *" [value]="item.Phone" (input)="item.Phone=$event.target.value">
-                <mat-error>this Field is mandatory</mat-error>
-            </mat-form-field>
-
-            <mat-form-field>
-                <input formControlName="Adress" matInput placeholder="Adress*" [value]="item.Adress" (input)="item.Adress=$event.target.value">
-                <mat-error>this Field is mandatory</mat-error>
-            </mat-form-field>
-            <mat-form-field>
-                <input formControlName="Funct" matInput placeholder="Function*" [value]="item.Funct" (input)="item.Funct=$event.target.value">
-                <mat-error>this Field is mandatory</mat-error>
-            </mat-form-field>
-              <mat-form-field>
-              <input formControlName="dateNote" matInput [matDatepicker]="picker" placeholder=" Date" [value]="item.dateNote" (input)="item.dateNote=$event.target.value">
-              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field> 
-          
-            <div class="bottom-row">
-              <button mat-raised-button color="primary" type="submit" [disabled]="service.form.invalid" (click)="saveNote(item)" *ngIf="item.save !== undefined">Add</button>
-              <button mat-raised-button color="warn" (click)="onClear()" >Clear</button>
-              <button mat-raised-button color="warn" (click)="onClose()" >Close</button>
-            </div>
-          </div>
-          
-        </mat-grid-tile>
-      <mat-grid-tile>
-      </mat-grid-tile>
-      </mat-grid-list>
-  
-    </form> 
-
-    <form class="normal-form" >
-        <mat-grid-list cols="2" rowHeight="300px">
-          <mat-grid-tile>
-            <div class="controles-container-prospect "  *ngFor="let item of exampleItem">
-                <mat-form-field>
-                    <input formControlName="IdProMang" matInput placeholder="Prospect Manger id*"  [value]="item.IdProMang" (input)="item.IdProMang=$event.target.value">
-                    <mat-error>this Field is mandatory</mat-error>
-                  </mat-form-field>
-      
-               
-                  <mat-form-field>
-                    <input formControlName="LastName" matInput placeholder=" Last Name*" [value]="item.LastName" (input)="item.LastName=$event.target.value">
-                    <mat-error>this Field is mandatory</mat-error>
-                  </mat-form-field>
-
-
-                        <mat-form-field>
-                <input formControlName="FiretName" matInput placeholder="First Name*" [value]="item.FiretName" (input)="item.FiretName=$event.target.value">
-                <mat-error>this Field is mandatory</mat-error>
-            </mat-form-field>
-            <mat-form-field>
-                <input formControlName="Phone" matInput placeholder=" Phone *" [value]="item.Phone" (input)="item.Phone=$event.target.value">
-                <mat-error>this Field is mandatory</mat-error>
-            </mat-form-field>
-
-            <mat-form-field>
-                <input formControlName="Adress" matInput placeholder="Adress*" [value]="item.Adress" (input)="item.Adress=$event.target.value">
-                <mat-error>this Field is mandatory</mat-error>
-            </mat-form-field>
-            <mat-form-field>
-            <input formControlName="Funct" matInput placeholder="Function*" [value]="item.Funct" (input)="item.Funct=$event.target.value">
-            <mat-error>this Field is mandatory</mat-error>
-        </mat-form-field>
-          
-            <div class="bottom-row">
-                
-                <button mat-raised-button color="primary" type="submit"  (click)="updateProMang(item)" *ngIf="item.update !== undefined">update</button>
-                <button mat-raised-button color="warn" (click)="onClear()" >Clear</button>
-   
-              </div>
-
-             </div>
-          </mat-grid-tile>
-       
-        </mat-grid-list>
-    
-      </form>
+ 
     </div>
