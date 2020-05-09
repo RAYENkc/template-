@@ -1,0 +1,32 @@
+
+<div class="wrapper">
+  <app-topnavbar></app-topnavbar>
+  <app-asidenavbar></app-asidenavbar>
+  <div class="content-wrapper" style="min-height: 926px;">
+    <section class="content-header">
+      <h1> Chat </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">  Chat </li>
+      </ol>
+      <section class="content">
+
+    <mat-toolbar>
+        <button mat-icon-button >
+        <mat-icon (click)=back()>arrow_back</mat-icon>
+        </button>
+      </mat-toolbar>
+    <div class="chat-feed" #scroller>
+       <app-message-detail></app-message-detail> 
+     
+    </div>
+    <div>
+        <hr>
+        <app-chat-input></app-chat-input>
+        
+    </div>
+
+  </section>
+</section>
+</div>
+</div>

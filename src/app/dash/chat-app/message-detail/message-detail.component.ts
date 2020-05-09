@@ -1,30 +1,35 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-chat-app',
-  templateUrl: './chat-app.component.html',
-  styleUrls: ['./chat-app.component.css'],
-
+  selector: 'app-message-detail',
+  templateUrl: './message-detail.component.html',
+  styleUrls: ['./message-detail.component.css']
 })
-export class ChatAppComponent implements OnInit {
+export class MessageDetailComponent implements OnInit {
   exampleItems = [];
-  constructor(    private router: Router) { }
-  ngOnInit(): void {
+  constructor(
+    private route: ActivatedRoute
+  ) {
     document.body.className = 'hold-transition skin-blue sidebar-mini';
-    this.selectAll();
+   }
+
+  ngOnInit(): void {
+    this.selectAll()
   }
 
    //select all the vhats
    async selectAll() {
-    try {
-      console.log(environment.readAllChat);
+    
+    try { 
+     const test  = this.route.snapshot.paramMap.get('id');
+      console.log(environment.readAllMessage);
       console.log('calling read all endpoint');
 
       this.exampleItems = [];
      
-      const output = await fetch(environment.readAllChat);
+      const output = await fetch(environment.readAllMessage + test);
       console.log('calling read all endpoint ');
       const outputJSON = await output.json();
       this.exampleItems = outputJSON;
@@ -34,11 +39,5 @@ export class ChatAppComponent implements OnInit {
       console.log(error);
     }
   }
-
-
-  messageDetail(id){
-    this.router.navigate(['Pages/chat/message', id]);
-  }
-
 
 }

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { MatTableDataSource } from '@angular/material/table';
+import { SelectCommercialComponent } from './select-commercial/select-commercial.component';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-assignments-page',
@@ -17,18 +19,21 @@ export class AssignmentsPageComponent implements OnInit {
   exampleCommercials = [];
   exampleCommercial = [];
   exampleProspect  = [];
+  examplMyProspect = [];
   searchKey: string;
   listData: MatTableDataSource<any>;
   
   constructor(
     private router: Router,
+    private dialog:MatDialog,
   ) { }
 
   ngOnInit(): void {
     document.body.className = 'hold-transition skin-blue sidebar-mini';
     this.selectAll();
-    this.selectAllCommercial();
-    this.selectAllProspect();
+   // this.selectAllCommercial();
+  //  this.selectAllProspect();
+    this.selectMyProspect();
 
   }
  
@@ -138,7 +143,43 @@ async selectProspect(id: any) {
   } catch (error) {
     console.log(error);
   }
+
+
 }
 
 
+//select my  prospects
+async selectMyProspect() {
+  try { 
+    console.log(environment.getArchiPro );
+    console.log('calling read all endpoint');
+
+    this.examplMyProspect = [];
+   
+    const output = await fetch(environment.getArchiPro );
+    console.log('calling read all endpoint ');
+    const outputJSON = await output.json();
+    this.examplMyProspect = outputJSON;
+    console.log('Success');
+    console.log(outputJSON);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+onAssignmentProspect(item){
+  const dialogConfig = new MatDialogConfig();
+  dialogConfig.disableClose = true ;
+  dialogConfig.autoFocus = true;
+
+  dialogConfig.data= {
+    item: item.id,
+
+  };
+  
+
+  dialogConfig.width = "60%";
+ // dialogConfig.height ="80%";
+  this.dialog.open(SelectCommercialComponent, dialogConfig);
+}
 }

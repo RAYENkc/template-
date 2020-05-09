@@ -57,7 +57,27 @@ export const environment = {
       readAllAssignment: 'https://us-central1-departement-commercial.cloudfunctions.net/assignmentApi/api/read',
       updateAssignment: 'https://us-central1-departement-commercial.cloudfunctions.net/assignmentApi/api/update/',
       deleteAssignment: 'https://us-central1-departement-commercial.cloudfunctions.net/assignmentApi/api/delete/',
+
+  // filtrage
+  getmyProspect: 'https://us-central1-departement-commercial.cloudfunctions.net/assignmentApi/myprospects/read/',
+  getprospectToAssig: 'https://us-central1-departement-commercial.cloudfunctions.net/assignmentApi/assignment/read',
+  getAssig: 'https://us-central1-departement-commercial.cloudfunctions.net/assignmentApi/assig/read/',
  
+
+  /*****  chats  *****/
+  createChat: 'https://us-central1-departement-commercial.cloudfunctions.net/chatApi/api/create',
+  readIdChat: 'https://us-central1-departement-commercial.cloudfunctions.net/chatApi/api/read/',
+  readAllChat: 'https://us-central1-departement-commercial.cloudfunctions.net/chatApi/api/read',
+  updateChat: 'https://us-central1-departement-commercial.cloudfunctions.net/chatApi/api/update/',
+  deleteChat: 'https://us-central1-departement-commercial.cloudfunctions.net/chatApi/api/delete/',
+
+  /****** messages  *****/
+  createMessage: 'https://us-central1-departement-commercial.cloudfunctions.net/chatApi/api/message/create/',
+  readIdMessage: 'https://us-central1-departement-commercial.cloudfunctions.net/chatApi/chats/messages/',
+  readAllMessage: 'https://us-central1-departement-commercial.cloudfunctions.net/chatApi/chats/messages/',
+  updateMessage: 'https://us-central1-departement-commercial.cloudfunctions.net/chatApi/api/update/',
+  deleteMessage: 'https://us-central1-departement-commercial.cloudfunctions.net/chatApi/api/delete/',
+
   googleMapsKey: 'AIzaSyCGNvX90B7hAAdT1B3M2mxTMPvcdoqAnEg',
 };
 

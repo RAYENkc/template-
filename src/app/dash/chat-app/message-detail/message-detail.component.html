@@ -1,0 +1,13 @@
+
+          <div *ngFor= "let message of exampleItems  ">
+          <mat-list>
+            <mat-list-item>
+                <img matListAvatar src="message.data.photoUrl " alt="{{message.data.sender}}">
+                <p mat-line >{{message.data.content}}</p>
+                <p mat-line >
+                    <small>{{message.data.timestamp.Date }}</small>
+             </p>
+            </mat-list-item> 
+         </mat-list>  
+        </div>
+     

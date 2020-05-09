@@ -1,0 +1,51 @@
+ <!--
+<div class="container">
+    <mat-toolbar >
+    <span class="fill-remaining-space"></span> 
+      <span>{{title}} </span>
+    <span class="fill-remaining-space"></span>
+
+    <button mat-stroked-button color="warn" (click)="onClose()" tabIndex="-1"><mat-icon>close</mat-icon></button>
+  
+    </mat-toolbar>
+    <form [formGroup]="service.form" class="normal-form"  >
+        <mat-grid-list cols="2" rowHeight="300px">
+          <mat-grid-tile>
+            <div class="controles-container-prospect"  >
+                <input type="hidden" formControlName="$key" >
+          <mat-form-field>
+                  <input formControlName="idProspect" matInput placeholder="Prospect ID*" [value]="item.IdProspect" (input)="item.IdProspect=$event.target.value" >
+                  <mat-error>this Field is mandatory</mat-error>
+                </mat-form-field>
+                
+  
+                <mat-form-field >
+                 
+                      <mat-select formControlName="idCommercialAss"  placeholder="Id Commercial Affect*">
+                          <mat-option >None</mat-option>
+                          <ng-container *ngFor="let items of exampleItem"> 
+                              <mat-option >{{items.data.FirstName}} {{items.data.LastName}}</mat-option>
+                          </ng-container>
+                      </mat-select>
+                
+                </mat-form-field>
+  
+                <mat-form-field>
+                  <input formControlName="description" matInput placeholder="description " [value]="item.description" (input)="item.description=$event.target.value" >
+                </mat-form-field>
+          
+            <div class="bottom-row">
+              <button mat-raised-button color="primary" type="submit" (click)="updateAssignment(item,item)" >Add</button>
+
+          </div>
+  </div>
+            
+          </mat-grid-tile>
+        <mat-grid-tile>
+        </mat-grid-tile>
+        </mat-grid-list>
+    
+      </form>
+  
+
+    </div>   -->  

@@ -42,6 +42,14 @@ import { NoteEditComponent } from './prospect/note/note-edit/note-edit.component
 import { AssignmentsPageComponent } from './assignments-page/assignments-page.component';
 import {MatMenuModule} from '@angular/material/menu';
 import { ArchivageComponent } from './archivage/archivage.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { SelectCommercialComponent } from './assignments-page/select-commercial/select-commercial.component';
+import {MatListModule} from '@angular/material/list';
+import { MessageDetailComponent } from './chat-app/message-detail/message-detail.component';
+import { ChatDetailComponent } from './chat-app/message-detail/chat-detail/chat-detail.component';
+import { ChatFeedComponent } from './chat-app/message-detail/chat-feed/chat-feed.component';
+import { ChatInputComponent } from './chat-app/message-detail/chat-input/chat-input.component';
+
 
 
 @NgModule({
@@ -60,7 +68,12 @@ import { ArchivageComponent } from './archivage/archivage.component';
     ProspectMangerEditComponent,
     NoteEditComponent,
     AssignmentsPageComponent,
-    ArchivageComponent
+    ArchivageComponent,
+    SelectCommercialComponent,
+    MessageDetailComponent,
+    ChatDetailComponent,
+    ChatFeedComponent,
+    ChatInputComponent
   ],
   exports: [
     DashPageComponent,
@@ -71,7 +84,9 @@ import { ArchivageComponent } from './archivage/archivage.component';
     MailPageComponent,
     MatTableModule,
     MatProgressSpinnerModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatTabsModule ,
+    MatListModule
   ],
   imports: [
     CommonModule,
@@ -100,7 +115,9 @@ import { ArchivageComponent } from './archivage/archivage.component';
      MatTableModule,
      MatProgressSpinnerModule,
      MatPaginatorModule,
-     MatMenuModule
+     MatMenuModule,
+     MatTabsModule ,
+     MatListModule
   ],
   providers: [SharedService , ProspectService],
   entryComponents: [NoteComponent, MatConfirmDialogComponent, ProspectsComponent]

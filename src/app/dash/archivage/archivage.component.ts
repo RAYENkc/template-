@@ -31,14 +31,14 @@ export class ArchivageComponent implements OnInit {
 
   //select all the prospects
   async selectAll() {
-    try {
+    try { 
       console.log(environment.getArchiPro );
       console.log('calling read all endpoint');
 
       this.exampleItems = [];
      
-      const output = await fetch(environment.getArchiPro );
-      console.log('calling read all endpoint 2222222');
+      const output = await fetch(environment.getmyProspect + '124578' );
+      console.log('calling read all endpoint ');
       const outputJSON = await output.json();
       this.exampleItems = outputJSON;
       console.log('Success');

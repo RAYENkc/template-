@@ -1,0 +1,7 @@
+
+<div *ngFor="let item of exampleItems">
+<mat-form-field >
+    <input matInput placeholder="Send message" [value]="item.message" (input)="item.message=$event.target.value"  (keydown)="handleSubmit($event,item)">
+    <mat-icon matSuffix (click)="send(item)">send</mat-icon>
+</mat-form-field>  
+</div>

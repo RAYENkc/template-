@@ -13,9 +13,10 @@
         </ol>
         <section class="content">
           <div class="container">
-            
+            <mat-tab-group>
+              <mat-tab label="First" >  
            
-            <div class="col">
+            <div class="pad">
               <form>
                 <div class="form-group example-list">
                   <table class="table">
@@ -49,44 +50,48 @@
                 </div>
               </form>
             </div>
-          
-        </div>
-       <!--  <form>
+    </mat-tab>
+    <mat-tab label="Second"> 
+      <div class="pad">
+        <form>
           <div class="form-group example-list">
             <table class="table">
               <thead>
                 <tr>
                   <th scope="col">id</th>
-                  <th scope="col">Last Name</th>
-                  <th scope="col">First Name</th>
-                  <th scope="col">Phone</th>
-                  <th scope="col">Adress</th>
-                  <th scope="col">Mail</th>
-                  <th scope="col">Settings</th>
+                  <th scope="col">ID prospect</th>
+                  <th scope="col">Date Of Assignment</th>
+                  <th scope="col">Id Commercial Affect</th>
+                  <th scope="col">description</th>
+                  
                 
                 
                 </tr>
               </thead>
-              <tbody *ngFor="let item of pros">
-              <mat-spinner [ngClass]="{'hide': item!=null}">loading ..</mat-spinner> 
+              <tbody *ngFor="let it of  examplMyProspect ">
+             
                 <tr>
-                  <td >{{item.id}}</td>
-                  <td>{{item.data.Social_Reason}}</td>
-                  <td>{{item.data.Phone}}</td>
-                  <td>{{item.data.Mail}}</td>
-                  <td>{{item.data.Address }}</td>
-                  <td>{{item.data.Role}}</td>
-                  <td>{{item.DateCreated}}</td>
+                  <td >{{it.id}}</td>
+                  <td>{{it.Social_Reason}}</td>
+                  <td>{{it.Address}}</td>
+                  <td>{{it.Phone }}</td>    
+                
+                  
+                  <td>
+                    <button  mat-icon-button   (click)="  onAssignmentProspect(it)" ><mat-icon>launch</mat-icon></button>
+                  </td>
+                
                 </tr>
               </tbody>
             </table>
             <mat-paginator  [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="5" ></mat-paginator>
           </div>
         </form>
-     <div>-->
+      </div> </mat-tab>
+    <mat-tab label="Third"> <p>kacem</p></mat-tab>
+  </mat-tab-group>
 
-
-
+</div>
 
         </section>
       </section>

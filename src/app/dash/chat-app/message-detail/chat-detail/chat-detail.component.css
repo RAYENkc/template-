@@ -1,0 +1,13 @@
+mat-toolbar {
+
+  
+    height: 50px;
+ 
+}
+
+.chat-feed{
+   
+    overflow-y: scroll;
+    overflow: auto;
+    height: calc(100vh - 120px);
+}

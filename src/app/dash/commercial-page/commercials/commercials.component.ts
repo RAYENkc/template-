@@ -50,7 +50,6 @@ export class CommercialsComponent implements OnInit {
      this.title =" Add New Commercial"
     } else {
       this.onUpdateProspect(this.description);
-      console.log(this.description)
       this.disbadd = false;
       this.disbmodif = true;
       this.title = "Update Commercial"

@@ -34,4 +34,15 @@ export class CommercialService {
     });
   }
 
+  
+
+  initializeFormAssigGroupe(){
+    this.form.setValue({
+      $key: null ,
+      id: '',
+      idProspect: '',
+      idCommercialAss: '',
+      description: '',
+    });
+  }
 }
