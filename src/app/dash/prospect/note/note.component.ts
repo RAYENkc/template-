@@ -46,7 +46,7 @@ export class NoteComponent implements OnInit {
   this.service.initializeFormGroupe();
   }
 
-  onSubmit(){
+  onSubmit(){ 
     this.onClose();
   }
   

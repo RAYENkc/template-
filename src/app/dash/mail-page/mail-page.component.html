@@ -9,9 +9,64 @@
           <li class="active">  Mail </li>
         </ol>
         <section class="content">
-      
-        </section>
-      </section>
+         
+          <form [formGroup]="service.form" class="normal-form" >
+            <mat-grid-list cols="2" rowHeight="300px">
+              <mat-grid-tile>
+                <div class="controles-container-prospect "  *ngFor="let item of exampleItems">
+                  <input type="hidden" formControlName="$key" >
     
-      
-    </div>
+                 
+        
+                  <mat-form-field>
+                    <input formControlName="name" matInput placeholder=" name*" [value]="item.name" (input)="item.name=$event.target.value">
+                    <mat-error>this Field is mandatory</mat-error>
+                  </mat-form-field>
+        
+                  <mat-form-field>
+                      <input formControlName="desc" matInput placeholder="Email*" [value]="item.desc" (input)="item.desc=$event.target.value">
+                      <mat-error>this Field is mandatory</mat-error>
+                  </mat-form-field>
+        
+                  <mat-form-field>
+                      <input formControlName="title" matInput placeholder="title*" [value]="item.title" (input)="item.title=$event.target.value">
+                      <mat-error>this Field is mandatory</mat-error>
+                  </mat-form-field>
+        
+                  <mat-form-field>
+                      <input formControlName="description" matInput placeholder="Message*" [value]="item.description" (input)="item.description=$event.target.value">
+                      <mat-error>this Field is mandatory</mat-error>
+                  </mat-form-field>
+                  
+                
+                  <div class="bottom-row">
+                    <button mat-raised-button color="primary" type="submit" [disabled]="service.form.invalid"  (click)= " saveProspect(item)">Add</button>
+              
+                  </div>
+                </div>
+                
+              </mat-grid-tile>
+            <mat-grid-tile>
+            </mat-grid-tile>
+            </mat-grid-list>
+        
+          </form> 
+        
+
+          <mat-card class="card-space" *ngFor="let items of exampl">
+            <mat-card-header>
+                <mat-card-title> <strong> Title :</strong> {{items.title}}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>{{items.description}}
+              <button mat-stroked-button color="warn" (click)="onEditEmail(items)" tabIndex="-1"><mat-icon>refresh</mat-icon></button>
+            
+            </mat-card-content>
+          </mat-card>
+
+
+  </section>
+</section>
+
+
+</div>
+</div>

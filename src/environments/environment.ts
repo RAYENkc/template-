@@ -78,6 +78,24 @@ export const environment = {
   updateMessage: 'https://us-central1-departement-commercial.cloudfunctions.net/chatApi/api/update/',
   deleteMessage: 'https://us-central1-departement-commercial.cloudfunctions.net/chatApi/api/delete/',
 
+  /***   event  ****/
+  createEvent : 'https://us-central1-departement-commercial.cloudfunctions.net/eventsApi/event/create',
+  readEvent : 'https://us-central1-departement-commercial.cloudfunctions.net/eventsApi/event/read',
+  
+
+  /****  note ****/
+  createNoteEvent : 'https://us-central1-departement-commercial.cloudfunctions.net/eventsApi/note/create',
+  readNoteEvent : 'https://us-central1-departement-commercial.cloudfunctions.net/eventsApi/note/read',
+
+
+  /*** email***/
+  sendEmail : 'https://us-central1-departement-commercial.cloudfunctions.net/emailApi/sendMail',
+  createEmail : 'https://us-central1-departement-commercial.cloudfunctions.net/emailApi/email',
+  readIdEmail : 'https://us-central1-departement-commercial.cloudfunctions.net/emailApi/api/read',
+  readAllEmail : 'https://us-central1-departement-commercial.cloudfunctions.net/emailApi/email/read',
+  updateEmail : 'https://us-central1-departement-commercial.cloudfunctions.net/emailApi/email/update/',
+  deleteEmail : 'https://us-central1-departement-commercial.cloudfunctions.net/emailApi',
+
   googleMapsKey: 'AIzaSyCGNvX90B7hAAdT1B3M2mxTMPvcdoqAnEg',
 };
 

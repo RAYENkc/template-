@@ -45,9 +45,10 @@ searchKey: string;
   ngOnInit(): void {
     document.body.className = 'hold-transition skin-blue sidebar-mini';
     this.select();
+    
     //this.listData.paginator = this.paginator;
     // this.listData = new MatTableDataSource(this.exampleProspect);
-    console.log(this.exampleItems);
+  //  console.log(this.exampleItems);
   }
   lat: number;
   lng: number;
@@ -330,10 +331,10 @@ onDelete(id : any, idGeo: any){
   this.dialogService.openConfirmDialog('Are you sure to delete this geoLocation ?')
   .afterClosed().subscribe(res =>{
     if(res){
-      this.deleteGeo(id, idGeo);
+   this.deleteGeo(id, idGeo);
       this.notificationService.warn('! Deleted successfully');
       
-    }
+    } 
   });
 }
 

@@ -86,7 +86,7 @@ export class ProspectsComponent implements OnInit {
   }
   onClose() {
     this.service.form.reset();
-   ///this.service.initializeProspectGroupe();
+   this.service.initializeProspectGroupe();
     this.dialogRef.close();
   }
 
@@ -117,8 +117,8 @@ export class ProspectsComponent implements OnInit {
 
       this.notificationService.success(':: Submitted Prospect successfully');
       
+      this.onClose();
       
-       this.dialogRef.close();
 
       console.log('Success');
       console.log(createResponse.status);
@@ -231,6 +231,7 @@ export class ProspectsComponent implements OnInit {
        Address: item. Address,
        Role: item.Role,
        DateCreated: item. DateCreated,
+       archive : 'false'
        
      };
      
@@ -248,7 +249,7 @@ export class ProspectsComponent implements OnInit {
 
      this.notificationService.success(':: Submitted Prospect successfully');
     
-    this.dialogRef.close();
+    this.onClose();
    
    
     }catch(error){

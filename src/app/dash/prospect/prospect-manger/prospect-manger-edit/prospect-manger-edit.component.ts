@@ -31,8 +31,8 @@ export class ProspectMangerEditComponent implements OnInit {
     private dialogService: DialogService,
     @Inject(MAT_DIALOG_DATA) data
   ) { 
-    this.description = data.item;
-    this.idProMang = data.item.idProspectManger;
+    this.description = data.item; 
+    this.idProMang = data.idProMang;
     this.idPro = data.idProspect;
   }
 
@@ -62,7 +62,7 @@ export class ProspectMangerEditComponent implements OnInit {
     this.onClose();
   }
   
-  onClose() {
+  onClose() { 
     this.service.form.reset();
     this.service.initializeFormGroupe();
     this.dialogRef.close();
@@ -80,8 +80,9 @@ async saveNote(item: any) {
       Phone: item.Phone,
       Adress: item.Adress,
       Funct : item.Funct ,
+      Email : item.Email
     };
-
+    console.log( this.idPro);
     const createResponse =
     await fetch(environment.createProMang +  this.idPro ,  {
       method: 'POST',
@@ -91,6 +92,7 @@ async saveNote(item: any) {
       }
     });
   this.notificationService.success(':: Submitted Prospect Manger successfully');
+  this.onClose();
    //this.selectProMangs(); 
     console.log('Success');
     console.log(createResponse.status);
@@ -122,6 +124,8 @@ async saveNote(item: any) {
        }
      });
      this.notificationService.success(':: Submitted Prospect Manger successfully');
+  
+     this.onClose();
     // this.selectProMangs(); 
      console.log('Success');
      console.log(updateResponse.status);
@@ -144,6 +148,7 @@ async saveNote(item: any) {
    Phone: item.data.Phone,
    Adress: item.data.Adress,
    Funct : item.data.Funct,
+   Email : item.data.Email,
    disable: true,
   update: true
  });
@@ -159,7 +164,8 @@ createProMang() {
     Phone: '',
     Adress: '',
     Funct : '',
-    //disabledItems : true,
+    Email : '',
+    
     save: true
   });
 }

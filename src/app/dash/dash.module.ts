@@ -49,7 +49,10 @@ import { MessageDetailComponent } from './chat-app/message-detail/message-detail
 import { ChatDetailComponent } from './chat-app/message-detail/chat-detail/chat-detail.component';
 import { ChatFeedComponent } from './chat-app/message-detail/chat-feed/chat-feed.component';
 import { ChatInputComponent } from './chat-app/message-detail/chat-input/chat-input.component';
-
+import { FullCalendarModule } from '@fullcalendar/angular';
+import { DashPageDialogComponent } from './dash-page-dialog/dash-page-dialog.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import { DialogComponent } from './mail-page/dialog/dialog.component';
 
 
 @NgModule({
@@ -73,7 +76,9 @@ import { ChatInputComponent } from './chat-app/message-detail/chat-input/chat-in
     MessageDetailComponent,
     ChatDetailComponent,
     ChatFeedComponent,
-    ChatInputComponent
+    ChatInputComponent,
+    DashPageDialogComponent,
+    DialogComponent
   ],
   exports: [
     DashPageComponent,
@@ -86,7 +91,8 @@ import { ChatInputComponent } from './chat-app/message-detail/chat-input/chat-in
     MatProgressSpinnerModule,
     MatPaginatorModule,
     MatTabsModule ,
-    MatListModule
+    MatListModule,
+    DragDropModule
   ],
   imports: [
     CommonModule,
@@ -117,7 +123,9 @@ import { ChatInputComponent } from './chat-app/message-detail/chat-input/chat-in
      MatPaginatorModule,
      MatMenuModule,
      MatTabsModule ,
-     MatListModule
+     MatListModule,
+     FullCalendarModule,
+     DragDropModule
   ],
   providers: [SharedService , ProspectService],
   entryComponents: [NoteComponent, MatConfirmDialogComponent, ProspectsComponent]

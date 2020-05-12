@@ -15,14 +15,14 @@
                 <mat-error>this Field is mandatory</mat-error>
               </mat-form-field>
               <mat-form-field>
-                <input  matInput placeholder="Note text*" [value]="item.textNote" (input)="item.textNote=$event.target.value">
+                <input  matInput placeholder="Note text*" [value]="item.textNote" (input)="item.textNote=$event.target.value" type="text">
                 <mat-error>this Field is mandatory</mat-error>
               </mat-form-field>
               <!--   <mat-form-field>
                 <input formControlName="dateNote" matInput placeholder="Note date" >
               </mat-form-field>  -->  
               <mat-form-field>
-                <input  matInput [matDatepicker]="picker" placeholder=" Date" [value]="item.dateNote" (input)="item.dateNote=$event.target.value">
+                <input  matInput [matDatepicker]="picker" placeholder=" Date" [value]="item.dateNote" (input)="item.dateNote=$event.target.value" type= "text">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
               </mat-form-field>

@@ -140,8 +140,8 @@ onEditProMang(item){
 
   dialogConfig.data= {
     item: item,
-    idProspect :  this.description
-   
+    idProspect :  this.description,
+    idProMang : item.idProspectManger
   };
   
 
@@ -157,8 +157,8 @@ onAddProMang(){
   dialogConfig.autoFocus = true;
   dialogConfig.data= {
     item: null,
-    idProspect : this.description
-   
+    idProspect : this.description,
+    idProMang : null
   };
 
   dialogConfig.width = "60%";

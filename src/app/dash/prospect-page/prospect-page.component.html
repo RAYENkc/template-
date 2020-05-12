@@ -30,8 +30,8 @@
                              
                          </div>
                       </div> 
-                     <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons"  (click)="deleteGeo(geo.prospectId, geo.idGeo)" > &#xE5C9;</i></a> 
-                      <a href="#"  class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons"  (click)="updateGeo(geo.prospectId, geo.idGeo)" >&#xE8B8;</i></a>
+                     <a  class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons"  (click)="onDelete(geo.prospectId, geo.idGeo)" > &#xE5C9;</i></a> 
+                      <a   class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons"  (click)="updateGeo(geo.prospectId, geo.idGeo)" >&#xE8B8;</i></a>
                     </agm-info-window>
               
                    </agm-marker>  
@@ -51,7 +51,7 @@
                         <i class="material-icons"   > &#xe003;</i>
               
                    --> 
-                   <a href="#"  data-toggle="tooltip"><i class="material-icons"  (click)="deleteGeo(geo.prospectId, geo.idGeo)" > &#xe003;</i></a>
+                   <a  data-toggle="tooltip"><i class="material-icons"  (click)="deleteGeo(geo.prospectId, geo.idGeo)" > &#xe003;</i></a>
                    </agm-info-window>
                    </agm-marker> 
                  </div>

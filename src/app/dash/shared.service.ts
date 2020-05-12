@@ -7,11 +7,11 @@ import { FormGroup, FormControl , Validators } from "@angular/forms";
 export class SharedService {
 
   constructor() { }
-  form: FormGroup = new FormGroup({
+  form: FormGroup = new FormGroup({ 
     $key: new FormControl(null),
     idNote: new FormControl('', Validators.required),
     textNote: new FormControl('',Validators.required),
-    dateNote: new FormControl(''),
+    dateNote: new FormControl('',Validators.required),
   });
 
  

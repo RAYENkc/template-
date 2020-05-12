@@ -13,6 +13,7 @@ import { SharedService } from 'src/app/dash/shared.service';
 })
 export class NoteEditComponent implements OnInit {
   form: FormGroup;
+  date = new  Date();
   description:string;
   exampleItems = [];
   exampl = [];
@@ -81,7 +82,7 @@ async saveNote(item: any) {
       body: JSON.stringify(requestBody),
       headers:{
         'Content-Type': 'application/json'
-      }
+      } 
     });
   this.notificationService.success(':: Submitted successfully');
   this.onClose();
@@ -101,7 +102,7 @@ createNote() {
     textNote: '',
     dateNote: '',
 
-    save: true
+    save: true   
   });
 }
 

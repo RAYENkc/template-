@@ -23,7 +23,7 @@ export class ArchivageComponent implements OnInit {
   ngOnInit(): void {
     document.body.className = 'hold-transition skin-blue sidebar-mini';
     this.selectAll();
-    this.select();
+  //  this.select();
     }
   Prospect(){
     this.router.navigate(['Pages/prospect']);
@@ -37,10 +37,14 @@ export class ArchivageComponent implements OnInit {
 
       this.exampleItems = [];
      
-      const output = await fetch(environment.getmyProspect + '124578' );
+      const output = await fetch(environment.getArchiPro  );
       console.log('calling read all endpoint ');
       const outputJSON = await output.json();
       this.exampleItems = outputJSON;
+      console.log('ya rab el 32almin');
+      console.log( this.exampleItems);
+      console.log('ya rab el 3almin');
+    
       console.log('Success');
       console.log(outputJSON);
     } catch (error) {

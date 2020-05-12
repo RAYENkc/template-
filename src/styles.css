@@ -32,6 +32,10 @@ div.container{
     margin: 0px 40px;
     
     }
+    div.contai{
+      margin: 0px 20px;
+      
+      }
     .fill-remaining-space{
       /*this fills the remaining space, by using flexbox*/
       flex: 1 1 auto;
@@ -134,3 +138,4 @@ div.container{
       color: white;
       border-radius: 0px;
     }
+   

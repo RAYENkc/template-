@@ -1,6 +1,6 @@
 <div class="container">
 
-    <mat-toolbar >
+    <mat-toolbar > 
         <span class="fill-remaining-space"></span> 
           <span>{{title}} </span>
         <span class="fill-remaining-space"></span>
@@ -15,11 +15,14 @@
       <mat-grid-tile>
         <div class="controles-container-prospect "  *ngFor="let item of exampleItems">
           <input type="hidden" formControlName="$key" >
+<!-- 
 
-          <mat-form-field>
+   <mat-form-field>
             <input formControlName="IdProMang" matInput placeholder="Prospect Manger id*"  [value]="item.IdProMang" (input)="item.IdProMang=$event.target.value">
             <mat-error>this Field is mandatory</mat-error>
           </mat-form-field>
+-->
+         
 
           <mat-form-field>
             <input formControlName="LastName" matInput placeholder=" Last Name*" [value]="item.LastName" (input)="item.LastName=$event.target.value">
@@ -44,6 +47,10 @@
               <input formControlName="Funct" matInput placeholder="Function*" [value]="item.Funct" (input)="item.Funct=$event.target.value">
               <mat-error>this Field is mandatory</mat-error>
           </mat-form-field>
+          <mat-form-field>
+            <input formControlName="Email" matInput placeholder="Email*" [value]="item.Email" (input)="item.Email=$event.target.value">
+            <mat-error>this Field is mandatory</mat-error>
+        </mat-form-field>
             <mat-form-field>
             <input formControlName="dateNote" matInput [matDatepicker]="picker" placeholder=" Date" [value]="item.dateNote" (input)="item.dateNote=$event.target.value">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -68,10 +75,12 @@
       <mat-grid-list cols="2" rowHeight="300px">
         <mat-grid-tile>
           <div class="controles-container-prospect "  *ngFor="let item of exampleItem">
-              <mat-form-field>
+          <!--
+<mat-form-field>
                   <input  matInput placeholder="Prospect Manger id*"  [value]="item.IdProMang" (input)="item.IdProMang=$event.target.value">
                   <mat-error>this Field is mandatory</mat-error>
                 </mat-form-field>
+          -->    
     
              
                 <mat-form-field>
@@ -84,10 +93,16 @@
               <input  matInput placeholder="First Name*" [value]="item.FiretName" (input)="item.FiretName=$event.target.value">
               <mat-error>this Field is mandatory</mat-error>
           </mat-form-field>
+
           <mat-form-field>
               <input  matInput placeholder=" Phone *" [value]="item.Phone" (input)="item.Phone=$event.target.value">
               <mat-error>this Field is mandatory</mat-error>
           </mat-form-field>
+
+          <mat-form-field>
+            <input formControlName="Email" matInput placeholder="Email*" [value]="item.Email" (input)="item.Email=$event.target.value">
+            <mat-error>this Field is mandatory</mat-error>
+        </mat-form-field>
 
           <mat-form-field>
               <input  matInput placeholder="Adress*" [value]="item.Adress" (input)="item.Adress=$event.target.value">

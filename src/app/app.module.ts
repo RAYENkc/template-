@@ -23,6 +23,10 @@ import { NoteEditComponent } from './dash/prospect/note/note-edit/note-edit.comp
 import { ProspectMangerEditComponent } from './dash/prospect/prospect-manger/prospect-manger-edit/prospect-manger-edit.component';
 import { SelectCommercialComponent } from './dash/assignments-page/select-commercial/select-commercial.component';
 import { CommercialSelectService } from './dash/shared/commercial-select.service';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import { DashPageDialogComponent } from './dash/dash-page-dialog/dash-page-dialog.component';
+import { EventService } from './dash/shared/event.service';
+import { DialogComponent } from './dash/mail-page/dialog/dialog.component';
 
 
 
@@ -41,6 +45,7 @@ import { CommercialSelectService } from './dash/shared/commercial-select.service
     MatIconModule,
     MatSnackBarModule,
     MatDialogModule,
+    FullCalendarModule 
  
   ],
   exports: [
@@ -48,9 +53,27 @@ import { CommercialSelectService } from './dash/shared/commercial-select.service
     MatIconModule,
     MatSnackBarModule,
   ],
-  providers: [SharedService , ProspectService, ProspectMangerService, CommercialService, CommercialSelectService],
+  providers: [
+    SharedService , 
+    ProspectService, 
+    ProspectMangerService, 
+    CommercialService, 
+    CommercialSelectService, 
+    EventService, 
+  ],
   bootstrap: [AppComponent],
-  entryComponents: [NoteComponent, MatConfirmDialogComponent , ProspectsComponent, ProspectMangerComponent, CommercialsComponent,NoteEditComponent , ProspectMangerEditComponent, SelectCommercialComponent]
+  entryComponents: [
+    NoteComponent, 
+    MatConfirmDialogComponent , 
+    ProspectsComponent, 
+    ProspectMangerComponent, 
+    CommercialsComponent,
+    NoteEditComponent , 
+    ProspectMangerEditComponent, 
+    SelectCommercialComponent ,
+    DashPageDialogComponent,
+    DialogComponent
+    ]
   
 })
 export class AppModule { }
