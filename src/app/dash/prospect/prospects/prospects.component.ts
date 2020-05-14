@@ -16,7 +16,7 @@ import { ProspectService } from '../../shared/prospect.service';
 })
 export class ProspectsComponent implements OnInit {
   form: FormGroup;
-  description = [];
+  description = []; 
   exampleItems = [];
   exampleItem = [ ];
   exampl = [];
@@ -24,7 +24,7 @@ export class ProspectsComponent implements OnInit {
   examplt =[];
   info = [];
   infos = [];
-  exa = [];
+  exa = []; 
 
   disbadd = false;
   disbmodif = false;

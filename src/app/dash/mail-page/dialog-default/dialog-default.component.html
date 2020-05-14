@@ -1,0 +1,66 @@
+
+<div class="container">
+    <mat-toolbar >
+    <span class="fill-remaining-space"></span> 
+      <span>{{title}} </span>
+    <span class="fill-remaining-space"></span>
+
+    <button mat-stroked-button color="warn" (click)="onClose()" tabIndex="-1"><mat-icon>close</mat-icon></button>
+  
+    </mat-toolbar>
+   
+   
+  
+    <form [formGroup]="service.formDefault" class="normal-form" *ngIf="disbadd && !disbmodif" >
+      <mat-grid-list cols="2" rowHeight="300px">
+        <mat-grid-tile>
+          <div class="controles-container-prospect"  *ngFor="let item of exampleItems">
+            <input type="hidden" formControlName="$key" >
+            <mat-form-field>
+              <input formControlName=" title" matInput placeholder=" title *" [value]="item.title" (input)="item.title=$event.target.value" >
+              <mat-error>this Field is mandatory</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <input formControlName="description" matInput placeholder="description *" [value]="item.description" (input)="item.description=$event.target.value">
+              <mat-error>this Field is mandatory</mat-error>
+            </mat-form-field>
+            <div class="bottom-row">
+                <button mat-raised-button color="primary" type="submit"  (click)="saveProspect(item)" >Add</button>
+              <button mat-raised-button color="warn" (click)="onClear()" >Clear</button>
+            </div>
+          </div>
+          
+        </mat-grid-tile>
+      <mat-grid-tile>
+      </mat-grid-tile>
+      </mat-grid-list>
+  
+    </form>
+
+    <form  class="normal-form" *ngIf="!disbadd && disbmodif" >
+      <mat-grid-list cols="2" rowHeight="300px">
+        <mat-grid-tile>
+          <div class="controles-container-prospect"  *ngFor="let item of exampleItem">
+            <input type="hidden" formControlName="$key" >
+            <mat-form-field>
+              <input  matInput placeholder="title *" [value]="item.title " (input)="item.title =$event.target.value" >
+              <mat-error>this Field is mandatory</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <input  matInput placeholder="description *" [value]="item.description" (input)="item.description=$event.target.value">
+              <mat-error>this Field is mandatory</mat-error>
+            </mat-form-field>
+            <div class="bottom-row">
+                <button mat-raised-button color="primary" type="submit" (click)="updateProspect(item)" >update</button>
+              <button mat-raised-button color="warn" (click)="onClear()" >Clear</button>
+            </div>
+          </div>
+          
+        </mat-grid-tile>
+      <mat-grid-tile>
+      </mat-grid-tile>
+      </mat-grid-list>
+  
+    </form>
+    
+    </div>

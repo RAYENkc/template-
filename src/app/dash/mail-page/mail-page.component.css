@@ -1,0 +1,25 @@
+.card-space{
+   /* background-color: tomato;*/
+}
+
+.form-email{
+   
+  width: 400px;
+  height:500px;
+  margin: 0 auto;
+
+  justify-content: center;
+  
+}
+
+.header-email{
+    background-color: #0074D9;
+}
+.pad{
+    padding: 20px;
+}
+
+
+.bottom-row{
+  
+}

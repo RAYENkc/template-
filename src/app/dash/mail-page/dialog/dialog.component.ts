@@ -25,7 +25,7 @@ export class DialogComponent implements OnInit {
       this.description = data.id;
       this.title = data.title;
       this.descr = data.description;
-      this
+      
      }
 
   ngOnInit(): void {

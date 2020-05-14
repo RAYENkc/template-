@@ -53,6 +53,7 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import { DashPageDialogComponent } from './dash-page-dialog/dash-page-dialog.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { DialogComponent } from './mail-page/dialog/dialog.component';
+import { DialogDefaultComponent } from './mail-page/dialog-default/dialog-default.component';
 
 
 @NgModule({
@@ -78,7 +79,8 @@ import { DialogComponent } from './mail-page/dialog/dialog.component';
     ChatFeedComponent,
     ChatInputComponent,
     DashPageDialogComponent,
-    DialogComponent
+    DialogComponent,
+    DialogDefaultComponent
   ],
   exports: [
     DashPageComponent,

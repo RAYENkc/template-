@@ -11,7 +11,7 @@ export class ProspectService {
     $key: new FormControl(null),
     id: new FormControl('' , Validators.required),
     Social_Reason: new FormControl('',Validators.required),
-    Phone: new FormControl('',[Validators.required, Validators.minLength(8)]),
+    Phone: new FormControl('',[Validators.required, Validators.minLength(8) ]  ),
     Mail: new FormControl('',Validators.email),
     Address: new FormControl('',Validators.required),
     Role: new FormControl('',Validators.required),

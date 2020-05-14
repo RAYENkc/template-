@@ -88,14 +88,19 @@ export const environment = {
   readNoteEvent : 'https://us-central1-departement-commercial.cloudfunctions.net/eventsApi/note/read',
 
 
-  /*** email***/
+  /*** email ***/
   sendEmail : 'https://us-central1-departement-commercial.cloudfunctions.net/emailApi/sendMail',
   createEmail : 'https://us-central1-departement-commercial.cloudfunctions.net/emailApi/email',
   readIdEmail : 'https://us-central1-departement-commercial.cloudfunctions.net/emailApi/api/read',
   readAllEmail : 'https://us-central1-departement-commercial.cloudfunctions.net/emailApi/email/read',
   updateEmail : 'https://us-central1-departement-commercial.cloudfunctions.net/emailApi/email/update/',
-  deleteEmail : 'https://us-central1-departement-commercial.cloudfunctions.net/emailApi',
+  deleteEmail : 'https://us-central1-departement-commercial.cloudfunctions.net/emailApi/email/delete/',
 
+/*** get hist of email ***/
+  HistoriqueEmail :'https://us-central1-departement-commercial.cloudfunctions.net/prospectApi/emails/read/hist/',
+
+
+  
   googleMapsKey: 'AIzaSyCGNvX90B7hAAdT1B3M2mxTMPvcdoqAnEg',
 };
 

@@ -22,12 +22,11 @@ export class EmailService {
 initializeProspectGroupe(){
   this.form.setValue({
     $key: null ,
-    Social_Reason: '',
-    Phone: '',
-    Mail: '',
-    Address: '',
-    Role: '',
-    DateCreated: '',
+    name: '',
+    desc: '',
+    title: '',
+    description: '',
+  
     
   });
 }
@@ -39,6 +38,7 @@ formemail: FormGroup = new FormGroup({
  
 
 });
+
 initializeGroupe(){
   this.form.setValue({
     $key: null ,
@@ -46,5 +46,24 @@ initializeGroupe(){
   
   });
 }
+
+
+formDefault :  FormGroup = new FormGroup({
+  $key: new FormControl(null),
+  
+  title: new FormControl('',Validators.required),
+  description: new FormControl('',Validators.required),
+});
+
+initializeDefaultGroupe(){
+  this.form.setValue({
+    $key: null ,
+    title: '',
+    description : ''
+  
+  });
+}
+
+
 }
  

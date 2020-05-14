@@ -8,10 +8,22 @@
           <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
           <li class="active">  Mail </li>
         </ol>
-        <section class="content">
-         
-          <form [formGroup]="service.form" class="normal-form" >
-            <mat-grid-list cols="2" rowHeight="300px">
+        <section class="content-email  pad">
+          <div>
+            <button mat-raised-button  class="btn btn-btn btn-primary" (click)=onAddEmail()>
+              <mat-icon>add</mat-icon> Create </button>
+          </div>
+
+          <div class ="form-email">
+        <mat-card >
+          <mat-card-header class="info-color white-text text-center py-4">
+            <mat-card-title >  
+             {{titleofDialog}}
+        </mat-card-title>
+        </mat-card-header>
+          <mat-card-content>
+          <form [formGroup]="service.form" class="normal-form"    >
+            <mat-grid-list cols="4" rowHeight="400px"  >
               <mat-grid-tile>
                 <div class="controles-container-prospect "  *ngFor="let item of exampleItems">
                   <input type="hidden" formControlName="$key" >
@@ -34,14 +46,17 @@
                   </mat-form-field>
         
                   <mat-form-field>
-                      <input formControlName="description" matInput placeholder="Message*" [value]="item.description" (input)="item.description=$event.target.value">
-                      <mat-error>this Field is mandatory</mat-error>
+                   <!--  <input formControlName="description" matInput placeholder="Message*" [value]="item.description" (input)="item.description=$event.target.value"> -->   
+                   <textarea
+                   formControlName="description" matInput placeholder="Message*" [value]="item.description" (input)="item.description=$event.target.value"
+                 ></textarea>
+                   <mat-error>this Field is mandatory</mat-error>
                   </mat-form-field>
                   
                 
                   <div class="bottom-row">
-                    <button mat-raised-button color="primary" type="submit" [disabled]="service.form.invalid"  (click)= " saveProspect(item)">Add</button>
-              
+                    <button mat-raised-button color="primary" type="submit" [disabled]="service.form.invalid"  (click)= " saveProspect(item)">Send</button>
+                   
                   </div>
                 </div>
                 
@@ -49,18 +64,30 @@
             <mat-grid-tile>
             </mat-grid-tile>
             </mat-grid-list>
-        
+         
           </form> 
-        
+        </mat-card-content>
+       
+        </mat-card>
+
+      </div>
+
 
           <mat-card class="card-space" *ngFor="let items of exampl">
             <mat-card-header>
                 <mat-card-title> <strong> Title :</strong> {{items.title}}</mat-card-title>
             </mat-card-header>
-            <mat-card-content>{{items.description}}
-              <button mat-stroked-button color="warn" (click)="onEditEmail(items)" tabIndex="-1"><mat-icon>refresh</mat-icon></button>
+            <mat-card-content>
+              {{items.description}}
+             
             
             </mat-card-content>
+            <mat-card-actions>
+              <button mat-stroked-button color="warn" (click)="onEditEmail(items)" tabIndex="-1"><mat-icon>alternate_email</mat-icon></button>
+              <button mat-stroked-button color="warn" (click)="onEditEmailDefaut(items)" tabIndex="-1"><mat-icon>refresh</mat-icon></button>
+              <button mat-stroked-button color="warn" (click)="onDeleteNote(items.id)" tabIndex="-1"><mat-icon>block</mat-icon></button>
+              <button mat-stroked-button color="warn" (click)="onUpdateEmail(items)" tabIndex="-1"><mat-icon>block</mat-icon></button>
+            </mat-card-actions>
           </mat-card>
 
 

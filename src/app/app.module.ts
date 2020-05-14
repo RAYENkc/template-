@@ -27,6 +27,7 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import { DashPageDialogComponent } from './dash/dash-page-dialog/dash-page-dialog.component';
 import { EventService } from './dash/shared/event.service';
 import { DialogComponent } from './dash/mail-page/dialog/dialog.component';
+import { DialogDefaultComponent } from './dash/mail-page/dialog-default/dialog-default.component';
 
 
 
@@ -72,7 +73,8 @@ import { DialogComponent } from './dash/mail-page/dialog/dialog.component';
     ProspectMangerEditComponent, 
     SelectCommercialComponent ,
     DashPageDialogComponent,
-    DialogComponent
+    DialogComponent,
+    DialogDefaultComponent
     ]
   
 })
