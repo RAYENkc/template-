@@ -28,14 +28,20 @@ import { DashPageDialogComponent } from './dash/dash-page-dialog/dash-page-dialo
 import { EventService } from './dash/shared/event.service';
 import { DialogComponent } from './dash/mail-page/dialog/dialog.component';
 import { DialogDefaultComponent } from './dash/mail-page/dialog-default/dialog-default.component';
+import { environment } from 'src/environments/environment';
 
-
+import {AngularFireModule} from '@angular/fire';
+import {AngularFireAuthModule} from '@angular/fire/auth';
+import { AngularFirestoreModule} from '@angular/fire/firestore';
+import { LoginComponent } from './login/login/login.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    MatConfirmDialogComponent
+    MatConfirmDialogComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -46,8 +52,10 @@ import { DialogDefaultComponent } from './dash/mail-page/dialog-default/dialog-d
     MatIconModule,
     MatSnackBarModule,
     MatDialogModule,
-    FullCalendarModule 
- 
+    FullCalendarModule ,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    FormsModule 
   ],
   exports: [
     MatDialogModule,

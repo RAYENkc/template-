@@ -100,6 +100,16 @@ export const environment = {
   HistoriqueEmail :'https://us-central1-departement-commercial.cloudfunctions.net/prospectApi/emails/read/hist/',
 
 
+
+  
+  firebase: {
+    apiKey: "AIzaSyCGNvX90B7hAAdT1B3M2mxTMPvcdoqAnEg",
+    authDomain: "departement-commercial.firebaseapp.com",
+    databaseURL: "https://departement-commercial.firebaseio.com",
+    projectId: "departement-commercial",
+    storageBucket: "departement-commercial.appspot.com",
+    messagingSenderId: "759063668509",
+},
   
   googleMapsKey: 'AIzaSyCGNvX90B7hAAdT1B3M2mxTMPvcdoqAnEg',
 };

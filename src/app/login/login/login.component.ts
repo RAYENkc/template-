@@ -1,16 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
+import { FormGroup, FormControl } from '@angular/forms';
 declare var  $;
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
-})
+}) 
 export class LoginComponent implements OnInit {
 
+
+  form: FormGroup = new FormGroup({
+    email: new FormControl(''),
+    password: new FormControl('')
+  })
+ 
+  authError : any; 
   constructor(
-    private router: Router
+    private router: Router,
+    private auth:AuthService
   ) { }
 
   ngOnInit(): void {
@@ -22,10 +32,13 @@ export class LoginComponent implements OnInit {
         increaseArea: '20%' /* optional */
       });
     });
+
   }
 
-  login() {
-    this.router.navigate(['Dashboard']);
-  }
+  
 
+  login(frm) {
+    this.auth.login(frm.value.email, frm.value.password);
+
+  }
 }

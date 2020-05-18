@@ -5,6 +5,7 @@ import { PagesRoutingModule } from './pages-routing.module';
 import { PagesComponent } from './pages/pages.component';
 import { DashModule } from '../dash/dash.module';
 import { LayoutModule } from '../layout/layout.module';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -16,7 +17,7 @@ import { LayoutModule } from '../layout/layout.module';
     PagesRoutingModule,
     DashModule,
     LayoutModule,
-  
+    FormsModule 
     
   ]
 })
