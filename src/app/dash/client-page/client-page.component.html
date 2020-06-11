@@ -9,7 +9,75 @@
           <li class="active">  Client </li>
         </ol>
         <section class="content">
-      
+          <div class="container">
+        
+               <div>
+               <div class="col">
+                 <form>
+                   <div class="form-group example-list">
+                   
+
+                     <div class="search-div">
+                       <button mat-raised-button  class="btn btn-btn btn-primary" (click)="onAddClient()">
+                         <mat-icon>add</mat-icon> Create </button>
+                         <mat-form-field class="search-form-field" floatLabel="never">
+                          <input matInput  placeholder="Search" autocomplete="off" >
+                          
+                            
+                           
+                         </mat-form-field>
+                        
+                        
+                        
+                          
+                        
+                         
+                     </div>
+                    
+                     <table class="table">
+                       <thead>
+                         <tr>
+                           <th scope="col">TaxNumber</th>
+                           <th scope="col">Social_Reason</th>
+                           <th scope="col">Mail</th>
+                           <th scope="col">Address</th>
+                           <th scope="col">Phone</th>
+                           <th scope="col">Role</th>
+                           <th scope="col">DateOfLastOrder</th>
+                           <th scope="col">Settings</th>
+                         </tr>
+                       </thead>
+                       <tbody *ngFor="let item of exampleItems">
+                      
+                         <tr  >
+                           <td >{{item.data.TaxNumber}}</td>
+                           <td>{{item.data.Social_Reason}}</td>
+                           <td>{{item.data.Mail}}</td>
+                           <td>{{item.data.Address}}</td>
+                           <td>{{item.data.Phone}}</td>
+                           <td>{{item.data.Role}}</td>
+                           <td>{{item.data.DateOfLastOrder}}</td> 
+                           <td>{{item.data.DataFirstOrder}}</td>
+                          
+                           <td>
+                             <button  mat-icon-button   (click)="onEditClient(item,item.id)" ><mat-icon>launch</mat-icon></button>
+                             <button  mat-icon-button color="warn" (click)="onDeleteProspect(item)" ><mat-icon>delete_outline</mat-icon></button>
+                             <button  mat-icon-button color="warn" (click)="onArchive(item)" ><mat-icon>archive</mat-icon></button> 
+                             <button mat-icon-button (click)=" onEditManger(item)"><mat-icon>supervisor_account</mat-icon></button>
+                           </td>
+                            
+                       
+                         </tr>
+                        
+                       </tbody>
+                      
+                     </table>
+                     <mat-paginator  [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="5" ></mat-paginator>
+                   </div>
+                 </form>
+               </div>
+             </div>
+           </div>
         </section>
       </section>
     

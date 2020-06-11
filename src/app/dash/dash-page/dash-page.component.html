@@ -109,11 +109,9 @@
               </div>
               <!-- /btn-group -->
             </div>
-            <!-- /input-group -->
           </div>
         </div>
       </div>
-      <!-- /.col -->
 <div cdkDropList #secondList="cdkDropList" (cdkDropListDropped)="drop($event)">
       <div class="col-md-9">
         <div class="box box-primary">
@@ -128,17 +126,12 @@
                right: 'today prev, next'
               }"
               [buttonText]="{listWeek:'List Week', listDay :'List Day'}"
-           [plugins]="calendarPlugins" [events]="[calendarEvents ]"
+           [plugins]="calendarPlugins" [events]="[calendarEvents]"
           >
         </full-calendar>
-        
-          <!-- /.box-body -->
         </div>
-        <!-- /. box -->
       </div>
-      <!-- /.col -->
-    </div>
+    </div> 
   </div>
-    <!-- /.row -->
   </div>
   </section>

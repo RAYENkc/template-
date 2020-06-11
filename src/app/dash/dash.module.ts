@@ -54,6 +54,8 @@ import { DashPageDialogComponent } from './dash-page-dialog/dash-page-dialog.com
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { DialogComponent } from './mail-page/dialog/dialog.component';
 import { DialogDefaultComponent } from './mail-page/dialog-default/dialog-default.component';
+import { ClientCrudComponent } from './client-page/client-crud/client-crud.component';
+import { ClientDirective } from './shared/client.directive';
 
 
 @NgModule({
@@ -80,7 +82,9 @@ import { DialogDefaultComponent } from './mail-page/dialog-default/dialog-defaul
     ChatInputComponent,
     DashPageDialogComponent,
     DialogComponent,
-    DialogDefaultComponent
+    DialogDefaultComponent,
+    ClientCrudComponent,
+    ClientDirective
   ],
   exports: [
     DashPageComponent,
@@ -102,10 +106,9 @@ import { DialogDefaultComponent } from './mail-page/dialog-default/dialog-defaul
     AgmCoreModule.forRoot({
       apiKey : environment.googleMapsKey,
      }),
-     HttpClientModule,
+    HttpClientModule,
     FormsModule,
     NgxJsonViewerModule,
-
      BrowserAnimationsModule,
      MatDialogModule,
      MatFormFieldModule,

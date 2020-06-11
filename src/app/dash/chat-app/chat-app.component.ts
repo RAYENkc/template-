@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-chat-app',
@@ -10,7 +10,9 @@ import { Router } from '@angular/router';
 })
 export class ChatAppComponent implements OnInit {
   exampleItems = [];
-  constructor(    private router: Router) { }
+  constructor(  
+    private router: Router,
+    private route: ActivatedRoute,) { }
   ngOnInit(): void {
     document.body.className = 'hold-transition skin-blue sidebar-mini';
     this.selectAll();
@@ -18,7 +20,7 @@ export class ChatAppComponent implements OnInit {
 
    //select all the vhats
    async selectAll() {
-    try {
+    try { 
       console.log(environment.readAllChat);
       console.log('calling read all endpoint');
 
@@ -30,6 +32,7 @@ export class ChatAppComponent implements OnInit {
       this.exampleItems = outputJSON;
       console.log('Success');
       console.log(outputJSON);
+      console.log('1111111111', outputJSON.data.avatar);
     } catch (error) {
       console.log(error);
     }
@@ -37,7 +40,7 @@ export class ChatAppComponent implements OnInit {
 
 
   messageDetail(id){
-    this.router.navigate(['Pages/chat/message', id]);
+    this.router.navigate(['Pages/chat/message',id, this.route.snapshot.paramMap.get('uid')]);
   }
 
 

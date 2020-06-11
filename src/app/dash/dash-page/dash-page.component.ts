@@ -37,17 +37,6 @@ export class DashPageComponent implements OnInit{
     }
   }
 
-
-
-
-
-
-
-
-
-
-
-
   addEvent(date){
 
     const dialogConfig = new MatDialogConfig();
@@ -194,4 +183,4 @@ export class DashPageComponent implements OnInit{
           event.previousIndex, event.currentIndex)
         }
 
-}
+} 

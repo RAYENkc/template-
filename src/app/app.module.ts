@@ -35,6 +35,9 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
 import { AngularFirestoreModule} from '@angular/fire/firestore';
 import { LoginComponent } from './login/login/login.component';
 import { FormsModule } from '@angular/forms';
+import { ClientCrudComponent } from './dash/client-page/client-crud/client-crud.component';
+import { ClientService } from './dash/shared/client.service';
+import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
 
 
 @NgModule({
@@ -55,7 +58,10 @@ import { FormsModule } from '@angular/forms';
     FullCalendarModule ,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    FormsModule 
+    FormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: environment['AIzaSyDoZhtDJBSSVpTRUusMcVRkMwaa2EpqVKs'],
+    })
   ],
   exports: [
     MatDialogModule,
@@ -68,7 +74,9 @@ import { FormsModule } from '@angular/forms';
     ProspectMangerService, 
     CommercialService, 
     CommercialSelectService, 
-    EventService, 
+    EventService,
+    ClientService,
+    GoogleMapsAPIWrapper,
   ],
   bootstrap: [AppComponent],
   entryComponents: [
@@ -82,7 +90,8 @@ import { FormsModule } from '@angular/forms';
     SelectCommercialComponent ,
     DashPageDialogComponent,
     DialogComponent,
-    DialogDefaultComponent
+    DialogDefaultComponent,
+    ClientCrudComponent
     ]
   
 })

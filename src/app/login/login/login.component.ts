@@ -29,16 +29,15 @@ export class LoginComponent implements OnInit {
       $('input').iCheck({
         checkboxClass: 'icheckbox_square-blue',
         radioClass: 'iradio_square-blue',
-        increaseArea: '20%' /* optional */
+        increaseArea: '20%' 
       });
     });
-
   }
 
   
 
   login(frm) {
     this.auth.login(frm.value.email, frm.value.password);
-
+   
   }
 }

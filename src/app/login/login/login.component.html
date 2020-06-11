@@ -1,15 +1,8 @@
-
-
-<body class="hold-transition login-page back "  >
+<body class="hold-transition login-page back  " >
     <div class="login-box">
-     
-     
-      <div class="login-box-body " style="background-color: rgba(0,0,0,0.5) !important;">
-        <p class="login-box-msg">Sign in to start your session</p>
-    
+      <div class="login-box-body " style="background-color: rgba(0,0,0,0.5);  max-resolution: top 10px; ">
+        <p class="login-box-msg" style="color: white; size: 50px; font-family: 'Numans', sans-serif;">Sign in to start your session</p>
         <form  #loginForm="ngForm" (ngSubmit)="login(loginForm)">
-         
-
           <div class="form-group has-feedback" >
             <input 
              ngModel #email="ngModel" name="email" type="email" class="form-control" placeholder="Email">
@@ -19,82 +12,14 @@
             <input  ngModel #password="ngModel"  name="password" type="password" class="form-control" placeholder="Password">
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
           </div> 
-          <div class="row">
-            <div class="col-xs-8">
-              <div class="checkbox icheck">
-                <label class="">
-                  <div class="icheckbox_square-blue" aria-checked="false" aria-disabled="false" style="position: relative;"><input type="checkbox" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> Remember Me
-                </label>
-              </div>
-            </div>
-         
-            <div class="col-xs-4">
-              <button type="submit" class="btn btn-primary btn-block btn-flat" >Sign In</button>
-            </div>
-           
-          </div>
-        </form>
-    
         
-    
-    
-    
-      </div>
-     
-    </div>
-    
-   
-    <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
-    
-    <script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    
-    <script src="../../plugins/iCheck/icheck.min.js"></script>
-    <script>
-      $(function () {
-        $('input').iCheck({
-          checkboxClass: 'icheckbox_square-blue',
-          radioClass: 'iradio_square-blue',
-          increaseArea: '20%' 
-        });
-      });
-    </script>
-    
-    
-    </body>
-
-  <!--
-    <div class="row">
-      <div class="col-12">
-        <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
-    
-          <div class="row" *ngIf="authError">
-            <div class="col-12 alert alert-danger">{{ authError?.message }}</div>
-          </div>
-    
-          <div class="row">
-            <div class="col-12">
-              <label for="email">Email</label>
-              <input ngModel #email="ngModel" name="email" type="email" class="form-control">
+            <div class="login">
+              <button type="submit" class="btn btn-primary btn-block btn-flat"  >Sign In</button>
             </div>
-          </div>
-    
-          <div class="row">
-            <div class="col-12">
-              <label for="password">Password</label>
-              <input ngModel #password="ngModel" name="password" type="password" class="form-control">
-            </div>
-          </div>
-    
-          <div class="row mt-2">
-            <div class="col-12">
-              <a href="/register">Click here to register</a>
-            </div>
-    
-            <div class="col-12">
-              <button class="btn btn-primary" type="submit">Login</button>
-            </div>
-          </div>
-    
+          
         </form>
       </div>
-    </div>-->
+    </div>
+</body>
+
+ 

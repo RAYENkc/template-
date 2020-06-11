@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotePageComponent implements OnInit {
 
+  lat: number = 32.55588289865268;
+  lng: number = 7.858674640625005;
+
   constructor() { }
 
   ngOnInit(): void {

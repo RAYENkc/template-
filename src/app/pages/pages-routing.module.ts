@@ -16,16 +16,16 @@ import { ChatDetailComponent } from '../dash/chat-app/message-detail/chat-detail
 
 const routes: Routes = [
   {path: 'Pages', component: PagesComponent },
-  {path: 'Pages/prospect', component: ProspectPageComponent },
-  {path: 'Pages/client', component: ClientPageComponent },
-  {path: 'Pages/chat', component: ChatAppComponent },
-  {path: 'Pages/mail', component: MailPageComponent }, 
-  {path: 'Pages/note', component: NotePageComponent },
-  {path: 'Pages/commercial', component: CommercialPageComponent },
-  {path: 'Pages/prospect/assignments', component: AssignmentsPageComponent },
-  {path: 'Pages/prospect/archivage', component: ArchivageComponent },
+  {path: 'Pages/prospect/:uid', component: ProspectPageComponent },
+  {path: 'Pages/client/:uid', component: ClientPageComponent },
+  {path: 'Pages/chat/:uid', component: ChatAppComponent },
+  {path: 'Pages/mail/:uid', component: MailPageComponent }, 
+  {path: 'Pages/note/:uid', component: NotePageComponent },
+  {path: 'Pages/commercial/:uid', component: CommercialPageComponent },
+  {path: 'Pages/prospect/assignments/:uid', component: AssignmentsPageComponent },
+  {path: 'Pages/prospect/archivage/:uid', component: ArchivageComponent },
   //{path: 'Pages/chat/message', component: MessageDetailComponent  },
- {path: 'Pages/chat/message/:id', component: ChatDetailComponent  },
+ {path: 'Pages/chat/message/:id/:uid', component: ChatDetailComponent  },
 ];
 
 @NgModule({

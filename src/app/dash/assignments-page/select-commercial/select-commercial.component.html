@@ -1,4 +1,4 @@
- <!--
+
 <div class="container">
     <mat-toolbar >
     <span class="fill-remaining-space"></span> 
@@ -14,30 +14,27 @@
             <div class="controles-container-prospect"  >
                 <input type="hidden" formControlName="$key" >
           <mat-form-field>
-                  <input formControlName="idProspect" matInput placeholder="Prospect ID*" [value]="item.IdProspect" (input)="item.IdProspect=$event.target.value" >
+               <!--    <input formControlName="idProspect" matInput placeholder="Prospect ID*" [value]="item.IdProspect" (input)="item.IdProspect=$event.target.value" > -->
                   <mat-error>this Field is mandatory</mat-error>
                 </mat-form-field>
-                
-  
                 <mat-form-field >
-                 
                       <mat-select formControlName="idCommercialAss"  placeholder="Id Commercial Affect*">
                           <mat-option >None</mat-option>
                           <ng-container *ngFor="let items of exampleItem"> 
                               <mat-option >{{items.data.FirstName}} {{items.data.LastName}}</mat-option>
                           </ng-container>
                       </mat-select>
-                
                 </mat-form-field>
-  
+  <div *ngFor="let item of exampleCommercial">
                 <mat-form-field>
-                  <input formControlName="description" matInput placeholder="description " [value]="item.description" (input)="item.description=$event.target.value" >
+                  <input formControlName="idProspect" matInput placeholder="description " [value]="item.description" (input)="item.description=$event.target.value" >
                 </mat-form-field>
           
             <div class="bottom-row">
-              <button mat-raised-button color="primary" type="submit" (click)="updateAssignment(item,item)" >Add</button>
+              <button mat-raised-button color="primary" type="submit" (click)="updateAssignment(item)" >Add</button>
 
           </div>
+        </div>
   </div>
             
           </mat-grid-tile>
@@ -48,4 +45,4 @@
       </form>
   
 
-    </div>   -->  
+    </div>  

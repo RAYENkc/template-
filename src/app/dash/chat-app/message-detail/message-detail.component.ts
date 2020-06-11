@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./message-detail.component.css']
 })
 export class MessageDetailComponent implements OnInit {
-  exampleItems = [];
+  exampleItems = []; 
   constructor(
     private route: ActivatedRoute
   ) {
@@ -16,7 +16,7 @@ export class MessageDetailComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.selectAll()
+    this.selectAll();
   }
 
    //select all the vhats
@@ -34,7 +34,7 @@ export class MessageDetailComponent implements OnInit {
       const outputJSON = await output.json();
       this.exampleItems = outputJSON;
       console.log('Success');
-      console.log(outputJSON);
+      console.log('1111111111', outputJSON.data.avatar);
     } catch (error) {
       console.log(error);
     }

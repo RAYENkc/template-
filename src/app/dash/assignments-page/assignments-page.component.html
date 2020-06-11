@@ -8,13 +8,13 @@
           <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
           <li class="active" (click)="Prospect()">  Prospect </li>
           <li class="active">
-            Assignment 
+            Assignment  
           </li>
         </ol>
         <section class="content">
           <div class="container">
             <mat-tab-group>
-              <mat-tab label="First" >  
+              <mat-tab label="Affect" *ngIf="isAdmin">  
            
             <div class="pad">
               <form>
@@ -27,10 +27,6 @@
                         <th scope="col">ID prospect</th>
                         <th scope="col">Date Of Assignment</th>
                         <th scope="col">Id Commercial Affect</th>
-                        <th scope="col">description</th>
-                        <th scope="col">valid</th>
-                      
-                      
                       </tr>
                     </thead>
                     <tbody *ngFor="let item of exampleCommercials ">
@@ -41,8 +37,6 @@
                         <td>{{item.data.IdProspect}}</td>
                         <td>{{item.data.DateOfAssignment}}</td>
                         <td>{{item.data.IdCommercialAffect }}</td>
-                        <td>{{item.data.description}}</td>
-                        <td>{{item.data.valid}}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -51,34 +45,34 @@
               </form>
             </div>
     </mat-tab>
-    <mat-tab label="Second"> 
+    <mat-tab label=" My Prospect "> 
       <div class="pad">
         <form>
           <div class="form-group example-list">
             <table class="table">
               <thead>
                 <tr>
-                  <th scope="col">id</th>
-                  <th scope="col">ID prospect</th>
-                  <th scope="col">Date Of Assignment</th>
-                  <th scope="col">Id Commercial Affect</th>
-                  <th scope="col">description</th>
+                  <th scope="col">ID Prospect</th>
+                  <th scope="col">Social Reason</th>
+                  <th scope="col">Address</th>
+                  <th scope="col">Phone</th>
+                  <th scope="col">Mail</th>
                   
                 
                 
                 </tr>
               </thead>
-              <tbody *ngFor="let it of  examplMyProspect ">
+              <tbody *ngFor="let it of  infos">
              
                 <tr>
                   <td >{{it.id}}</td>
                   <td>{{it.Social_Reason}}</td>
                   <td>{{it.Address}}</td>
-                  <td>{{it.Phone }}</td>    
-                
+                  <td>{{it.Phone}}</td>    
+                  <td>{{it.Mail}}</td> 
                   
                   <td>
-                    <button  mat-icon-button   (click)="  onAssignmentProspect(it)" ><mat-icon>launch</mat-icon></button>
+                    <button  mat-icon-button   (click)="onAssignmentProspect(it)" ><mat-icon>launch</mat-icon></button>
                   </td>
                 
                 </tr>
@@ -87,8 +81,40 @@
             <mat-paginator  [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="5" ></mat-paginator>
           </div>
         </form>
-      </div> </mat-tab>
-    <mat-tab label="Third"> <p>kacem</p></mat-tab>
+      </div>
+     </mat-tab>
+    <mat-tab label="Valid Affectation" *ngIf="isAdmin"> 
+      <div class="pad">
+        <form>
+          <div class="form-group example-list">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">id</th>
+                  <th scope="col">ID Commercial</th>
+                  <th scope="col">ID prospect</th>
+                  <th scope="col">Date Of Assignment</th>
+                  <th scope="col">Id Commercial Affect</th>
+                </tr>
+              </thead>
+              <tbody *ngFor="let changed of examplChanged ">
+             
+                <tr> 
+                  <td >{{changed.id}}</td>
+                  <td>{{changed.data.IdCommercial}}</td>
+                  <td>{{changed.data.IdProspect}}</td>
+                  <td>{{changed.data.DateOfAssignment}}</td>
+                  <td>{{changed.data.IdCommercialAffect}}</td>
+                    <button  mat-icon-button color="primary" (click)="onValide(changed)" > <mat-icon>check</mat-icon> </button>
+                    <button  mat-icon-button color="warn" (click)="onRefus(changed)" > <mat-icon>close</mat-icon> </button>
+                </tr>
+              </tbody>
+            </table>
+            <mat-paginator  [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="5" ></mat-paginator>
+          </div>
+        </form> 
+      </div>
+    </mat-tab>
   </mat-tab-group>
 
 </div>

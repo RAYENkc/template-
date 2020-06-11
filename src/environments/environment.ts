@@ -15,7 +15,8 @@ export const environment = {
   getArchiPro : 'https://us-central1-departement-commercial.cloudfunctions.net/prospectApi/archi/read',
   getActivePro : 'https://us-central1-departement-commercial.cloudfunctions.net/prospectApi/active/read',
   getProTunis : 'https://us-central1-departement-commercial.cloudfunctions.net/prospectApi/test/read',
-  
+  gettoday: 'https://us-central1-departement-commercial.cloudfunctions.net/prospectApi/filter/day',
+  getdate:'https://us-central1-departement-commercial.cloudfunctions.net/prospectApi/filter/day/',
   /**  GeoLocation **/
   createGeo: 'https://us-central1-departement-commercial.cloudfunctions.net/prospectApi/api/geolocations/create/',
   readIdGeo: 'https://us-central1-departement-commercial.cloudfunctions.net/prospectApi/geolocations/read/',
@@ -37,6 +38,7 @@ export const environment = {
    updateProMang: 'https://us-central1-departement-commercial.cloudfunctions.net/prospectApi/prospectMangers/update/',
    deleteProMang: 'https://us-central1-departement-commercial.cloudfunctions.net/prospectApi/prospectMangers/delete/',
   
+  
    /**** Client *****/
    createClient: 'https://us-central1-departement-commercial.cloudfunctions.net/clientApi/api/create',
    readIdClient: 'https://us-central1-departement-commercial.cloudfunctions.net/clientApi/api/read/',
@@ -50,6 +52,7 @@ export const environment = {
    readAllCommercial: 'https://us-central1-departement-commercial.cloudfunctions.net/commercialApi/api/read',
    updateCommercial: 'https://us-central1-departement-commercial.cloudfunctions.net/commercialApi/api/update/',
    deleteCommercial: 'https://us-central1-departement-commercial.cloudfunctions.net/commercialApi/api/delete/',
+   getinfoCommercail: 'http://us-central1-departement-commercial.cloudfunctions.net/commercialApi/info/commercail/',
 
   /**** Assignment    *****/
       createAssignment: 'https://us-central1-departement-commercial.cloudfunctions.net/assignmentApi/api/create',
@@ -57,12 +60,16 @@ export const environment = {
       readAllAssignment: 'https://us-central1-departement-commercial.cloudfunctions.net/assignmentApi/api/read',
       updateAssignment: 'https://us-central1-departement-commercial.cloudfunctions.net/assignmentApi/api/update/',
       deleteAssignment: 'https://us-central1-departement-commercial.cloudfunctions.net/assignmentApi/api/delete/',
+      getmy: 'https://us-central1-departement-commercial.cloudfunctions.net/assignmentApi/assig/read/my/',
+      valideAssignment:'https://us-central1-departement-commercial.cloudfunctions.net/assignmentApi/api/valid/',
+      refusAssignment: 'https://us-central1-departement-commercial.cloudfunctions.net/assignmentApi/api/refus/',
 
   // filtrage
   getmyProspect: 'https://us-central1-departement-commercial.cloudfunctions.net/assignmentApi/myprospects/read/',
   getprospectToAssig: 'https://us-central1-departement-commercial.cloudfunctions.net/assignmentApi/assignment/read',
   getAssig: 'https://us-central1-departement-commercial.cloudfunctions.net/assignmentApi/assig/read/',
- 
+  getchanged: 'https://us-central1-departement-commercial.cloudfunctions.net/assignmentApi/assig/to',
+  
 
   /*****  chats  *****/
   createChat: 'https://us-central1-departement-commercial.cloudfunctions.net/chatApi/api/create',
@@ -95,13 +102,17 @@ export const environment = {
   readAllEmail : 'https://us-central1-departement-commercial.cloudfunctions.net/emailApi/email/read',
   updateEmail : 'https://us-central1-departement-commercial.cloudfunctions.net/emailApi/email/update/',
   deleteEmail : 'https://us-central1-departement-commercial.cloudfunctions.net/emailApi/email/delete/',
-
+ 
 /*** get hist of email ***/
   HistoriqueEmail :'https://us-central1-departement-commercial.cloudfunctions.net/prospectApi/emails/read/hist/',
 
+/******** manger User *****/
+getUser : ' https://us-central1-departement-commercial.cloudfunctions.net/userApi/api/user/',
+
+/*****     notification   *****/
+createnotif: 'https://us-central1-departement-commercial.cloudfunctions.net/notifApi/api/read/client/notif',
 
 
-  
   firebase: {
     apiKey: "AIzaSyCGNvX90B7hAAdT1B3M2mxTMPvcdoqAnEg",
     authDomain: "departement-commercial.firebaseapp.com",

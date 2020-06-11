@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { AgmMap, AgmMarker } from '@agm/core';
+//import { AgmMap, AgmMarker } from '@agm/core';
 import { environment } from 'src/environments/environment';
 
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
@@ -11,7 +11,7 @@ import { DialogService } from '../shared/dialog.service';
 import { NotificationService } from '../shared/notification.service';
 import { ProspectsComponent } from '../prospect/prospects/prospects.component';
 import { ProspectMangerComponent } from '../prospect/prospect-manger/prospect-manger.component';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-prospect-page',
   templateUrl: './prospect-page.component.html',
@@ -27,9 +27,15 @@ exa = [];
 info = [];
 infos = [];
 exampleProspect = [];
+searchtable = [];
+search = [];
 pro = [];
 pros = [];
-
+prospectLength = [];
+testt = [];
+dd = '';
+mm = '';
+yyyy = '';
 displayedColumns: string[] =['id', 'Social_Reason' , 'Phone' , 'Address', 'Mail' , 'Role' , 'DateCreated', 'Settings'];
 
 @ViewChild(MatPaginator) paginator:  MatPaginator;
@@ -38,7 +44,8 @@ searchKey: string;
     private dialogService: DialogService,
     public notificationService : NotificationService,
     private dialog:MatDialog,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute,
     ) { }
   listData: MatTableDataSource<any>;
 
@@ -76,7 +83,7 @@ searchKey: string;
       this.exampleItems = outputJSON;
       console.log('Success');
       console.log(outputJSON);
-    } catch (error) {
+    } catch (error) { 
       console.log(error);
     }
   }
@@ -120,25 +127,17 @@ searchKey: string;
       
    
       for (var val of this.exampleItems) {
-        
-        
         const out = await fetch(environment.readAllGeo + val.id);
-       
         const output = await fetch(environment.readId  + val.id);
         const outputjson = await output.json();
         this.info = outputjson;
-
-        
         const outputJS = await out.json();
- 
-       
         this.examplt = outputJS;
-       
         console.log(this.examplt);
-       this.exa = this.exa.concat(this.examplt);
-       this.infos = this.infos.concat(this.info);
-       console.log(this.exa);
-       console.log(this.infos);
+        this.exa = this.exa.concat(this.examplt);
+        this.infos = this.infos.concat(this.info);
+        console.log(this.exa);
+        console.log(this.infos);
         
 
       }
@@ -175,11 +174,8 @@ searchKey: string;
           'Content-Type': 'application/json'
         }
       });
-
       console.log('Success');
       console.log(createResponse.status);
-      
-       // call select all to update the table
        this.selectAll();
 
     }catch(error){
@@ -486,7 +482,7 @@ onArchive(item : any){
   onEditProspect(item){
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true ;
-    dialogConfig.autoFocus = true;
+    dialogConfig.autoFocus = true; 
 
     dialogConfig.data= {
       item: item
@@ -514,9 +510,53 @@ onArchive(item : any){
   }
 
   assignment(){
-    this.router.navigate(['Pages/prospect/assignments']);
+    this.router.navigate(['Pages/prospect/assignments',this.route.snapshot.paramMap.get('uid')]);
   }
   archivage() {
-    this.router.navigate(['Pages/prospect/archivage']);
+    this.router.navigate(['Pages/prospect/archivage',this.route.snapshot.paramMap.get('uid')]);
   }
+
+
+  async Today(){
+     
+    try {
+      console.log(environment.gettoday);
+      console.log('calling read all endpoint');
+
+      this.exampleItems = [];
+     
+      const output = await fetch(environment.gettoday);
+      console.log('calling read all endpoint 1111111111');
+      const outputJSON = await output.json();
+      this.exampleItems = outputJSON;
+      console.log('Success');
+      console.log(outputJSON.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async getdate(test){
+     
+    try {
+      console.log(environment.getdate);
+      console.log('calling read all endpoint');
+      this.exampleItems = [];
+      console.log(test);
+      this.testt = test.split('/')
+      this.dd = this.testt[0];
+      this.mm =  this.testt[1];
+      this.yyyy= this.testt[2];
+      const output = await fetch(environment.getdate + this.dd + '/' + this.mm+ '/'+ this.yyyy);
+      console.log('calling read all endpoint');
+      const outputJSON = await output.json();
+      this.exampleItems = outputJSON;
+      console.log('Success');
+      console.log(outputJSON);
+      console.log(outputJSON.data.Social_Reason);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  
 }

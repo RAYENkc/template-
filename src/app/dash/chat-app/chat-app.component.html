@@ -17,7 +17,7 @@
 
           <mat-list>
             <mat-list-item>
-              <img matListAvatar src="thread.avatar  " alt="hey">
+              <img matListAvatar src={{thread.data.avatar}}   alt="hey">
                 <p mat-line (click)=messageDetail(thread.id) > {{thread.id}}</p>
                 <p mat-line>last message here</p>
             </mat-list-item>

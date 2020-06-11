@@ -19,8 +19,8 @@ export class SelectCommercialComponent implements OnInit {
   exampleCommercial = [];
   exampleItem = [];
   IdAssignment : string;
- item = [];
-title= "";
+  item = [];
+  title= "";
   constructor( public service : CommercialSelectService,
     private dialogRef: MatDialogRef<SelectCommercialComponent>,
     public notificationService : NotificationService,

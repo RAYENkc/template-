@@ -110,12 +110,9 @@ onEditCommercial(item){
   const dialogConfig = new MatDialogConfig();
   dialogConfig.disableClose = true ;
   dialogConfig.autoFocus = true;
-
   dialogConfig.data= {
     item: item
   };
-  
-
   dialogConfig.width = "60%";
   dialogConfig.height ="80%";
   this.dialog.open(CommercialsComponent, dialogConfig);
@@ -130,20 +127,14 @@ onAddCommercial(){
     id: null
   };
   
-
   dialogConfig.width = "60%";
   dialogConfig.height ="80%";
- this.dialog.open(CommercialsComponent, dialogConfig);
+  this.dialog.open(CommercialsComponent, dialogConfig);
 }
-
-
-
-
 onSearchClear() {
   this.searchKey = "";
 this.applyFilter();
 }
-
 applyFilter() {
   this.listData.filter = this.searchKey.trim().toLowerCase();
 }

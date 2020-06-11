@@ -73,12 +73,12 @@
                          mat-raised-button  class="btn btn-btn btn-primary"
                         </div> -->
 
-                        <div class="search-div">
+                        <div class="search-div" >
                           <button mat-raised-button  class="btn btn-btn btn-primary" (click)=onAddProspect()>
                             <mat-icon>add</mat-icon> Create </button>
-                            <mat-form-field class="search-form-field" floatLabel="never">
-                              <input matInput [(ngModel)]="searchKey" placeholder="Search" autocomplete="off" (keyup)="applyFilter()">
-                              <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchKey"  (click)="onSearchClear()" >
+                            <mat-form-field class="search-form-field" floatLabel="never"  >
+                              <input matInput  placeholder="Search" autocomplete="off" (input)="search=$event.target.value"  >
+                              <button mat-button matSuffix mat-icon-button aria-label="Clear"   (click)="getdate(search)" >
                                 <mat-icon>close</mat-icon>
                               </button>
                             </mat-form-field>
@@ -87,10 +87,18 @@
                               <button mat-menu-item (click)=assignment()> Assignment</button>
                               <button mat-menu-item (click)=archivage()> Archivage </button>
                             </mat-menu>
-                            
+
+                          
+                            <button mat-raised-button color="accent" [matMenuTriggerFor]="appMenu">Filtration</button>
+                            <mat-menu #appMenu="matMenu">
+                              <button mat-menu-item (click)=Today()> Aujourd'hui</button>
+                              <button mat-menu-item (click)=archivage()> Archivage </button>
+                            </mat-menu>
                         </div>
-                       
-                        <table class="table">
+                        <div *ngIf="exampleItems.length == 0">
+                          <p>   loading ..  </p>
+                       </div>
+                        <table class="table" >
                           <thead>
                             <tr>
                               <th scope="col">id</th>
@@ -104,7 +112,8 @@
                             </tr>
                           </thead>
                           <tbody *ngFor="let item of exampleItems">
-                          <mat-spinner [ngClass]="{'hide': item!=null}">loading ..</mat-spinner> 
+                      
+                          
                             <tr  >
                               <td >{{item.id}}</td>
                               <td>{{item.Social_Reason}}</td>

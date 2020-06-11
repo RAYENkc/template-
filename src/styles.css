@@ -9,17 +9,11 @@
 
 
 .back{
+    padding: 10% ;
     background-image:url('assets/back.jpg');
-    background-size: cover;
+    background-size:  cover;
     background-repeat: no-repeat;
-    height: 900px;
-
-    }
-
-
-
-
-
+   }
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
