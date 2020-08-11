@@ -21,9 +21,15 @@ export class DashPageDialogComponent implements OnInit {
   exampleItems = [];
   exampl = [];
   exampleItem = [];
-  
+  exampleCommercail = [];
   title = "";
+  selectedFood = "";
+  selectedChoix = "";
   isPro : string;
+  exampleChoix = ['prospect','client'];
+ client = false;
+ prospect = false; 
+  
   constructor(
     public service : EventService,
     private dialogRef: MatDialogRef<DashPageDialogComponent>,
@@ -36,26 +42,65 @@ export class DashPageDialogComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
+ngOnInit(): void {
     this.title =" Add New Event",
     this.createEvent();
+    //this.selectAllCommercial();
   }
 
-async  saveEvent(item){ 
+     //select all the prospects
+  async selectAllClient() {
+    try {
+      console.log(environment.readAllClient);
+      console.log('calling read all endpoint');
+      this.exampleCommercail = [];
+      const output = await fetch(environment.readAllClient);
+      const outputJSON = await output.json();
+      this.exampleCommercail = outputJSON;
+      console.log('Success');
+      console.log(outputJSON);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+      //select all the prospects
+      async selectAllProspect() {
+        try {
+          console.log(environment.readAll);
+          console.log('calling read all endpoint');
+          this.exampleCommercail = [];
+          const output = await fetch(environment.readAll);
+          const outputJSON = await output.json();
+          this.exampleCommercail = outputJSON;
+          console.log('Success');
+          console.log(outputJSON);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    
+
+async  saveEvent(item,selectedChoix,selectedFood){ 
   //create new note
  
     try{
       console.log(environment.createEvent );
       console.log('calling create item endpoint with: ' + item.title);
       console.log('calling create item endpoint with: ' + this.description);
-
+      console.log('1111111111111111111111111111111111111111');
+      console.log('saveEvent   :       ',selectedFood);
+      console.log('1222222222222222222222222222222222222222222');
+      console.log('selectedChoix      :     '+selectedChoix);
       const requestBody = {
     
         data: this.description,
         title: item.title,
+        uid: selectedFood,
+        type: selectedChoix,
       };
   
-      const createResponse =
+      const createResponse = 
       await fetch(environment.createEvent  ,  {
         method: 'POST',
         body: JSON.stringify(requestBody),
@@ -87,11 +132,18 @@ async  saveEvent(item){
 
     createEvent() {
       this.exampleItem.push({
-       
-        title: '',
-      
-    
-       
+        title: ''
       });
+    }
+
+    onChoix(items: any){
+      console.log(items);
+      if(items == 'client'){
+        this.client = true;
+        this.selectAllClient();
+      }else {
+        this.prospect = true;
+        this.selectAllProspect();
+      }
     }
 }

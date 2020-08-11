@@ -20,9 +20,9 @@ export class NoteEditComponent implements OnInit {
   exampleItem = [];
   disbadd = false;
   disbmodif = false;
-  title = "";
+  title = ""; 
   isPro : string;
-  constructor(
+  constructor( 
     public service : SharedService,
     private dialogRef: MatDialogRef<NoteEditComponent>,
     public notificationService : NotificationService,
@@ -36,7 +36,7 @@ export class NoteEditComponent implements OnInit {
   ngOnInit(): void {
     if(this.description == null ){
 
-      this.createNote();
+     this.createNote();
      this.disbadd = true;
      this.disbmodif = false;
      this.title =" Add New Prospects"

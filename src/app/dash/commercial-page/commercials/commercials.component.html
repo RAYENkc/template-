@@ -9,7 +9,7 @@
     </mat-toolbar>
    
    
-  
+   
     <form [formGroup]="service.form" class="normal-form" *ngIf="disbadd && !disbmodif" >
       <mat-grid-list cols="2" rowHeight="300px">
         <mat-grid-tile>
@@ -39,7 +39,11 @@
             <mat-form-field>
                 <input formControlName="Adress" matInput placeholder=" Address*" [value]="item.Adress" (input)="item.Adress=$event.target.value">
                 <mat-error>this Field is mandatory</mat-error>
-              </mat-form-field>
+            </mat-form-field>
+            <mat-form-field>
+              <input formControlName="passe" matInput placeholder="Passe*" [(value)]="Passe" (input)="Passe=$event.target.value" >
+              <mat-error>this Field is mandatory</mat-error>
+            </mat-form-field>
          
             <div class="bottom-row">
                 <button mat-raised-button color="primary" type="submit" [disabled]="service.form.invalid" (click)="saveProspect(item)" >Add</button>

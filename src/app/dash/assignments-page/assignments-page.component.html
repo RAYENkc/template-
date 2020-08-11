@@ -5,7 +5,7 @@
       <section class="content-header">
         <h1>Assignment </h1>
         <ol class="breadcrumb">
-          <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+          <li><a (click) = "Home()" ><i class="fa fa-dashboard"></i> Home</a></li>
           <li class="active" (click)="Prospect()">  Prospect </li>
           <li class="active">
             Assignment  
@@ -57,19 +57,16 @@
                   <th scope="col">Address</th>
                   <th scope="col">Phone</th>
                   <th scope="col">Mail</th>
-                  
-                
-                
                 </tr>
               </thead>
               <tbody *ngFor="let it of  infos">
              
                 <tr>
                   <td >{{it.id}}</td>
-                  <td>{{it.Social_Reason}}</td>
-                  <td>{{it.Address}}</td>
-                  <td>{{it.Phone}}</td>    
-                  <td>{{it.Mail}}</td> 
+                  <td>{{it.data.Social_Reason}}</td>
+                  <td>{{it.data.Address}}</td>
+                  <td>{{it.data.Phone}}</td>    
+                  <td>{{it.data.Mail}}</td> 
                   
                   <td>
                     <button  mat-icon-button   (click)="onAssignmentProspect(it)" ><mat-icon>launch</mat-icon></button>

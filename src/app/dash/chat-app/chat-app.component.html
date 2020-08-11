@@ -5,16 +5,11 @@
       <section class="content-header">
         <h1> Chat </h1>
         <ol class="breadcrumb">
-          <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+          <li (click) = "Home()"> Home</li>
           <li class="active">  Chat </li>
         </ol>
         <section class="content">
-
-
-
-
           <main *ngFor="let thread of exampleItems ">
-
           <mat-list>
             <mat-list-item>
               <img matListAvatar src={{thread.data.avatar}}   alt="hey">
@@ -23,9 +18,6 @@
             </mat-list-item>
         </mat-list>
       </main>
-      
         </section>
       </section>
-    
-      
     </div>

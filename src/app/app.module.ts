@@ -38,12 +38,16 @@ import { FormsModule } from '@angular/forms';
 import { ClientCrudComponent } from './dash/client-page/client-crud/client-crud.component';
 import { ClientService } from './dash/shared/client.service';
 import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
+import { ValidClientComponent } from './dash/prospect/valid-client/valid-client.component';
+import { PeospectViewComponent } from './dashbord/peospect-view/peospect-view.component';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     MatConfirmDialogComponent,
+
     
   ],
   imports: [
@@ -91,7 +95,9 @@ import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
     DashPageDialogComponent,
     DialogComponent,
     DialogDefaultComponent,
-    ClientCrudComponent
+    ClientCrudComponent,
+    ValidClientComponent,
+    PeospectViewComponent
     ]
   
 })

@@ -9,7 +9,8 @@ import { ProspectService } from '../../shared/prospect.service';
 
 import { CommercialPageComponent } from '../commercial-page.component';
 import { CommercialService } from '../../shared/commercial.service';
-
+import { AuthService } from 'src/app/login/auth.service';
+ 
 @Component({
   selector: 'app-commercials',
   templateUrl: './commercials.component.html',
@@ -26,12 +27,12 @@ export class CommercialsComponent implements OnInit {
   info = [];
   infos = [];
   exa = [];
-
+  Passe = "";
   disbadd = false;
   disbmodif = false;
   title = "";
   constructor(
-  
+    private auth:AuthService,
     public service : CommercialService,
     private dialogRef: MatDialogRef<ProspectsComponent>,
     public notificationService : NotificationService,
@@ -107,7 +108,7 @@ async saveProspect(item: any) {
   try{
     console.log(environment.createCommercial);
     console.log('test : ' + item);
-    
+    console.log('aaaaaaaaaaaaa'+ this.Passe);
     const requestBody = {
       id: item.id,
       LastName: item.LastName,
@@ -125,6 +126,7 @@ async saveProspect(item: any) {
         'Content-Type': 'application/json'
       }
     });
+    this.createUser(item.Mail, this.Passe);
 
     this.notificationService.success(':: Submitted Commercial successfully');
    // this.sellectCommercial.selectAll();
@@ -190,6 +192,10 @@ async updateProspect(item: any) {
 
 }
 
-
+createUser(email: any, Passe: any){
+  console.log('testttttttttttttttttttt',email);
+  console.log('test for pass', Passe);
+  this.auth.createUser(email, Passe);
+ }
 
 }

@@ -18,7 +18,7 @@ export class MessageDetailComponent implements OnInit {
   ngOnInit(): void {
     this.selectAll();
   }
-
+ 
    //select all the vhats
    async selectAll() {
     

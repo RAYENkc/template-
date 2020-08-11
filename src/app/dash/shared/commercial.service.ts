@@ -16,6 +16,7 @@ export class CommercialService {
     Phone: new FormControl('', [Validators.required, Validators.minLength(8)]),
     Adress: new FormControl('',Validators.required),
     Mail: new FormControl('',Validators.email),
+    passe: new FormControl('',Validators.required),
 
   });
 
@@ -28,7 +29,8 @@ export class CommercialService {
       FirstName: '',
       Adress: '',
       Mail: '',
-      Phone: ''
+      Phone: '',
+      passe: '',
       
       
     });

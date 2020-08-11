@@ -1,0 +1,39 @@
+
+<div class="container">
+    <mat-toolbar >
+        <span class="fill-remaining-space"></span> 
+          <span> client  </span>
+        <span class="fill-remaining-space"></span>
+    
+        <button mat-stroked-button color="warn" (click)="onClose()" tabIndex="-1"><mat-icon>close</mat-icon></button>
+      
+        </mat-toolbar>
+
+      
+        <form [formGroup]="service.form" class="normal-form" >
+            <mat-grid-list cols="2" rowHeight="300px">
+              <mat-grid-tile>
+                <div class="controles-container-prospect"  *ngFor="let item of exampleItems">
+                  <input type="hidden" formControlName="$key" >
+             
+               
+              
+                    <mat-form-field>
+                      <input formControlName="TaxNumber" matInput placeholder="TaxNumber*" [value]="item.TaxNumber" (input)="item.TaxNumber=$event.target.value">
+                      <mat-error>this Field is mandatory</mat-error>
+                    </mat-form-field>
+             
+                  <div class="bottom-row">
+                      <button mat-raised-button color="primary" type="submit" [disabled]="service.form.invalid" (click)="VerifClient(item)" >Add</button>
+                    <button mat-raised-button color="warn" (click)="onClear()" >Clear</button>
+                  </div>
+                </div>
+                
+              </mat-grid-tile>
+            <mat-grid-tile>
+            </mat-grid-tile>
+            </mat-grid-list>
+        
+          </form>
+
+   </div>    

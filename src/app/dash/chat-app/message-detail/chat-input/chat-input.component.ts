@@ -29,8 +29,8 @@ export class ChatInputComponent implements OnInit {
         const requestBody = {
           content : item.message,
 
-          photoUrl : '',
-          sender : '' ,
+          photoUrl : 'https://randomuser.me/portraits/men/2.jpg',
+          sender : 'test@gmail.com' ,
           senderId:'',
        
         };

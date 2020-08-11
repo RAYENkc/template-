@@ -9,22 +9,21 @@ export class CommercialSelectService {
   constructor() { }
   form : FormGroup = new FormGroup({
     $key: new FormControl(null),
-    id: new FormControl('', Validators.required),
-    idProspect: new FormControl('',Validators.required),
-    idCommercialAss: new FormControl(0),
+   // id: new FormControl('', Validators.required),
+  ///idProspect: new FormControl('',Validators.required),
+    idCommercialAss: new FormControl(''),
     description: new FormControl(''),
-  
-
   });
   
   initializeFormAssigGroupe(){
     this.form.setValue({
       $key: null ,
-      id: '',
-      idProspect: '',
+    //  id: '',
+    //  idProspect: '',
       idCommercialAss: '',
       description: '',
     });
   }
 
 }
+ 

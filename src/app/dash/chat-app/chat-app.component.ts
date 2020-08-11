@@ -43,5 +43,8 @@ export class ChatAppComponent implements OnInit {
     this.router.navigate(['Pages/chat/message',id, this.route.snapshot.paramMap.get('uid')]);
   }
 
-
+  Home(){
+    this.router.navigate(['Dashboard',this.route.snapshot.paramMap.get('uid')]);
+  }
+  
 }

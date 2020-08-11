@@ -25,10 +25,14 @@ export class DashPageComponent implements OnInit{
   examplevent = [];
   examplenote  = [];
   exampleItem = [];
+  info = [];
+  infos = [];
+  vide = true;
   constructor(
     private dialog:MatDialog,
     public notificationService : NotificationService,
   ) { }
+
 
   dayRender(args){
     var cell:HTMLElement = args.el;
@@ -55,23 +59,72 @@ export class DashPageComponent implements OnInit{
 
 
  public  calendarPlugins = [dayGridPlugin,timeGridPlugin,listDayPlugin ,listWeekPlugin ,interactionPlugin ];
+
    CalanderOptions = {
-     header: {
+   /*  header: {
        left: "month, agendweek, agendaDay",
        center: "title",
        
-     }
-   }
+     },*/
+     defaultDate:  new Date() ,
+     
+     //navLinks: true, // can click day/week names to navigate views
+   //  editable: true,
+    // eventLimit: true, 
   
+      
+     events: [
+    
+ //  {
+     //    title: 'All Day Event',
+    //     start: '2020-07-01',
+      // }
 
+
+   
+ 
+     ]
+
+
+   }
+
+async getevent(){
+  if(this.exampleItems != []){
+    for(let i=0; i<= this.exampleItems.length;i++){
+      this.info = [];
+      this.infos = [];
+
+    
+    this.CalanderOptions = {
+      defaultDate:  new Date() ,
+      events: this.CalanderOptions.events.concat(
+
+      [
+        {
+          title: this.exampleItems[i].title,
+          start: this.exampleItems[i].start,
+        }
+      ]) 
+    }
+    }
+    console.log('uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu'+this.exampleItems[7].title);
+    console.log('uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu'+this.exampleItems[7].start);
+  }
+}
  async ngOnInit(){
   await this.selectAll();
-  for (let val of this.exampleItems){
+  /*for (let val of this.exampleItems){
      console.log("ya rab");
      console.log(val);
-    this.calendarEvents = val;
+    this.calendarEvents = this.calendarEvents + val;
+    console.log('rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr');
     console.log(this.calendarEvents);
-  }
+  }*/
+ this.getevent();
+  console.log('heyyyyyyyyyyyyyyyyyyy');
+  console.log(this.exampleItems[0].title);
+  console.log('testtttttttttt', new Date());
+
   this.createNote();
   this.selectnote();
  }

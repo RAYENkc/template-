@@ -45,12 +45,12 @@ export class ClientCrudComponent implements OnInit {
       this.createProspect();
      this.disbadd = true;
      this.disbmodif = false;
-     this.title =" Add New Prospects"
+     this.title =" Ajouter Client"
     } else {
       this.onUpdateProspect(this.description);
       this.disbadd = false;
       this.disbmodif = true;
-      this.title = "Update Prospects"
+      this.title = "Modifier Client"
     }
   
      console.log(this.description);

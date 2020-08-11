@@ -21,6 +21,7 @@ export class AssignmentsPageComponent implements OnInit {
   exampleProspect  = [];
   examplMyProspect = [];
   examplChanged = [];
+  exampleCommercialId = [];
   searchKey: string;
   listData: MatTableDataSource<any>;
   uid :string;
@@ -32,7 +33,7 @@ export class AssignmentsPageComponent implements OnInit {
   constructor(
     private router: Router,
     private dialog:MatDialog,
-    private route: ActivatedRoute,  ) { }
+    private route: ActivatedRoute  ) { }
 
   ngOnInit(): void {
     document.body.className = 'hold-transition skin-blue sidebar-mini';
@@ -41,9 +42,12 @@ export class AssignmentsPageComponent implements OnInit {
     this.selectChanged();
     this.selectusers();
   }
- 
+  
   Prospect(){
-    this.router.navigate(['Pages/prospect']);
+    this.router.navigate(['Pages/prospect',this.route.snapshot.paramMap.get('uid') ]);
+  }
+  Home(){
+    this.router.navigate(['Dashboard',this.route.snapshot.paramMap.get('uid')]);
   }
 //select all the prospects
     async selectAll() {
@@ -72,17 +76,14 @@ async selectAllCommercial(){
     console.log('calling read all endpoint for assignment'); 
     const outputJSON = await output.json();
     this.exampleCommercials = outputJSON;
-  console.log("222");
+  
   for (var val of this.exampleCommercials) {
-    console.log("yyyyyyyy");
     console.log(val.data.IdCommercial);
     const output = await fetch(environment.readIdCommercial + val.data.IdCommercial);
         const outputjson = await output.json();
         this.info = outputjson;
         this.infos = this.infos.concat(this.info);
-        console.log('testttttttttttttttttttttttttt');
         console.log(this.infos);
-        console.log('testttttttttttttttttttttttttt');
       }
       } catch (error) {
         console.log(error);
@@ -158,22 +159,23 @@ async selectMyProspect() {
     this.infos = [];
     this.examplMyProspect = [];
     this.info = [];
-    const output = await fetch(environment.getmy + '124578' );
+    this.exampleCommercialId = [];
+
+
+    const output = await fetch(environment.getmy + this.route.snapshot.paramMap.get('uid') );
     console.log('calling read all endpoint ');
-    const outputJSON = await output.json();
+    const outputJSON = await output.json(); 
     this.examplMyProspect = outputJSON;
-    
     for (var val of this.examplMyProspect) {
       const output = await fetch(environment.readId  + val.data.IdProspect);
       const outputjson = await output.json();
       this.info = outputjson;
       this.infos = this.infos.concat(this.info);
-
     }
-
-
     console.log('Success');
-    console.log(outputJSON);
+    console.log('this.infos');
+    console.log(this.infos);
+    console.log('this.infos');
   } catch (error) {
     console.log(error);
   }

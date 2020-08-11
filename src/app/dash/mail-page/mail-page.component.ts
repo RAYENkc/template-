@@ -7,6 +7,7 @@ import { DialogComponent } from './dialog/dialog.component';
 import { DialogService } from '../shared/dialog.service';
 import { NotificationService } from '../shared/notification.service';
 import { DialogDefaultComponent } from './dialog-default/dialog-default.component';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-mail-page',
@@ -22,13 +23,15 @@ export class MailPageComponent implements OnInit {
   disbadd = false;
   disbmodif = false;
   titleofDialog = "";
+ 
   constructor(
     public service : EmailService,
     private dialog:MatDialog,
     private dialogService: DialogService,
     public notificationService : NotificationService,
+    private route: ActivatedRoute,
+    private router: Router,
   ) { }
-
 
   ngOnInit(): void { 
     document.body.className = 'hold-transition skin-blue sidebar-mini';
@@ -79,6 +82,9 @@ export class MailPageComponent implements OnInit {
     }
   }
 
+  Home(){
+    this.router.navigate(['Dashboard',this.route.snapshot.paramMap.get('uid')]);
+  }
   createProspect() {
     this.exampleItems.push({
       dest: '',

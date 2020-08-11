@@ -25,8 +25,12 @@ infos = [];
 exampleProspect = [];
 pro = [];
 pros = [];
-
-
+testt = [];
+dd = '';
+mm = '';
+yyyy = '';
+serch ='';
+search = [];
   constructor(
     public service : SharedService,
     private dialogService: DialogService,
@@ -185,6 +189,33 @@ async onArchiveProspect(item){
    }catch(error){
     console.log(error);
    }
+}
+
+async getdate(test){
+     
+  try {
+    console.log(environment.getdate);
+    console.log('calling read all endpoint');
+    this.exampleItems = [];
+    console.log(test);
+    this.testt = test.split('/')
+    this.dd = this.testt[0];
+    this.mm =  this.testt[1];
+    this.yyyy= this.testt[2];
+    const output = await fetch(environment.getdate + this.dd + '/' + this.mm+ '/'+ this.yyyy);
+    console.log('calling read all endpoint');
+    const outputJSON = await output.json();
+    this.exampleItems = outputJSON;
+    console.log('Success');
+    if(outputJSON == []){
+      this.serch = "vide";
+    }
+    console.log(outputJSON);
+    console.log(outputJSON.data.Social_Reason);
+  } catch (error) {
+    console.log(error);
+  }
+
 }
 
 }

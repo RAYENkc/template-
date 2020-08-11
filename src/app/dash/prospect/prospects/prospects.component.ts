@@ -1,13 +1,16 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 import { DialogService } from '../../shared/dialog.service';
 import { environment } from 'src/environments/environment';
 import { NotificationService } from '../../shared/notification.service';
 
 import { ProspectService } from '../../shared/prospect.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ValidClientComponent } from '../valid-client/valid-client.component';
+
 
 @Component({
   selector: 'app-prospects',
@@ -25,18 +28,24 @@ export class ProspectsComponent implements OnInit {
   info = [];
   infos = [];
   exa = []; 
-
+  uid = "";
   disbadd = false;
   disbmodif = false;
   title = "";
+  checked = false;
   constructor(
+ 
     public service : ProspectService,
     private dialogRef: MatDialogRef<ProspectsComponent>,
     public notificationService : NotificationService,
     private dialogService: DialogService,
-    @Inject(MAT_DIALOG_DATA) data
+    @Inject(MAT_DIALOG_DATA) data,
+    private dialog:MatDialog,
+    private router: Router,
+    private route: ActivatedRoute,
   ) { 
     this.description = data.item;
+    this.uid = data.uid;
   }
   
   ngOnInit(): void {
@@ -46,12 +55,12 @@ export class ProspectsComponent implements OnInit {
       this.createProspect();
      this.disbadd = true;
      this.disbmodif = false;
-     this.title =" Add New Prospects"
+     this.title =" Ajouter perospect "
     } else {
       this.onUpdateProspect(this.description);
       this.disbadd = false;
       this.disbmodif = true;
-      this.title = "Update Prospects"
+      this.title = "Modifier Prospect"
     }
   
 
@@ -97,13 +106,13 @@ export class ProspectsComponent implements OnInit {
       console.log('calling create item endpoint with: ' + item.item);
       
       const requestBody = {
-        id: item.id,
         Social_Reason: item.Social_Reason,
         Phone: item.Phone,
         Mail: item.Mail,
         Address: item.Address,
         Role: item.Role,
-        DateCreated: item.DateCreated,
+        uid: this.uid 
+      //  DateCreated: item.DateCreated,
       };
 
       const createResponse =
@@ -243,7 +252,6 @@ export class ProspectsComponent implements OnInit {
          'Content-Type': 'application/json'
        }
      });
-
      console.log('Success');
      console.log(updateResponse.status);
 
@@ -257,4 +265,7 @@ export class ProspectsComponent implements OnInit {
     }
 
  }
+
+
+
 }

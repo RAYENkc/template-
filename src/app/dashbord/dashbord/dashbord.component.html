@@ -5,11 +5,63 @@
       <section class="content-header">
         <h1> Dashboard </h1>
         <ol class="breadcrumb">
-          <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+          <li><a href=""><i class="fa fa-dashboard"></i> Home</a></li>
           <li class="active">Dashboard</li>
         </ol>
         <section class="content">
-          <app-dashbody></app-dashbody>
+         <!-- <app-dashbody></app-dashbody> --> 
+  <div class="container">
+    <mat-card class="example-card spac">
+      <form>
+
+              <div class="controle">
+               <!--
+<mat-form-field>
+                  <input  matInput [matDatepicker]="picker" placeholder="Date" type= "text"  (dateInput)="addEvent($event.target.value)" [value]="selectedDate"
+                   (input)="search=$event.target.value"  >
+                  <mat-datepicker-toggle matSuffix [for]="picker"  ></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+               --> 
+               <form class="form-inline md-form mr-auto mb-4">
+                <input type="date" class="form-control mr-sm-2" placeholder="Search" aria-label="Search" (input)="search=$event.target.value">
+                <button mat-raised-button color="primary" (click)="getdate(search)" mat-button matSuffix mat-icon-button aria-label="Rechercher" ><mat-icon>search</mat-icon></button>
+              </form>
+
+                  <div>
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="row">Commercial</th>
+                      <th scope="col">NB de prospect</th>
+                      <th scope="col">NB de Client</th>
+                      <th scope="col">NB de prospect Visite</th>
+                      <th scope="col">NB de Client Visite</th>
+                    </tr>
+                  </thead>
+                  <tbody *ngFor="let item of exampleItems" >
+                    <tr>
+                      <td>{{item.data.FirstName}} {{item.data.LastName}}</td>
+                      <td>{{item.id}}<button  mat-icon-button (click)= "onEditProspect(item.data.uid)"><mat-icon>fast_forward</mat-icon></button> </td>
+                      <td>{{item.data.role}}<button  mat-icon-button   ><mat-icon>fast_forward</mat-icon></button> </td>
+                      <td>{{item.data.role}}<button  mat-icon-button   ><mat-icon>fast_forward</mat-icon></button> </td>
+                      <td>{{item.data.image}}<button  mat-icon-button   ><mat-icon>fast_forward</mat-icon></button> </td>
+                    </tr>
+                   
+                  </tbody>
+                 
+                </table>
+              </div>
+              </div>
+     
+      
+        </form>
+
+      </mat-card>
+  
+       
+  </div>
+
         </section>
       </section>
     

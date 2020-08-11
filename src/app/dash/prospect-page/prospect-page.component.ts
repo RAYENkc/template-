@@ -12,23 +12,39 @@ import { NotificationService } from '../shared/notification.service';
 import { ProspectsComponent } from '../prospect/prospects/prospects.component';
 import { ProspectMangerComponent } from '../prospect/prospect-manger/prospect-manger.component';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ClientCrudComponent } from '../client-page/client-crud/client-crud.component';
+import { FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { startWith, map } from 'rxjs/operators';
+import { DatePipe } from '@angular/common';
+
 @Component({
   selector: 'app-prospect-page',
   templateUrl: './prospect-page.component.html',
-  styleUrls: ['./prospect-page.component.css']
+  styleUrls: ['./prospect-page.component.css'],
+  providers:[DatePipe]
 })
 export class ProspectPageComponent implements OnInit {
 
+
 /*************         Variables      **************/
 exampleItems = [];
+exampleItemsClient = [];
+exampleItem = [];
+exampleIte = [];
+exampleI = [];
 exampl = [];
 examplt = [];
+example = [];
+testtable = [];
 exa = [];
 info = [];
 infos = [];
 exampleProspect = [];
 searchtable = [];
 search = [];
+searchdatee = [];
+searchtest = [];
 pro = [];
 pros = [];
 prospectLength = [];
@@ -36,7 +52,28 @@ testt = [];
 dd = '';
 mm = '';
 yyyy = '';
-displayedColumns: string[] =['id', 'Social_Reason' , 'Phone' , 'Address', 'Mail' , 'Role' , 'DateCreated', 'Settings'];
+serch ='';
+searchh = false;
+client = false;
+prospect = false;
+searchdate = false;
+searchresionsocial = false;
+searchadress = false;
+searchmail = false;
+public current_date=new Date();
+latest_date = '';
+
+/***********************************************/
+  myControl = new FormControl();
+  options: string[] = [];
+  filteredOptions: Observable<string[]>;
+
+displayedColumns: string[] =[
+  'id', ' Social Reason' , 'Phone' ,
+   'Address', 'Mail' , 'Role',
+   'Settings','Delete','Archive',
+   'Add Location','Select Location',
+    'Notes', 'Manger'];
 
 @ViewChild(MatPaginator) paginator:  MatPaginator;
 searchKey: string;
@@ -46,16 +83,63 @@ searchKey: string;
     private dialog:MatDialog,
     private router: Router,
     private route: ActivatedRoute,
+    public datepipe: DatePipe
     ) { }
   listData: MatTableDataSource<any>;
+  dataSource = [];
+  
+  
 
-  ngOnInit(): void {
+
+  async ngOnInit() {
     document.body.className = 'hold-transition skin-blue sidebar-mini';
-    this.select();
+   
+  
+    console.log("dsqqqqqqqqqqqqqqqqq"+this.current_date);
+   this.latest_date =this.datepipe.transform(this.current_date, 'yyyy-MM-dd');
+    console.log("dsqqqqqqqqqqqqqqqqq"+this.latest_date);
+    this.testtable = [];
+    this.exampleI = [];
+    this.exampleItems = [];
     
-    //this.listData.paginator = this.paginator;
-    // this.listData = new MatTableDataSource(this.exampleProspect);
-  //  console.log(this.exampleItems);
+        this.examplt = [];
+        this.exa = [];
+        this.info = [];
+        this.infos = [];
+        const output = await fetch(environment.getActivePro);
+       
+        const outputJSON = await output.json();
+        this.exampleItems = outputJSON;
+        
+     
+    for (var val of this.exampleItems) {
+     this.testtable = this.testtable.concat(val.Social_Reason);
+      console.log('tttttttttttttttttttttttttttttttttttttttttttttt');
+      console.log(val.Social_Reason);
+  
+      console.log(val);
+    }
+    console.log('8888888888888888888888888');
+    console.log(this.testtable);
+    this.options = this.testtable;
+    this.filteredOptions = this.myControl.valueChanges
+    .pipe(
+      startWith(''),
+      map(value => this._filter(value))
+    );
+
+  /*  this.select().then(()=>
+      this.dataSource = this.exampleItems,
+  
+    );*/
+    console.log('rrrrrrrrrrrrrrrrrrrrrrrrr', this.dataSource);
+    console.log('hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh',this.route.snapshot.paramMap.get('uid'));
+    
+  }
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.options.filter(option => option.toLowerCase().includes(filterValue));
   }
   lat: number;
   lng: number;
@@ -68,7 +152,9 @@ searchKey: string;
   }
 
 /**************         Prospects      **************/
-
+Home(){
+  this.router.navigate(['Dashboard',this.route.snapshot.paramMap.get('uid')]);
+}
   //select all the prospects
   async selectAll() {
     try {
@@ -262,7 +348,6 @@ searchKey: string;
       Address: '',
       Role: '',
       DateCreated: '',
-
       save: true
     });
   }
@@ -389,7 +474,7 @@ async updateGeo(id : any, idGeo: any) {
 
 
   onSearchClear() {
-    this.searchKey = "";
+    this.search = [];
   this.applyFilter();
   }
 
@@ -450,20 +535,15 @@ onArchive(item : any){
 
   /**********    Dialogs     ********/
   onEditNote(item : any) {
-
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true ;
     dialogConfig.autoFocus = true;
     dialogConfig.data= {
       id: item.id
     };
-    
-    
     dialogConfig.width = "60%";
     dialogConfig.height ="80%";
     this.dialog.open(NoteComponent, dialogConfig);
-    
-    
   }
 
   onAddProspect(){
@@ -471,7 +551,8 @@ onArchive(item : any){
     dialogConfig.disableClose = true ;
     dialogConfig.autoFocus = true;
     dialogConfig.data= {
-      item: null
+      item: null,
+      uid: this.route.snapshot.paramMap.get('uid')
     };
 
     dialogConfig.width = "60%";
@@ -485,13 +566,14 @@ onArchive(item : any){
     dialogConfig.autoFocus = true; 
 
     dialogConfig.data= {
-      item: item
+      item: item,
+      uid: this.route.snapshot.paramMap.get('uid')
     };
     
  
     dialogConfig.width = "60%";
     dialogConfig.height ="80%";
-    this.dialog.open(ProspectsComponent, dialogConfig);
+   this.dialog.open(ProspectsComponent, dialogConfig);
   }
 
   onEditManger(item){
@@ -500,7 +582,8 @@ onArchive(item : any){
     dialogConfig.autoFocus = true;
 
     dialogConfig.data= {
-      id: item.id
+      id: item.id,
+     
     };
     
  
@@ -515,48 +598,410 @@ onArchive(item : any){
   archivage() {
     this.router.navigate(['Pages/prospect/archivage',this.route.snapshot.paramMap.get('uid')]);
   }
-
-
   async Today(){
-     
     try {
-      console.log(environment.gettoday);
-      console.log('calling read all endpoint');
-
-      this.exampleItems = [];
-     
-      const output = await fetch(environment.gettoday);
-      console.log('calling read all endpoint 1111111111');
-      const outputJSON = await output.json();
-      this.exampleItems = outputJSON;
-      console.log('Success');
-      console.log(outputJSON.data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  async getdate(test){
-     
-    try {
+      
       console.log(environment.getdate);
       console.log('calling read all endpoint');
       this.exampleItems = [];
-      console.log(test);
-      this.testt = test.split('/')
+      this.exa = [];
+      this.examplt = [];
+      console.log(this.latest_date);
+      this.testt = this.latest_date.split('-')
       this.dd = this.testt[0];
       this.mm =  this.testt[1];
-      this.yyyy= this.testt[2];
-      const output = await fetch(environment.getdate + this.dd + '/' + this.mm+ '/'+ this.yyyy);
+      this.yyyy = this.testt[2];
+      console.log("dd",this.dd);
+      console.log("dd", this.mm );
+      console.log("dd",this.yyyy );
+      const output = await fetch(environment.getdate + this.yyyy + '/' + this.mm+ '/'+this.dd);
       console.log('calling read all endpoint');
       const outputJSON = await output.json();
       this.exampleItems = outputJSON;
       console.log('Success');
+
+      for (var val of this.exampleItems) {
+        const out = await fetch(environment.readAllGeo + val.id);
+        const output = await fetch(environment.readId  + val.id);
+        const outputjson = await output.json();
+        this.info = outputjson;
+        const outputJS = await out.json();
+        this.examplt = outputJS;
+        console.log(this.examplt);
+        this.exa = this.exa.concat(this.examplt);
+        this.infos = this.infos.concat(this.info);
+        console.log(this.exa);
+      }
+      if(outputJSON == []){
+        this.serch = "vide";
+      }
       console.log(outputJSON);
       console.log(outputJSON.data.Social_Reason);
     } catch (error) {
       console.log(error);
     }
   }
+
+
+  async TodayClient(){
+    try {
+      
+      console.log(environment.getdateClient);
+      console.log('calling read all endpoint');
+      this.exampleItem = [];
+      this.exa = [];
+      this.examplt = [];
+      console.log(this.latest_date);
+      this.testt = this.latest_date.split('-')
+      this.dd = this.testt[0];
+      this.mm =  this.testt[1];
+      this.yyyy = this.testt[2];
+      console.log("dd",this.dd);
+      console.log("dd", this.mm );
+      console.log("dd",this.yyyy );
+      const output = await fetch(environment.getdateClient + this.yyyy + '/' + this.mm+ '/'+this.dd);
+      console.log('calling read all endpoint');
+      const outputJSON = await output.json();
+      this.exampleItem = outputJSON;
+      console.log('Success');
+
+      for (var val of this.exampleItem) {
+        const out = await fetch(environment.readAllGeo + val.id);
+        const output = await fetch(environment.readId  + val.id);
+        const outputjson = await output.json();
+        this.info = outputjson;
+        const outputJS = await out.json();
+        this.examplt = outputJS;
+        console.log(this.examplt);
+        this.exa = this.exa.concat(this.examplt);
+        this.infos = this.infos.concat(this.info);
+        console.log(this.exa);
+      }
+      if(outputJSON == []){
+        this.serch = "vide";
+      }
+      console.log(outputJSON);
+      console.log(outputJSON.data.Social_Reason);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  async getSearchdate(test){
+    try {
+       
+
+      console.log(environment.getdate);
+      console.log('calling read all endpoint');
+      this.exampleItems = [];
+      this.exa = [];
+      this.examplt = [];
+      console.log(test);
+      this.testt = test.split('-')
+      this.dd = this.testt[0];
+      this.mm =  this.testt[1];
+      this.yyyy = this.testt[2];
+      console.log("dd",this.dd);
+      console.log("dd", this.mm );
+      console.log("dd",this.yyyy );
+      const output = await fetch(environment.getdate + this.yyyy + '/' + this.mm+ '/'+this.dd);
+      console.log('calling read all endpoint');
+      const outputJSON = await output.json();
+      this.exampleItems = outputJSON;
+      console.log('Success');
+
+      for (var val of this.exampleItems) {
+        const out = await fetch(environment.readAllGeo + val.id);
+        const output = await fetch(environment.readId  + val.id);
+        const outputjson = await output.json();
+        this.info = outputjson;
+        const outputJS = await out.json();
+        this.examplt = outputJS;
+        console.log(this.examplt);
+        this.exa = this.exa.concat(this.examplt);
+        this.infos = this.infos.concat(this.info);
+        console.log(this.exa);
+      }
+      if(outputJSON == []){
+        this.serch = "vide";
+      }
+      console.log(outputJSON);
+      console.log(outputJSON.data.Social_Reason);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+async getdate(test){
+  try {
+
+    console.log('dddddddddddddddddddddddddddddddddddddddddd', test);
+  this.searchresionsocial = true;
+  this.client = false;
+  this.prospect = false;
+  this.searchdate = false;
+  this.searchadress = false;
+  this.searchmail = false;
+    console.log(environment.getSopcialResion);
+    console.log('calling read all endpoint');
+    this.exampleIte = [];
+    this.exa = [];
+    this.examplt = [];
+    console.log(test);
+    const output = await fetch(environment.getSopcialResion + test);
+    console.log('calling read all endpoint');
+    const outputJSON = await output.json();
+    this.exampleIte = outputJSON;
+    console.log('Success');
+    for (var val of this.exampleIte) {
+      const out = await fetch(environment.readAllGeo + val.id);
+      const output = await fetch(environment.readId  + val.id);
+      const outputjson = await output.json();
+      this.info = outputjson;
+      const outputJS = await out.json();
+      this.examplt = outputJS;
+      console.log(this.examplt);
+      this.exa = this.exa.concat(this.examplt);
+      this.infos = this.infos.concat(this.info);
+      console.log(this.exa);
+      console.log(this.infos);
+    }
+    if(outputJSON == []){
+      this.serch = "vide";
+    }
+    console.log(outputJSON);
+    console.log(outputJSON.data.Social_Reason);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+clean(){
+this.myControl = new FormControl() ;
+}
+
+onEditClient(item , id){
+  const dialogConfig = new MatDialogConfig();
+  dialogConfig.disableClose = true ;
+  dialogConfig.autoFocus = true;
+  dialogConfig.data= {
+   item: item,
+    id: id
+  };
+  dialogConfig.width = "60%";
+  dialogConfig.height ="80%";
+ this.dialog.open(ClientCrudComponent, dialogConfig);
+}
+ //select all the prospects
+ async selectAlll() {
+  try {
+    console.log(environment.readAllClient);
+    console.log('calling read all endpoint');
+    this.exampleItem = [];
+    const output = await fetch(environment.readAllClient);
+    console.log('calling read all endpoint');
+    const outputJSON = await output.json();
+    this.exampleItem = outputJSON;
+    console.log('Success');
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+getclient(){
+  this.client = true;
+  this.prospect = false;
+  this.searchresionsocial = false;
+  this.searchdate = false;
+  this.searchadress = false;
+  this.searchmail = false;
+  this.selectAlll().then(()=>
+  this.dataSource = this.exampleItems,
+  );
+}
+
+getprospect(){
+   this.client = false;
+   this.prospect = true;
+   this.searchresionsocial = false;
+   this.searchdate = false;
+   this.searchadress = false;
+   this.searchmail = false;
+   this.select().then(()=>
+   this.dataSource = this.exampleItems,
+ );
+
+
+}
+async setdate() {
+  this.searchdate = true;
+  this.searchresionsocial = false;
+  this.client = false;
+  this.prospect = false;
+  this.searchadress = false;
+  this.searchmail = false;
+ 
+
+}
+async setadress(){
+  this.searchadress = true;
+  this.searchresionsocial = false;
+  this.client = false;
+  this.prospect = false;
+  this.searchdate = false;
+  this.searchmail = false;
+
+  this.testtable = [];
+  this.exampleI = [];
+  this.exampleItems = [];
+
+      this.examplt = [];
+      this.exa = [];
+      this.info = [];
+      this.infos = [];
+      const output = await fetch(environment.getActivePro);
+     
+      const outputJSON = await output.json();
+      this.exampleItems = outputJSON;
+      
+   
+  for (var val of this.exampleItems) {
+   this.testtable = this.testtable.concat(val.Address);
+    console.log('tttttttttttttttttttttttttttttttttttttttttttttt');
+    console.log(val.Social_Reason);
+
+    console.log(val);
+  }
+  console.log('8888888888888888888888888');
+  console.log(this.testtable);
+  this.options = this.testtable;
+  this.filteredOptions = this.myControl.valueChanges
+  .pipe(
+    startWith(''),
+    map(value => this._filter(value))
+  );
+}
+
+async setmail(){
+  this.searchmail = true;
+  this.searchresionsocial = false;
+  this.client = false;
+  this.prospect = false;
+  this.searchdate = false;
+  this.searchadress = false;
+
+  this.testtable = [];
+  this.exampleI = [];
+  this.exampleItems = [];
+
+      this.examplt = [];
+      this.exa = [];
+      this.info = [];
+      this.infos = [];
+      const output = await fetch(environment.getActivePro);
+     
+      const outputJSON = await output.json();
+      this.exampleItems = outputJSON;
+
+  for (var val of this.exampleItems) {
+    this.testtable = this.testtable.concat(val.Mail);
+     console.log('tttttttttttttttttttttttttttttttttttttttttttttt');
+     console.log(val.Social_Reason);
+ 
+     console.log(val);
+   }
+   console.log('8888888888888888888888888');
+   console.log(this.testtable);
+   this.options = this.testtable;
+   this.filteredOptions = this.myControl.valueChanges
+   .pipe(
+     startWith(''),
+     map(value => this._filter(value))
+   );
+}
+
+async getadress(test){
+  try {
+    console.log(environment.getAdress);
+    console.log('calling read all endpoint');
+    this.exampleI = [];
+    console.log(test);
+    const output = await fetch(environment.getAdress+ test);
+    console.log('calling read all endpoint');
+    const outputJSON = await output.json();
+    this.exampleI = outputJSON;
+    console.log('Success');
+    for (var val of this.exampleI) {
+      const out = await fetch(environment.readAllGeo + val.id);
+      const output = await fetch(environment.readId  + val.id);
+      const outputjson = await output.json();
+      this.info = outputjson;
+      const outputJS = await out.json();
+      this.examplt = outputJS;
+      this.testtable = this.testtable + val.data.Social_Reason;
+      console.log('tttttttttttttttttttttttttttttttttttttttttttttt');
+      console.log(val.data.Social_Reason);
+      console.log(this.testtable);
+      this.exa = this.exa.concat(this.examplt);
+      this.infos = this.infos.concat(this.info);
+      console.log(this.exa);
+      console.log(this.infos);
+    }
+    if(outputJSON == []){
+      this.serch = "vide";
+    }
+   
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async getmail(test){
+     
+  try {
+    console.log(environment.getMail);
+    console.log('calling read all endpoint');
+    this.example = [];
+    console.log(test);
+    const output = await fetch(environment.getMail+ test);
+    console.log('calling read all endpoint');
+    const outputJSON = await output.json();
+    this.example = outputJSON;
+    console.log('Success');
+    for (var val of this.example) {
+      const out = await fetch(environment.readAllGeo + val.id);
+      const output = await fetch(environment.readId  + val.id);
+      const outputjson = await output.json();
+      this.info = outputjson;
+      const outputJS = await out.json();
+      this.examplt = outputJS;
+      console.log(this.examplt);
+      this.exa = this.exa.concat(this.examplt);
+      this.infos = this.infos.concat(this.info);
+      console.log(this.exa);
+      console.log(this.infos);
+    }
+    if(outputJSON == []){
+      this.serch = "vide";
+    }
+    console.log(outputJSON);
+    console.log(outputJSON.data.Social_Reason);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+onAddClient(){
+  const dialogConfig = new MatDialogConfig();
+  dialogConfig.disableClose = true ;
+  dialogConfig.autoFocus = true;
+  dialogConfig.data= {
+    item: null,
+    id: null
+  };
+
+  dialogConfig.width = "60%";
+  dialogConfig.height ="80%";
+  this.dialog.open(ClientCrudComponent, dialogConfig);
+}
   
 }

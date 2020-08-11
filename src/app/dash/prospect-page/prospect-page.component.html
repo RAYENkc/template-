@@ -1,160 +1,367 @@
 <div class="wrapper">
-    <app-topnavbar></app-topnavbar>
-    <app-asidenavbar></app-asidenavbar>
-    <div class="content-wrapper" style="min-height: 926px;">
-      <section class="content-header">
-        <h1> Prospect </h1>
-        <ol class="breadcrumb">
-          <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-          <li class="active">  Prospect </li>
-        </ol>
-        <section class="content">
-         <!--   maps -->
-         <div>
-            <agm-map [latitude] ="lat" [longitude]=" lng" (mapClick)="onChoseLocation($event)" >
-              <agm-marker [latitude] ="lat" [longitude]=" lng" *ngIf="locationChosen ">
+  <app-topnavbar></app-topnavbar>
+  <app-asidenavbar></app-asidenavbar>
+  <div class="content-wrapper" style="min-height: 926px;">
+    <section class="content-header">
+      <h1> Prospect </h1>
+      <ol class="breadcrumb">
+        <li  (click) = "Home()"> Home</li>
+        <li class="active">  Prospect </li>
+      </ol>
+      <section class="content">
+       <!--   maps -->
+       <div>
+          <agm-map [latitude] ="36.51386330591307" [longitude]="10.431336996713245" (mapClick)="onChoseLocation($event)" >
+            <agm-marker [latitude] ="lat" [longitude]=" lng" *ngIf="locationChosen ">
 
-              </agm-marker>
-              
-              
-                <div *ngFor="let geo of exa" > 
-                  <agm-marker [latitude] ="geo.geo._latitude" [longitude]=" geo.geo._longitude"  >
-                    <agm-info-window >  
-                      <div  *ngFor="let in of infos">
-                        <div *ngIf="in.id == geo.prospectId">
-                              <h3><strong>{{in.data.Social_Reason}}</strong></h3>
-                              <p> <strong> Address </strong> : {{in.data.Address}} </p>
-                              <p> <strong> Phone </strong> : {{in.data.Phone}} </p>
-                              <p>  <strong> DateCreated</strong> : {{in.data.DateCreated}} </p>
-                              <p> <strong> Mail </strong>: {{in.data.Mail}} </p>
-                             
-                         </div>
-                      </div> 
-                     <a  class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons"  (click)="onDelete(geo.prospectId, geo.idGeo)" > &#xE5C9;</i></a> 
-                      <a   class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons"  (click)="updateGeo(geo.prospectId, geo.idGeo)" >&#xE8B8;</i></a>
-                    </agm-info-window>
-              
-                   </agm-marker>  
-                </div>
-              
-                <div *ngFor="let geo of exampl">
-                  <agm-marker [latitude] ="geo.geo._latitude" [longitude]=" geo.geo._longitude" [iconUrl]="'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'" >
-                     <agm-info-window>
-                       <!-- fama error lina-->
-                   <!--
-                      <div  *ngFor="let info of exampleProspect">
-                        <div *ngIf="info.id == geo.prospectId">
-                       <h3><strong>hey !!</strong></h3>
-                       <p>you are {{info.data.Social_Reason}} !!</p>
-                       </div>
-                      </div>
-                        <i class="material-icons"   > &#xe003;</i>
-              
-                   --> 
-                   <a  data-toggle="tooltip"><i class="material-icons"  (click)="deleteGeo(geo.prospectId, geo.idGeo)" > &#xe003;</i></a>
-                   </agm-info-window>
-                   </agm-marker> 
-                 </div>
-                </agm-map>
-             
-
-              <div class="container">
-               <!-- <div class="row frontend-row">--> 
-                  <div>
-                  <div class="col">
-                    <form>
-                      <div class="form-group example-list">
-                      <!--  <div class="select-all">
-                         <button class="btn btn-btn btn-primary" (click)="selectAll()">select all</button> 
-                           <button class="btn btn-btn btn-primary" (click)="select()" >affich</button> 
-                        
-                         
-                          <button class="btn btn-btn btn-success" (click)="createProspect()">create Prospect</button>
-                         mat-raised-button  class="btn btn-btn btn-primary"
-                        </div> -->
-
-                        <div class="search-div" >
-                          <button mat-raised-button  class="btn btn-btn btn-primary" (click)=onAddProspect()>
-                            <mat-icon>add</mat-icon> Create </button>
-                            <mat-form-field class="search-form-field" floatLabel="never"  >
-                              <input matInput  placeholder="Search" autocomplete="off" (input)="search=$event.target.value"  >
-                              <button mat-button matSuffix mat-icon-button aria-label="Clear"   (click)="getdate(search)" >
-                                <mat-icon>close</mat-icon>
-                              </button>
-                            </mat-form-field>
-                            <button mat-raised-button color="accent" [matMenuTriggerFor]="menu">Settings</button>
-                            <mat-menu #menu="matMenu">
-                              <button mat-menu-item (click)=assignment()> Assignment</button>
-                              <button mat-menu-item (click)=archivage()> Archivage </button>
-                            </mat-menu>
-
-                          
-                            <button mat-raised-button color="accent" [matMenuTriggerFor]="appMenu">Filtration</button>
-                            <mat-menu #appMenu="matMenu">
-                              <button mat-menu-item (click)=Today()> Aujourd'hui</button>
-                              <button mat-menu-item (click)=archivage()> Archivage </button>
-                            </mat-menu>
-                        </div>
-                        <div *ngIf="exampleItems.length == 0">
-                          <p>   loading ..  </p>
-                       </div>
-                        <table class="table" >
-                          <thead>
-                            <tr>
-                              <th scope="col">id</th>
-                              <th scope="col">Social_Reason</th>
-                              <th scope="col">Phone</th>
-                              <th scope="col">Address</th>
-                              <th scope="col">Mail</th>
-                              <th scope="col">Role</th>
-                              <th scope="col"> DateCreated</th>
-                              <th scope="col">Settings</th>
-                            </tr>
-                          </thead>
-                          <tbody *ngFor="let item of exampleItems">
-                      
-                          
-                            <tr  >
-                              <td >{{item.id}}</td>
-                              <td>{{item.Social_Reason}}</td>
-                              <td>{{item.Phone}}</td>
-                              <td>{{item.Mail}}</td>
-                              <td>{{item.Address}}</td>
-                              <td>{{item.Role}}</td>
-                              <td>{{item.DateCreated}}</td>
-                             
-                              <td>
-                                <button  mat-icon-button   (click)="  onEditProspect(item)" ><mat-icon>launch</mat-icon></button>
-                                <button  mat-icon-button color="warn" (click)="onDeleteProspect(item)" ><mat-icon>delete_outline</mat-icon></button>
-                                <button  mat-icon-button color="warn" (click)="onArchive(item)" ><mat-icon>archive</mat-icon></button> 
-                                <button  mat-icon-button  (click)="createGeo(item)" ><mat-icon>add_location</mat-icon></button>
-                                <button mat-icon-button  (click)=" selectGeo(item)"><mat-icon>where_to_vote</mat-icon></button>
-                                <button mat-icon-button (click)=" onEditNote(item)"><mat-icon>note_add</mat-icon></button>
-                                <button mat-icon-button (click)=" onEditManger(item)"><mat-icon>supervisor_account</mat-icon></button>
-                              </td>
-                               
-                          
-                            </tr>
+            </agm-marker>
+            
+            
+              <div *ngFor="let geo of exa" > 
+                <agm-marker [latitude] ="geo.geo._latitude" [longitude]=" geo.geo._longitude"  >
+                  <agm-info-window >  
+                    <div  *ngFor="let in of infos">
+                      <div *ngIf="in.id == geo.prospectId">
+                            <h3><strong>{{in.data.Social_Reason}}</strong></h3>
+                            <p> <strong> Address </strong> : {{in.data.Address}} </p>
+                            <p> <strong> Phone </strong> : {{in.data.Phone}} </p>
+                            <p>  <strong> DateCreated</strong> : {{in.data.DateCreated}} </p>
+                            <p> <strong> Mail </strong>: {{in.data.Mail}} </p>
                            
-                          </tbody>
-                         
-                        </table>
-                        <mat-paginator  [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="5" ></mat-paginator>
+                       </div>
+                    </div> 
+                   <a  class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons"  (click)="onDelete(geo.prospectId, geo.idGeo)" > &#xE5C9;</i></a> 
+                    <a   class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons"  (click)="updateGeo(geo.prospectId, geo.idGeo)" >&#xE8B8;</i></a>
+                  </agm-info-window>
+            
+                 </agm-marker>  
+              </div>
+            
+              <div *ngFor="let geo of exampl">
+                <agm-marker [latitude] ="geo.geo._latitude" [longitude]=" geo.geo._longitude" [iconUrl]="'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'" >
+                   <agm-info-window>
+                     <!-- fama error lina-->
+                 <!--
+                    <div  *ngFor="let info of exampleProspect">
+                      <div *ngIf="info.id == geo.prospectId">
+                     <h3><strong>hey !!</strong></h3>
+                     <p>you are {{info.data.Social_Reason}} !!</p>
+                     </div>
+                    </div>
+                      <i class="material-icons"   > &#xe003;</i>
+            
+                 --> 
+                 <a  data-toggle="tooltip"><i class="material-icons"  (click)="deleteGeo(geo.prospectId, geo.idGeo)" > &#xe003;</i></a>
+                 </agm-info-window>
+                 </agm-marker> 
+               </div>
+              </agm-map>
+           
+
+            <div class="container">
+             <!-- <div class="row frontend-row">--> 
+                <div>
+                <div class="col">
+                  <form>
+                    <div class="form-group example-list">
+                    <!--  <div class="select-all">
+                       <button class="btn btn-btn btn-primary" (click)="selectAll()">select all</button> 
+                         <button class="btn btn-btn btn-primary" (click)="select()" >affich</button> 
+                      
+                       
+                        <button class="btn btn-btn btn-success" (click)="createProspect()">create Prospect</button>
+                       mat-raised-button  class="btn btn-btn btn-primary"
+                      </div> -->
+
+                      <div class="search-div" >
+                        <button  *ngIf="prospect && !client"  mat-raised-button  class="btn btn-btn btn-primary" (click)=onAddProspect()>
+                          <mat-icon>add</mat-icon> Create </button>
+                          <button  *ngIf="!prospect && client"  mat-raised-button  class="btn btn-btn btn-primary" (click)="onAddClient()">
+                            <mat-icon>add</mat-icon> Create </button>
+                          <mat-form-field class="search-form-field" floatLabel="never"  >
+                            <input  type="text" 
+                            [formControl]="myControl"
+                            [matAutocomplete]="auto" 
+                           matInput  placeholder="Search" autocomplete="off" (input)="search=$event.target.value" > 
+                         <mat-autocomplete #auto="matAutocomplete" (optionSelected)="search=$event.option.value">
+                          <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                            {{option}}
+                          </mat-option>
+                        </mat-autocomplete>
+                          
+                            <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="clean()" >
+                              <mat-icon>close</mat-icon>
+                            </button>
+                          </mat-form-field>
+                          <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="getdate(search)" *ngIf="!searchadress && !searchmail" >
+                            <mat-icon>search</mat-icon>
+                          </button>
+                          <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="getadress(search)" *ngIf="searchadress">
+                            <mat-icon>search</mat-icon>
+                          </button>
+                          <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="getmail(search)" *ngIf="searchmail">
+                            <mat-icon>search</mat-icon>
+                          </button>
+                          <button mat-raised-button color="accent" [matMenuTriggerFor]="menu">Type</button>
+                          <mat-menu #menu="matMenu">
+                            <button mat-menu-item (click)=getprospect()>Prospect</button>
+                            <button mat-menu-item (click)=getclient()>Client</button>
+                          </mat-menu>
+                          <button mat-raised-button color="accent" [matMenuTriggerFor]="setting">Settings</button>
+                          <mat-menu #setting="matMenu">
+                            <button mat-menu-item (click)=assignment()> Assignment</button>
+                            <button mat-menu-item (click)=archivage()> Archivage </button>
+                          </mat-menu>
+                          <button *ngIf="prospect && !client"  mat-raised-button color="accent" [matMenuTriggerFor]="appMenu">Filtration</button>
+                          <mat-menu #appMenu="matMenu">
+                            <button mat-menu-item (click)=Today()> Aujourd'hui</button>
+                            <button mat-menu-item (click)=setdate()> date </button>
+                            <button mat-menu-item (click)=setadress()> Adress </button>
+                            <button mat-menu-item (click)=setmail()> Mail </button>
+                          </mat-menu>
+                          <button *ngIf="!prospect && client"  mat-raised-button color="accent" [matMenuTriggerFor]="appMenuClient">Filtration</button>
+                          <mat-menu #appMenuClient="matMenu">
+                            <button mat-menu-item (click)=TodayClient()> Aujourd'hui</button>
+                            <button mat-menu-item (click)=setdate()> date </button>
+                            <button mat-menu-item (click)=setadress()> Adress </button>
+                            <button mat-menu-item (click)=setmail()> Mail </button>
+                          </mat-menu>
                       </div>
-                    </form>
-                  </div>
+                      <div  *ngIf="searchdate">
+                        <form class="form-inline md-form mr-auto mb-4">
+                          <input type="date" class="form-control mr-sm-2" placeholder="Search" aria-label="Search" (input)="searchdatee=$event.target.value">
+                          <button mat-raised-button color="primary" (click)="getSearchdate(searchdatee)" mat-button matSuffix mat-icon-button aria-label="Rechercher" ><mat-icon>search</mat-icon></button>
+                        </form>
+                      </div>
+                      <div *ngIf="exampleItems.length == 0">
+                        <p>   loading ..  </p>
+                     </div>
+                     <div *ngIf="prospect && !client && !searchadress && !searchmail && !searchresionsocial && !searchdate ">
+                      <table class="table"  >
+                        <thead>
+                          <tr>
+                            <th scope="col">Social_Reason</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Mail</th>
+                            <th scope="col">Role</th>
+                            <th scope="col"> DateCreated</th>
+                            <th scope="col">Settings </th>
+                          </tr>
+                        </thead>
+                        <tbody *ngFor="let item of exampleItems">
+                          <tr>
+                            <td>{{item.Social_Reason}}</td>
+                            <td>{{item.Phone}}</td>
+                            <td>{{item.Mail}}</td>
+                            <td>{{item.Address}}</td>
+                            <td>{{item.Role}}</td>
+                            <td>{{item.DateCreated}}</td>
+                            <td>
+                              <button  mat-icon-button   (click)="  onEditProspect(item)" ><mat-icon>launch</mat-icon></button>
+                              <button  mat-icon-button color="warn" (click)="onArchive(item)" ><mat-icon>archive</mat-icon></button> 
+                              <button  mat-icon-button  (click)="createGeo(item)" ><mat-icon>add_location</mat-icon></button>
+                              <button mat-icon-button  (click)=" selectGeo(item)"><mat-icon>where_to_vote</mat-icon></button>
+                              <button mat-icon-button (click)=" onEditNote(item)"><mat-icon>note_add</mat-icon></button>
+                              <button mat-icon-button (click)=" onEditManger(item)"><mat-icon>supervisor_account</mat-icon></button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div *ngIf="!prospect && client && !searchresionsocial && !searchdate && !searchadress && !searchmail">
+                      <table class="table" > 
+                        <thead>
+                          <tr>
+                            <th scope="col">TaxNumber</th>
+                            <th scope="col">Social_Reason</th>
+                            <th scope="col">Mail</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Role</th>
+                            <th scope="col">DateOfLastOrder</th>
+                            <th scope="col">Settings</th>
+                          </tr>
+                        </thead>
+                        <tbody *ngFor="let item of exampleItem">
+                       
+                          <tr  >
+                            <td >{{item.data.TaxNumber}}</td>
+                            <td>{{item.data.Social_Reason}}</td>
+                            <td>{{item.data.Mail}}</td>
+                            <td>{{item.data.Address}}</td>
+                            <td>{{item.data.Phone}}</td>
+                            <td>{{item.data.Role}}</td>
+                            <td>{{item.data.DateOfLastOrder}}</td> 
+                            <td>{{item.data.DataFirstOrder}}</td>
+                           
+                            <td>
+                              <button  mat-icon-button   (click)="onEditClient(item,item.id)" ><mat-icon>launch</mat-icon></button>
+                              <button  mat-icon-button color="warn" (click)="onDeleteProspect(item)" ><mat-icon>delete_outline</mat-icon></button>
+                              <button  mat-icon-button color="warn" (click)="onArchive(item)" ><mat-icon>archive</mat-icon></button> 
+                              <button mat-icon-button (click)=" onEditManger(item)"><mat-icon>supervisor_account</mat-icon></button>
+                            </td>
+                             
+                        
+                          </tr>
+                         
+                        </tbody>
+                       
+                      </table>
+                    </div>
+                    <div *ngIf="searchdate && !searchresionsocial && !prospect && !client && !searchadress && !searchmail">
+                      <table class="table"  >
+                        <thead>
+                          <tr>
+                            <th scope="col">Social_Reason</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Mail</th>
+                            <th scope="col">Role</th>
+                            <th scope="col"> DateCreated</th>
+                            <th scope="col">Settings </th>
+                          </tr>
+                        </thead>
+                        <tbody *ngFor="let item of exampleItems">
+                          <tr>
+                            <td>{{item.Social_Reason}}</td>
+                            <td>{{item.Phone}}</td>
+                            <td>{{item.Mail}}</td>
+                            <td>{{item.Address}}</td>
+                            <td>{{item.Role}}</td>
+                            <td>{{item.DateCreated}}</td>
+                            <td>
+                              <button  mat-icon-button   (click)="  onEditProspect(item)" ><mat-icon>launch</mat-icon></button>
+                              <button  mat-icon-button color="warn" (click)="onArchive(item)" ><mat-icon>archive</mat-icon></button> 
+                              <button  mat-icon-button  (click)="createGeo(item)" ><mat-icon>add_location</mat-icon></button>
+                              <button mat-icon-button  (click)=" selectGeo(item)"><mat-icon>where_to_vote</mat-icon></button>
+                              <button mat-icon-button (click)=" onEditNote(item)"><mat-icon>note_add</mat-icon></button>
+                              <button mat-icon-button (click)=" onEditManger(item)"><mat-icon>supervisor_account</mat-icon></button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+
+                     <div *ngIf="searchresionsocial && !prospect && !client && !searchadress && !searchmail && !searchdate ">
+                      <table class="table"  >
+                        <thead>
+                          <tr>
+                            <th scope="col">Social_Reason</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Mail</th>
+                            <th scope="col">Role</th>
+                            <th scope="col"> DateCreated</th>
+                            <th scope="col">Settings </th>
+                          </tr>
+                        </thead>
+                        <tbody *ngFor="let item of exampleIte">
+                          <tr>
+                            <td>{{item.data.Social_Reason}}</td>
+                            <td>{{item.data.Phone}}</td>
+                            <td>{{item.data.Mail}}</td>
+                            <td>{{item.data.Address}}</td>
+                            <td>{{item.data.Role}}</td>
+                            <td>{{item.data.DateCreated}}</td>
+                            <td>
+                              <button  mat-icon-button   (click)="  onEditProspect(item)" ><mat-icon>launch</mat-icon></button>
+                              <button  mat-icon-button color="warn" (click)="onArchive(item)" ><mat-icon>archive</mat-icon></button> 
+                              <button  mat-icon-button  (click)="createGeo(item)" ><mat-icon>add_location</mat-icon></button>
+                              <button mat-icon-button  (click)=" selectGeo(item)"><mat-icon>where_to_vote</mat-icon></button>
+                              <button mat-icon-button (click)=" onEditNote(item)"><mat-icon>note_add</mat-icon></button>
+                              <button mat-icon-button (click)=" onEditManger(item)"><mat-icon>supervisor_account</mat-icon></button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+
+                    
+                    <div *ngIf="searchadress && !searchresionsocial && !prospect && !client &&  !searchmail && !searchdate ">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">Social_Reason</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Mail</th>
+                            <th scope="col">Role</th>
+                            <th scope="col"> DateCreated</th>
+                            <th scope="col">Settings </th>
+                          </tr>
+                        </thead>
+                        <tbody *ngFor="let item of exampleI">
+                          <tr>
+                            <td>{{item.data.Social_Reason}}</td>
+                            <td>{{item.data.Phone}}</td>
+                            <td>{{item.data.Mail}}</td>
+                            <td>{{item.data.Address}}</td>
+                            <td>{{item.data.Role}}</td>
+                            <td>{{item.data.DateCreated}}</td>
+                            <td>
+                              <button  mat-icon-button   (click)="  onEditProspect(item)" ><mat-icon>launch</mat-icon></button>
+                              <button  mat-icon-button color="warn" (click)="onArchive(item)" ><mat-icon>archive</mat-icon></button> 
+                              <button  mat-icon-button  (click)="createGeo(item)" ><mat-icon>add_location</mat-icon></button>
+                              <button mat-icon-button  (click)=" selectGeo(item)"><mat-icon>where_to_vote</mat-icon></button>
+                              <button mat-icon-button (click)=" onEditNote(item)"><mat-icon>note_add</mat-icon></button>
+                              <button mat-icon-button (click)=" onEditManger(item)"><mat-icon>supervisor_account</mat-icon></button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    
+                    <div *ngIf=" searchmail && !searchresionsocial && !prospect && !client && !searchadress && !searchdate ">
+                      <table class="table"  >
+                        <thead>
+                          <tr>
+                            <th scope="col">Social_Reason</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Mail</th>
+                            <th scope="col">Role</th>
+                            <th scope="col"> DateCreated</th>
+                            <th scope="col">Settings </th>
+                          </tr>
+                        </thead>
+                        <tbody *ngFor="let item of example">
+                          <tr>
+                            <td>{{item.data.Social_Reason}}</td>
+                            <td>{{item.data.Phone}}</td>
+                            <td>{{item.data.Mail}}</td>
+                            <td>{{item.data.Address}}</td>
+                            <td>{{item.data.Role}}</td>
+                            <td>{{item.data.DateCreated}}</td>
+                            <td>
+                              <button  mat-icon-button   (click)="  onEditProspect(item)" ><mat-icon>launch</mat-icon></button>
+                              <button  mat-icon-button color="warn" (click)="onArchive(item)" ><mat-icon>archive</mat-icon></button> 
+                              <button  mat-icon-button  (click)="createGeo(item)" ><mat-icon>add_location</mat-icon></button>
+                              <button mat-icon-button  (click)=" selectGeo(item)"><mat-icon>where_to_vote</mat-icon></button>
+                              <button mat-icon-button (click)=" onEditNote(item)"><mat-icon>note_add</mat-icon></button>
+                              <button mat-icon-button (click)=" onEditManger(item)"><mat-icon>supervisor_account</mat-icon></button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+
+                      <mat-paginator  [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="5" ></mat-paginator>
+                    </div>
+                  </form>
                 </div>
               </div>
-           </div>
-        </section>
+            </div>
+         </div>
       </section>
+    </section>
+  
     
-      
-    </div>
-
-
- 
-    <app-footernavbar></app-footernavbar>
-    <app-settingsnavbar></app-settingsnavbar>
-   
   </div>
+
+
+
+  <app-footernavbar></app-footernavbar>
+  <app-settingsnavbar></app-settingsnavbar>
+ 
+</div>

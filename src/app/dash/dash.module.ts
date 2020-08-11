@@ -56,7 +56,9 @@ import { DialogComponent } from './mail-page/dialog/dialog.component';
 import { DialogDefaultComponent } from './mail-page/dialog-default/dialog-default.component';
 import { ClientCrudComponent } from './client-page/client-crud/client-crud.component';
 import { ClientDirective } from './shared/client.directive';
-
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { ValidClientComponent } from './prospect/valid-client/valid-client.component';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [
@@ -84,7 +86,9 @@ import { ClientDirective } from './shared/client.directive';
     DialogComponent,
     DialogDefaultComponent,
     ClientCrudComponent,
-    ClientDirective
+    ClientDirective,
+    ValidClientComponent,
+
   ],
   exports: [
     DashPageComponent,
@@ -106,9 +110,9 @@ import { ClientDirective } from './shared/client.directive';
     AgmCoreModule.forRoot({
       apiKey : environment.googleMapsKey,
      }),
-    HttpClientModule,
-    FormsModule,
-    NgxJsonViewerModule,
+     HttpClientModule,
+     FormsModule,
+     NgxJsonViewerModule,
      BrowserAnimationsModule,
      MatDialogModule,
      MatFormFieldModule,
@@ -130,7 +134,9 @@ import { ClientDirective } from './shared/client.directive';
      MatTabsModule ,
      MatListModule,
      FullCalendarModule,
-     DragDropModule
+     DragDropModule,
+     MatCheckboxModule,
+     MatAutocompleteModule
   ],
   providers: [SharedService , ProspectService],
   entryComponents: [NoteComponent, MatConfirmDialogComponent, ProspectsComponent]

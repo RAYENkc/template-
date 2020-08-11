@@ -17,6 +17,10 @@ export const environment = {
   getProTunis : 'https://us-central1-departement-commercial.cloudfunctions.net/prospectApi/test/read',
   gettoday: 'https://us-central1-departement-commercial.cloudfunctions.net/prospectApi/filter/day',
   getdate:'https://us-central1-departement-commercial.cloudfunctions.net/prospectApi/filter/day/',
+  getSopcialResion : 'https://us-central1-departement-commercial.cloudfunctions.net/prospectApi/prospect/getsocielResion/',
+  getAdress: 'https://us-central1-departement-commercial.cloudfunctions.net/prospectApi/prospect/Address/',
+  getMail:'https://us-central1-departement-commercial.cloudfunctions.net/prospectApi/prospect/getMail/',
+
   /**  GeoLocation **/
   createGeo: 'https://us-central1-departement-commercial.cloudfunctions.net/prospectApi/api/geolocations/create/',
   readIdGeo: 'https://us-central1-departement-commercial.cloudfunctions.net/prospectApi/geolocations/read/',
@@ -30,7 +34,7 @@ export const environment = {
   readAllNote: 'https://us-central1-departement-commercial.cloudfunctions.net/prospectApi/api/notes/read/',
   updateNote: 'https://us-central1-departement-commercial.cloudfunctions.net/prospectApi/notes/update/',
   deleteNote: 'https://us-central1-departement-commercial.cloudfunctions.net/prospectApi/notes/delete/',
-
+ 
    /** ProspectManger **/
    createProMang: 'https://us-central1-departement-commercial.cloudfunctions.net/prospectApi/api/prospectMangers/create/',
    readIdProMang: 'https://us-central1-departement-commercial.cloudfunctions.net/prospectApi/prospectMangers/read/',
@@ -38,13 +42,32 @@ export const environment = {
    updateProMang: 'https://us-central1-departement-commercial.cloudfunctions.net/prospectApi/prospectMangers/update/',
    deleteProMang: 'https://us-central1-departement-commercial.cloudfunctions.net/prospectApi/prospectMangers/delete/',
   
-  
+   
    /**** Client *****/
    createClient: 'https://us-central1-departement-commercial.cloudfunctions.net/clientApi/api/create',
    readIdClient: 'https://us-central1-departement-commercial.cloudfunctions.net/clientApi/api/read/',
    readAllClient: 'https://us-central1-departement-commercial.cloudfunctions.net/clientApi/api/read',
    updateClient: 'https://us-central1-departement-commercial.cloudfunctions.net/clientApi/api/update/',
    deleteClient: 'https://us-central1-departement-commercial.cloudfunctions.net/clientApi/api/delete/',
+
+   /**  GeoLocation Client **/
+  createGeoClient: 'https://us-central1-departement-commercial.cloudfunctions.net/clientApi/api/geolocations/read/',
+  readIdGeoClient: 'https://us-central1-departement-commercial.cloudfunctions.net/geolocations/read/',
+  readAllGeoClient: 'https://us-central1-departement-commercial.cloudfunctions.net/clientApi/api/geolocations/read/',
+  updateGeoClient: 'https://us-central1-departement-commercial.cloudfunctions.net/clientApi/geolocations/update/',
+  deleteGeoClient: 'https://us-central1-departement-commercial.cloudfunctions.net/clientApi/geolocations/delete/',
+
+  /*****   filtrage  ****/
+  getArchiProClient : 'https://us-central1-departement-commercial.cloudfunctions.net/clientApi/archi/read',
+  getActiveProClient : 'https://us-central1-departement-commercial.cloudfunctions.net/clientApi/active/email',
+  getDataFirstOrderClient : 'https://us-central1-departement-commercial.cloudfunctions.net/clientApi/filter/DataFirstOrder/',
+  getDateOfLastOrderClient : 'https://us-central1-departement-commercial.cloudfunctions.net/clientApi/filter/DateOfLastOrder/',
+  getdateClient :'https://us-central1-departement-commercial.cloudfunctions.net/clientApi/filter/day/',
+  getSopcialResionClient : 'https://us-central1-departement-commercial.cloudfunctions.net/clientApi/client/getsocielResion/',
+  getAdressClient : 'https://us-central1-departement-commercial.cloudfunctions.net/clientApi/client/Address/',
+  getMailClient :'https://us-central1-departement-commercial.cloudfunctions.net/clientApi/client/getMail/',
+  getDayClient : 'https://us-central1-departement-commercial.cloudfunctions.net/clientApi/filter/date',
+
 
    /**** Commercial    *****/
    createCommercial: 'https://us-central1-departement-commercial.cloudfunctions.net/commercialApi/api/create',
@@ -63,6 +86,8 @@ export const environment = {
       getmy: 'https://us-central1-departement-commercial.cloudfunctions.net/assignmentApi/assig/read/my/',
       valideAssignment:'https://us-central1-departement-commercial.cloudfunctions.net/assignmentApi/api/valid/',
       refusAssignment: 'https://us-central1-departement-commercial.cloudfunctions.net/assignmentApi/api/refus/',
+      getProspectAssignment: 'https://us-central1-departement-commercial.cloudfunctions.net/assignmentApi/assignments/day/',
+
 
   // filtrage
   getmyProspect: 'https://us-central1-departement-commercial.cloudfunctions.net/assignmentApi/myprospects/read/',
@@ -79,7 +104,7 @@ export const environment = {
   deleteChat: 'https://us-central1-departement-commercial.cloudfunctions.net/chatApi/api/delete/',
 
   /****** messages  *****/
-  createMessage: 'https://us-central1-departement-commercial.cloudfunctions.net/chatApi/api/message/create/',
+  createMessage: 'https://us-central1-departement-commercial.cloudfunctions.net/chatApi/api/messages/',
   readIdMessage: 'https://us-central1-departement-commercial.cloudfunctions.net/chatApi/chats/messages/',
   readAllMessage: 'https://us-central1-departement-commercial.cloudfunctions.net/chatApi/chats/messages/',
   updateMessage: 'https://us-central1-departement-commercial.cloudfunctions.net/chatApi/api/update/',
@@ -88,11 +113,11 @@ export const environment = {
   /***   event  ****/
   createEvent : 'https://us-central1-departement-commercial.cloudfunctions.net/eventsApi/event/create',
   readEvent : 'https://us-central1-departement-commercial.cloudfunctions.net/eventsApi/event/read',
-  
-
+  getEventDayClientEvent : 'https://us-central1-departement-commercial.cloudfunctions.net/eventsApi/events/day/client/',
+  getEventDayProspectEvent : 'https://us-central1-departement-commercial.cloudfunctions.net/eventsApi/events/day/prospect/',
   /****  note ****/
   createNoteEvent : 'https://us-central1-departement-commercial.cloudfunctions.net/eventsApi/note/create',
-  readNoteEvent : 'https://us-central1-departement-commercial.cloudfunctions.net/eventsApi/note/read',
+  readNoteEvent: 'https://us-central1-departement-commercial.cloudfunctions.net/eventsApi/events/day/',
 
 
   /*** email ***/

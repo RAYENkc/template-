@@ -73,6 +73,7 @@ div.container{
     snack-bar-container.success {
       background-color: #5cb85c;
       color: #fff;
+      margin-top: 15%;
     }
 
     snack-bar-container.warn {

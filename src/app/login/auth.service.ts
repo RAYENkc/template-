@@ -73,7 +73,20 @@ export class AuthService {
     })
   }
 
+  createUser(email: any,password: string){
+    console.log(email);
+    console.log(password);
+    this.afAuth
+    .createUserWithEmailAndPassword(email, password)
+    .then( userCredential => {
+      console.log('it okkkkkkkkkkkkkkkkkkkkkkkkkkkkk');
+       })
+    .catch( error => {
+      console.log(error);
+      this.eventAuthError.next(error);
 
+    })
+  }
  getUserInfo() {
     this.afAuth.onAuthStateChanged((user) => {
       if (user != null ) {

@@ -2,11 +2,19 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NotificationService } from '../../shared/notification.service';
 import { DialogService } from '../../shared/dialog.service';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 import { CommercialService } from '../../shared/commercial.service';
 import { environment } from 'src/environments/environment';
 import { CommercialSelectService } from '../../shared/commercial-select.service';
+interface Food {
+  value: string;
+  viewValue: string;
+}
 
+interface Car {
+  value: string;
+  viewValue: string;
+}
 @Component({
   selector: 'app-select-commercial',
   templateUrl: './select-commercial.component.html',
@@ -18,9 +26,16 @@ export class SelectCommercialComponent implements OnInit {
   exampleCommercials = [];
   exampleCommercial = [];
   exampleItem = [];
+  exampleId = [];
   IdAssignment : string;
   item = [];
   title= "";
+  test = "";
+
+  
+selectedFood = "";
+selectedDescription = "";
+selectedCar = "";
   constructor( public service : CommercialSelectService,
     private dialogRef: MatDialogRef<SelectCommercialComponent>,
     public notificationService : NotificationService,
@@ -34,6 +49,7 @@ export class SelectCommercialComponent implements OnInit {
     this.title =" Affect Prospect";
    // this.onUpdateAss( this.description);
     this.selectAllCommercial(); 
+    this.onUpdateAss(); 
   }
 
       //select all the prospects
@@ -75,22 +91,24 @@ export class SelectCommercialComponent implements OnInit {
 
 
       
-async updateAssignment(item : any){
+async updateAssignment(item : any, selectedDescription: any ){
   try{
     console.log(environment.updateAssignment);
     console.log('calling update endpoint with id ' + item.IdAssignment );
+    console.log('testtttttttttttt', selectedDescription);
+   await this.onUpdateAss(); 
+    console.log(this.exampleId[0].id);
     console.log(item);
     const requestBody = {
-      
-      IdCommercialAffect: item.idcom,
-      IdProspect: item.IdProspect,
-      description : item.description ,
-      
-      
+      IdCommercialAffect: item,
+      valid : 'changed',
+      description :  selectedDescription
+     // description : item.description ,
     };
     
+
     const updateResponse =
-    await fetch(environment.updateAssignment +  this.description , {
+    await fetch(environment.updateAssignment +  this.exampleId[0].id , {
       method: 'PUT',
       body: JSON.stringify(requestBody),
       headers:{
@@ -99,37 +117,44 @@ async updateAssignment(item : any){
     });
  
     console.log('Success');
-    console.log(updateResponse.status);
+    console.log(updateResponse.status); 
     this.notificationService.success(':: Submitted Commercial successfully');
- 
+    this.onClose();
   
    }catch(error){
     console.log(error);
    }
  
 }
-/*
-async onUpdateAss(item : any) {
+disableSelect = new FormControl(false);
+
+async onUpdateAss() {
   try {
     console.log(environment.getAssig);
-    
-
-    this.exampleItem = [];
-   
-    const output = await fetch(environment.getAssig + item );
-    
+    console.log('testttttttttttttttttttttt'+ this.description );
+    this.exampleId = [];
+    const output = await fetch(environment.getAssig + this.description );
     const outputJSON = await output.json();
-    this.exampleItem = outputJSON;
-    
+    this.exampleId = outputJSON;
     console.log('Success');
-    console.log(outputJSON);
+    console.log(this.exampleId);
+    console.log(this.exampleId[0].id);
   } catch (error) {
     console.log(error);
   }
-}*/
+}
+
 onClose() {
-  this.service.form.reset();
-  this.service.initializeFormAssigGroupe();
+ // this.service.form.reset();
+ this.service.initializeFormAssigGroupe();
   this.dialogRef.close();
 }
+
+
+
+selectCar(event: Event) {
+  this.selectedCar = (event.target as HTMLSelectElement).value;
+}
+
+
 }

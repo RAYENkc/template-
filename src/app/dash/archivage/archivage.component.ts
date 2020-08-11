@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { DialogService } from '../shared/dialog.service';
 import { NotificationService } from '../shared/notification.service';
@@ -18,6 +18,7 @@ export class ArchivageComponent implements OnInit {
     private router: Router,
     private dialogService: DialogService,
     public notificationService : NotificationService,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
@@ -26,9 +27,11 @@ export class ArchivageComponent implements OnInit {
   //  this.select();
     }
   Prospect(){
-    this.router.navigate(['Pages/prospect']);
+    this.router.navigate(['Pages/prospect',this.route.snapshot.paramMap.get('uid')]);
   }
-
+  Home(){
+    this.router.navigate(['Dashboard',this.route.snapshot.paramMap.get('uid')]);
+  }
   //select all the prospects
   async selectAll() {
     try { 

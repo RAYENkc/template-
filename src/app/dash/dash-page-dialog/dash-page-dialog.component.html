@@ -15,14 +15,41 @@
                   <input formControlName="title" matInput placeholder="Title*" [value]="item.title" (input)="item.title=$event.target.value"  >
                   <mat-error>this Field is mandatory</mat-error>
                 </mat-form-field>
+                <!--  -->
+                <mat-form-field >
+                  <mat-label> Choose an Client ou Prospect </mat-label>
+                      <mat-select   placeholder="Choix of *" [(value)]="selectedChoix"  >
+                          <ng-container *ngFor="let items of exampleChoix" > 
+                              <mat-option (click)="onChoix(items)" [value]="items" >{{items}}</mat-option>
+                          </ng-container>
+                      </mat-select>
+                </mat-form-field> 
+
+
+                <mat-form-field *ngIf="client">
+                  <mat-label>choix un client</mat-label>
+                      <mat-select formControlName="idCommercialAss"  placeholder="Commercial Affect*"  [(value)]="selectedFood" >
+                          <ng-container *ngFor="let items of exampleCommercail" > 
+                              <mat-option [value]="items.id" >{{items.data.Social_Reason}}</mat-option>
+                          </ng-container>
+                      </mat-select>
+                </mat-form-field>
+                <mat-form-field *ngIf="prospect">
+                  <mat-label>choix un prospect</mat-label>
+                      <mat-select formControlName="idCommercialAss"  placeholder="Commercial Affect*"  [(value)]="selectedFood" >
+                          <ng-container *ngFor="let items of exampleCommercail" > 
+                              <mat-option [value]="items.id" >{{items.Social_Reason}}</mat-option>
+                          </ng-container>
+                      </mat-select>
+                </mat-form-field>
                
                 <div class="bottom-row">
-                  <button mat-raised-button color="primary" type="submit" [disabled]="service.form.invalid" (click)="saveEvent(item)"  >Add</button>
+                  <button mat-raised-button color="primary" type="submit" [disabled]="service.form.invalid" (click)="saveEvent(item,selectedChoix,selectedFood)"  >Add</button>
                   <button mat-raised-button color="warn" (click)="onClear()" >Clear</button>
                 </div>
               </div>
               
-            </mat-grid-tile>
+            </mat-grid-tile> 
           <mat-grid-tile>
           </mat-grid-tile>
           </mat-grid-list>

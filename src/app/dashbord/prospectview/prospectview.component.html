@@ -1,0 +1,114 @@
+<div class="wrapper">
+    <app-topnavbar></app-topnavbar>
+    <app-asidenavbar></app-asidenavbar>
+    <div class="content-wrapper" style="min-height: 926px;">
+      <section class="content-header">
+        <h1> Dashboard </h1>
+        <ol class="breadcrumb">
+          <li><a><i class="fa fa-dashboard"></i> Home</a></li>
+          <li (click) = "Home()" ><a>Dashboard</a></li>
+          <li class="active">New Prospect</li>
+        </ol>
+        <section class="content">
+        <!-- <app-dashbody></app-dashbody>  --> 
+        <form>
+
+        
+         
+          <div class="container">
+            <!-- <div class="row frontend-row">--> 
+               <div>
+               <div class="col">
+                 <form>
+                   <div class="form-group example-list">
+                   <!--  <div class="select-all">
+                      <button class="btn btn-btn btn-primary" (click)="selectAll()">select all</button> 
+                        <button class="btn btn-btn btn-primary" (click)="select()" >affich</button> 
+                     
+                      
+                       <button class="btn btn-btn btn-success" (click)="createProspect()">create Prospect</button>
+                      mat-raised-button  class="btn btn-btn btn-primary"
+                     </div> -->
+
+                     <div class="search-div" >
+                       <button mat-raised-button  class="btn btn-btn btn-primary" (click)=onAddProspect()>
+                         <mat-icon>add</mat-icon> Create </button>
+                         <mat-form-field class="search-form-field" floatLabel="never"  >
+                           <input matInput  placeholder="Search" autocomplete="off" (input)="search=$event.target.value"  >
+                           <button mat-button matSuffix mat-icon-button aria-label="Clear"   (click)="getdate(search)" >
+                             <mat-icon>close</mat-icon>
+                           </button>
+                         </mat-form-field>
+                         <button mat-raised-button color="accent" [matMenuTriggerFor]="menu">Settings</button>
+                         <mat-menu #menu="matMenu">
+                           <button mat-menu-item (click)=assignment()> Assignment</button>
+                           <button mat-menu-item (click)=archivage()> Archivage </button>
+                         </mat-menu>
+
+                       
+                         <button mat-raised-button color="accent" [matMenuTriggerFor]="appMenu">Filtration</button>
+                         <mat-menu #appMenu="matMenu">
+                           <button mat-menu-item (click)=Today()> Aujourd'hui</button>
+                           <button mat-menu-item (click)=archivage()> Archivage </button>
+                         </mat-menu>
+                     </div>
+                     <div *ngIf="exampleItems.length == 0">
+                       <p>   loading ..  </p>
+                    </div>
+                     <table class="table" >
+                       <thead>
+                         <tr>
+                           <th scope="col">Social_Reason</th>
+                           <th scope="col">Phone</th>
+                           <th scope="col">Address</th>
+                           <th scope="col">Mail</th>
+                           <th scope="col">Role</th>
+                           <th scope="col"> DateCreated</th>
+                           <th scope="col">Settings </th>
+                         </tr>
+                       </thead>
+                       <tbody *ngFor="let item of infos">
+                         <tr>
+                           <td>{{item.data.Social_Reason}}</td>
+                           <td>{{item.data.Phone}}</td>
+                           <td>{{item.data.Mail}}</td>
+                           <td>{{item.data.Address}}</td>
+                           <td>{{item.data.Role}}</td>
+                           <td>{{item.data.DateCreated}}</td>
+                           <td>
+                             <button  mat-icon-button   (click)="onEditProspect(item)" ><mat-icon>launch</mat-icon></button>
+                             <button  mat-icon-button color="warn" (click)="onArchive(item)" ><mat-icon>archive</mat-icon></button> 
+                             <button mat-icon-button (click)="onEditNote(item)"><mat-icon>note_add</mat-icon></button>
+                             <button mat-icon-button (click)="onEditManger(item)"><mat-icon>supervisor_account</mat-icon></button>
+                           </td>
+                            
+                       
+                         </tr>
+                        
+                       </tbody>
+                      
+                     </table>
+                     <mat-paginator  [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="5" ></mat-paginator>
+                   </div>
+                 </form>
+               </div>
+             </div>
+           </div>
+         
+        <mat-grid-tile>
+        </mat-grid-tile>
+   
+    
+      </form>
+
+        </section>
+      </section>
+    
+      
+    </div>
+
+    
+    <app-footernavbar></app-footernavbar>
+    <app-settingsnavbar></app-settingsnavbar>
+   
+  </div>
